@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>前端语义化</title>
+  <style>
+    @font-face {
+      font-family: HYZhuZiLieYanTiW;
+      src: url('./font/HYZhuZiLieYanTiW.ttf');
+    }
+
+    * {
+      color: #5f5f5f;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 6px;
+      font-family: HYZhuZiLieYanTiW;
+      margin: 5px;
+      padding: 10px;
+    }
+
+    body {
+      margin: 20px;
+      padding: 20px;
+      border: 2px solid #5f5f5f;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    body::before {
+      content: "<BODY>";
+      position: absolute;
+      top: -9px;
+      left: 20px;
+      background-color: white
+    }
+
+    header {
+      border: 2px solid #ededed;
+      position: relative;
+    }
+
+    header::before {
+      content: "<HEADER>";
+      position: absolute;
+      top: -9px;
+      left: 10px;
+      background-color: white;
+    }
+
+    nav {
+      border: 2px solid #eebd7d;
+      position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    nav li {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    nav::before {
+      content: "<NAV>";
+      position: absolute;
+      top: -9px;
+      left: 10px;
+      background-color: white;
+    }
+
+    article {
+      border: 2px solid #edecec;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    article::before {
+      content: "<ARTICLE>";
+      position: absolute;
+      color: #aaafb1;
+      top: -9px;
+      left: 10px;
+      background-color: white;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      background-color: #f5f6f8;
+    }
+
+    p {
+      background-color: #e2e0e0;
+    }
+
+    li {
+      background-color: #f5f6f8;
+      position: relative;
+      list-style: none;
+    }
+
+    li::before {
+      content: "<LI>";
+      color: #aaafb1;
+    }
+
+    .col {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0;
+      margin: 0;
+    }
+
+    .row {
+      padding: 0;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .mainArticle {
+      border-color: #eebd7d;
+    }
+    aside {
+      margin-right: 0;
+      padding-right: 0;
+    }
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    footer {
+      border: 2px solid #edecec;
+      position: relative;
+    }
+
+    footer::before {
+      content: "<FOOTER>";
+      position: absolute;
+      top: -9px;
+      left: 10px;
+      color: #aaafb1;
+      background-color: white;
+    }
+
+    .footerNav {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .articleFooter {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .articleFooter p {
+      flex-grow: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </nav>
+  </header>
+  <div class="col">
+    <div class="row">
+      <article class="mainArticle">
+        <header>
+          <p></p>
+        </header>
+        <section>
+          <h1></h1>
+          <p></p>
+          <p></p>
+          <p></p>
+        </section>
+        <section>
+          <h2></h2>
+          <p></p>
+          <p></p>
+        </section>
+        <section>
+          <h3></h3>
+          <p></p>
+          <p></p>
+        </section>
+        <footer class="articleFooter">
+          <p></p>
+          <p></p>
+          <p></p>
+        </footer>
+      </article>
+
+      <article>
+        <header>
+          <p></p>
+        </header>
+        <section>
+          <h1>
+          </h1>
+          <p></p>
+        </section>
+        <section>
+          <h2>
+          </h2>
+          <p></p>
+          <p></p>
+        </section>
+        <section>
+          <h3></h3>
+          <p></p>
+          <p></p>
+          <p></p>
+        </section>
+        <footer class="articleFooter">
+          <p></p>
+          <p></p>
+          <p></p>
+        </footer>
+      </article>
+    </div>
+    <aside>
+        <nav class="vertical">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </nav>
+    </aside>
+  </div>
+  <footer>
+    <nav class="footerNav">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </nav>
+  </footer>
+</body>
+
+</html>
