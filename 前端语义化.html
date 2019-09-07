@@ -15,16 +15,17 @@
       font-weight: bold;
       border-radius: 6px;
       font-family: HYZhuZiLieYanTiW;
-      margin: 5px;
+      margin: 10px;
       padding: 10px;
     }
 
     body {
-      margin: 20px;
       padding: 20px;
       border: 2px solid #5f5f5f;
       border-radius: 6px;
       position: relative;
+      margin: 20px auto;
+      width: 900px;
     }
 
     body::before {
@@ -43,9 +44,30 @@
     header::before {
       content: "<HEADER>";
       position: absolute;
+      color: #ededed;
       top: -9px;
       left: 10px;
       background-color: white;
+    }
+
+    main {
+      border: 2px solid #ededed;
+      position: relative;
+      display: flex;
+    }
+
+    main::before {
+      content: "<MAIN>";
+      position: absolute;
+      top: -9px;
+      left: 10px;
+      background-color: white;
+    }
+
+    main div {
+      flex-grow: 1;
+      padding: 0;
+      margin: 0;
     }
 
     nav {
@@ -72,13 +94,26 @@
     article {
       border: 2px solid #edecec;
       position: relative;
-      margin-top: 20px;
     }
 
     article::before {
       content: "<ARTICLE>";
       position: absolute;
       color: #aaafb1;
+      top: -9px;
+      left: 10px;
+      background-color: white;
+    }
+
+    section {
+      border: 2px solid #edecec;
+      position: relative;
+    }
+
+    section::before {
+      content: "<SECTION>";
+      position: absolute;
+      color: #edecec;
       top: -9px;
       left: 10px;
       background-color: white;
@@ -91,10 +126,54 @@
     h5,
     h6 {
       background-color: #f5f6f8;
+      text-align: center;
+    }
+
+    h1::before {
+      content: "h1";
+      color: #aaafb1;
+      font-size: 14px;
+    }
+
+    h2::before {
+      content: "h2";
+      color: #aaafb1;
+      font-size: 14px;
+    }
+
+    h3::before {
+      content: "h3";
+      color: #aaafb1;
+      font-size: 14px;
+    }
+
+    h4::before {
+      content: "h4";
+      color: #aaafb1;
+      font-size: 14px;
+    }
+
+    h5::before {
+      content: "h5";
+      color: #aaafb1;
+      font-size: 14px;
+    }
+
+    h6::before {
+      content: "h6";
+      color: #aaafb1;
+      font-size: 14px;
     }
 
     p {
       background-color: #e2e0e0;
+      text-align: center;
+    }
+
+    p::before {
+      content: 'P';
+      color: #aaafb1;
+      font-size: 12px;
     }
 
     li {
@@ -124,10 +203,30 @@
     .mainArticle {
       border-color: #eebd7d;
     }
+
     aside {
-      margin-right: 0;
-      padding-right: 0;
+      border: 2px solid #edecec;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      margin-top: 0;
     }
+
+    aside::before {
+      content: "<ASIDE>";
+      position: absolute;
+      top: -9px;
+      left: 10px;
+      background-color: white;
+    }
+
+    main aside {
+      position: relative;
+      margin: 10px;
+      top: 0;
+      left: 0;
+    }
+
     .vertical {
       display: flex;
       flex-direction: column;
@@ -175,8 +274,8 @@
       <li></li>
     </nav>
   </header>
-  <div class="col">
-    <div class="row">
+  <main>
+    <div>
       <article class="mainArticle">
         <header>
           <p></p>
@@ -233,15 +332,28 @@
       </article>
     </div>
     <aside>
-        <nav class="vertical">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </nav>
+      <nav class="vertical">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </nav>
     </aside>
-  </div>
+  </main>
+  <aside>
+    <nav class="vertical">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </nav>
+  </aside>
   <footer>
     <nav class="footerNav">
       <li></li>
