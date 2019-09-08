@@ -3,12 +3,77 @@
 
 <head>
   <title>flex和grid布局练习</title>
+  <link rel="stylesheet" href="main.css">
   <style>
+    
+    header {
+      text-align: center;
+    }
+    h1 {
+      text-align: center;
+    }
+    .box {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      border: 2px solid #ededed
+    }
+    .boxItem {
+      flex-grow: 1;
+    }
+    .flexBox {
+      padding: 0;
+      display: flex;
+      border: 2px solid #ededed;
+      position: relative;
+    }
+    .flexBox::before {
+      content: "flexBox";
+      position: absolute;
+      top: -9px;
+      left: 10px;
+      background-color: white;
+    }
+    .item {
+      background-color: #e2e0e0;
+      
+      display: flex;
+      align-items: center;
+    }
+    .item::before {
+      content: "item";
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
-  
+  <header>
+    <h1>flex和grid布局练习</h1>
+  </header>
+  <main>
+    <article>
+      <header>
+          <h2>flex布局</h2>
+      </header>
+
+      <section>
+          <h3>创建flex布局</h3>
+          <div class="box">
+            <pre class="boxItem">
+{
+  display: flex;
+}</pre>
+ <div class="flexBox boxItem">
+   <div class="item"></div>
+   <div class="item"></div>
+   <div class="item"></div>
+
+ </div>
+          </div>
+      </section>
+    </article>
+  </main>
 </body>
 
 </html>
