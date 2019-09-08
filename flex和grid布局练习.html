@@ -5,28 +5,32 @@
   <title>flex和grid布局练习</title>
   <link rel="stylesheet" href="main.css">
   <style>
-    
     header {
       text-align: center;
     }
+
     h1 {
       text-align: center;
     }
+
     .box {
       display: flex;
       padding: 0;
       margin: 0;
       border: 2px solid #ededed
     }
+
     .boxItem {
       flex-grow: 1;
     }
+
     .flexBox {
       padding: 0;
       display: flex;
       border: 2px solid #ededed;
       position: relative;
     }
+
     .flexBox::before {
       content: "flexBox";
       position: absolute;
@@ -34,12 +38,26 @@
       left: 10px;
       background-color: white;
     }
+
+    .justify-content-flex-start {
+      justify-content: flex-start;
+    }
+
+    .justify-content-center {
+      justify-content: center;
+    }
+
+    .justify-content-flex-end {
+      justify-content: flex-end;
+    }
+
     .item {
       background-color: #e2e0e0;
-      
+
       display: flex;
       align-items: center;
     }
+
     .item::before {
       content: "item";
       text-align: center;
@@ -54,23 +72,69 @@
   <main>
     <article>
       <header>
-          <h2>flex布局</h2>
+        <h2>flex布局</h2>
       </header>
 
       <section>
-          <h3>创建flex布局</h3>
-          <div class="box">
-            <pre class="boxItem">
+        <h3>创建flex布局</h3>
+        <div class="box">
+          <pre class="boxItem">
 {
   display: flex;
 }</pre>
- <div class="flexBox boxItem">
-   <div class="item"></div>
-   <div class="item"></div>
-   <div class="item"></div>
+          <div class="flexBox boxItem">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
 
- </div>
           </div>
+        </div>
+      </section>
+      <section>
+        <h3>justify-content 属性</h3>
+        <section>
+          <h4>flex-start</h4>
+          <div class="box">
+            <pre class="boxItem">
+{
+  justify-content: flex-start;
+}</pre>
+            <div class="flexBox boxItem justify-content-flex-start">
+              <div class="item"></div>
+              <div class="item"></div>
+              <div class="item"></div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h4>center</h4>
+          <div class="box">
+            <pre class="boxItem">
+{
+  justify-content: center;
+}</pre>
+            <div class="flexBox boxItem justify-content-center">
+              <div class="item"></div>
+              <div class="item"></div>
+              <div class="item"></div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h4>flex-end</h4>
+          <div class="box">
+            <pre class="boxItem">
+{
+  justify-content: flex-end;
+}</pre>
+            <div class="flexBox boxItem justify-content-flex-end">
+              <div class="item"></div>
+              <div class="item"></div>
+              <div class="item"></div>
+            </div>
+          </div>
+        </section>
       </section>
     </article>
   </main>
