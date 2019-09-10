@@ -117,3 +117,19 @@
           text-align: left;
           flex-grow: 1;
       }
+      
+    .red {
+      background-color: #b22c2f;
+    }
+    .green {
+      background-color: #29997c;
+    }
+    .blue {
+      background-color: aqua;
+    }
+    .purple {
+      background-color: #68488d;
+    }
+    .orange {
+      background-color: #dd6a2f;
+    }
