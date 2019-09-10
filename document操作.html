@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>document操作</title>
+    </head>
+    <body>
+        <main></main>
+    </body>
+    <script>
+        let main = document.createElement('div');
+        let body = document.getElementsByTagName('main');
+        body.before(main);
+    </script>
+</html>
