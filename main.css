@@ -1,135 +1,144 @@
+@font-face {
+  font-family: HYZhuZiLieYanTiW;
+  src: url('./font/HYZhuZiLieYanTiW.ttf');
+}
 
-    @font-face {
-        font-family: HYZhuZiLieYanTiW;
-        src: url('./font/HYZhuZiLieYanTiW.ttf');
-      }
-  
-      * {
-        color: #5f5f5f;
-        font-weight: bold;
-        border-radius: 6px;
-        font-family: HYZhuZiLieYanTiW;
-        margin: 10px;
-        padding: 10px;
-      }
-  
-      body {
-        padding: 20px;
-        border: 2px solid #5f5f5f;
-        border-radius: 6px;
-        position: relative;
-        margin: 20px auto;
-        width: 900px;
-      }
-  
-      body::before {
-        content: "<BODY>";
-        position: absolute;
-        top: -9px;
-        left: 20px;
-        background-color: white
-      }
-      
-    header {
-        border: 2px solid #ededed;
-        position: relative;
-      }
-  
-      header::before {
-        content: "<HEADER>";
-        position: absolute;
-        color: #ededed;
-        top: -9px;
-        left: 10px;
-        background-color: white;
-      }
-      
+* {
+  color: #5f5f5f;
+  font-weight: bold;
+  border-radius: 6px;
+  font-family: HYZhuZiLieYanTiW;
+  margin: 10px;
+  padding: 10px;
+}
 
-    main {
-        border: 2px solid #ededed;
-        position: relative;
-      }
-  
-      main::before {
-        content: "<MAIN>";
-        position: absolute;
-        top: -9px;
-        left: 10px;
-        background-color: white;
-      }
-      
-    nav {
-        border: 2px solid #eebd7d;
-        position: relative;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-      }
-      
-    nav::before {
-        content: "<NAV>";
-        position: absolute;
-        top: -9px;
-        left: 10px;
-        background-color: white;
-      }
-      
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      background-color: #f5f6f8;
-      text-align: center;
-    }
+body {
+  padding: 20px;
+  border: 2px solid #5f5f5f;
+  border-radius: 6px;
+  position: relative;
+  margin: 20px auto;
+  width: 900px;
+}
 
-    
-    article {
-        border: 2px solid #edecec;
-        position: relative;
-      }
-  
-      article::before {
-        content: "<ARTICLE>";
-        position: absolute;
-        color: #aaafb1;
-        top: -9px;
-        left: 10px;
-        background-color: white;
-      }
-  
-      section {
-        border: 2px solid #edecec;
-        position: relative;
-      }
-  
-      section::before {
-        content: "<SECTION>";
-        position: absolute;
-        color: #edecec;
-        top: -9px;
-        left: 10px;
-        background-color: white;
-      }
-      pre {
-          border: 2px solid #aaafb1;
-          text-align: left;
-          flex-grow: 1;
-      }
-      
-    .red {
-      background-color: #b22c2f;
-    }
-    .green {
-      background-color: #29997c;
-    }
-    .blue {
-      background-color: aqua;
-    }
-    .purple {
-      background-color: #68488d;
-    }
-    .orange {
-      background-color: #dd6a2f;
-    }
+body::before {
+  content: "<BODY>";
+  position: absolute;
+  top: -9px;
+  left: 20px;
+  background-color: white
+}
+
+header {
+  border: 2px solid #ededed;
+  position: relative;
+}
+
+header::before {
+  content: "<HEADER>";
+  position: absolute;
+  color: #ededed;
+  top: -9px;
+  left: 10px;
+  background-color: white;
+}
+
+
+main {
+  border: 2px solid #ededed;
+  position: relative;
+}
+
+main::before {
+  content: "<MAIN>";
+  position: absolute;
+  top: -9px;
+  left: 10px;
+  background-color: white;
+}
+
+nav {
+  border: 2px solid #eebd7d;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav::before {
+  content: "<NAV>";
+  position: absolute;
+  top: -9px;
+  left: 10px;
+  background-color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  background-color: #f5f6f8;
+  text-align: center;
+}
+
+
+article {
+  border: 2px solid #edecec;
+  position: relative;
+}
+
+article::before {
+  content: "<ARTICLE>";
+  position: absolute;
+  color: #aaafb1;
+  top: -9px;
+  left: 10px;
+  background-color: white;
+}
+
+section {
+  border: 2px solid #edecec;
+  position: relative;
+}
+
+section::before {
+  content: "<SECTION>";
+  position: absolute;
+  color: #edecec;
+  top: -9px;
+  left: 10px;
+  background-color: white;
+}
+
+pre {
+  border: 2px solid #aaafb1;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.red {
+  background-color: #b22c2f;
+}
+
+.green {
+  background-color: #29997c;
+}
+
+.blue {
+  background-color: turquoise;
+}
+.deepblue {
+  background-color: #3d689f;
+}
+.purple {
+  background-color: #68488d;
+}
+
+.orange {
+  background-color: #dd6a2f;
+}
+b {
+  font-weight: bold;
+}

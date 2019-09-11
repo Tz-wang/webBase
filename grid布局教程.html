@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Grid布局教程</title>
+  <link rel="stylesheet" href="main.css">
+  <style>
+    * {
+      font-weight: inherit;
+    }
+
+    .grid {
+      display: grid;
+    }
+
+    .grid-item {
+      color: white;
+      padding: 20px;
+    }
+
+    .grid-demo {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-areas:
+        'a a b'
+        'a a d'
+        'c e d';
+      border: 3px solid #e1dfce;
+      position: relative;
+    }
+
+    .grid-demo::before {
+      content: "grid-demo";
+      position: absolute;
+      top: -13px;
+      left: 10px;
+      background-color: white;
+      color: #929187;
+    }
+
+    .grid-item1 {
+      grid-area: a;
+    }
+
+    .grid-item2 {
+      grid-area: b;
+    }
+
+    .grid-item3 {
+      grid-area: c;
+    }
+
+    .grid-item4 {
+      grid-area: d;
+    }
+
+    .grid-item5 {
+      grid-area: e;
+    }
+
+    .no-padding-no-margin {
+      padding: 0;
+      margin: 0;
+    }
+
+    .row-col-example {
+      border: 2px solid #535453;
+      border-radius: 0;
+      display: grid;
+      height: 300px;
+      grid-template-columns: 1fr 40px 1fr 40px 1fr;
+      grid-template-rows: 1fr 30px 1fr 30px 1fr;
+      padding: 0;
+    }
+
+    .row-col-example-item {
+      padding: 0;
+      margin: 0;
+      border: 2px solid #535453;
+      border-radius: 0;
+    }
+
+    .grid-line-example {
+      position: relative;
+      height: 460px;
+      width: 500px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .horizontal-zone {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+
+    .horizontal-text-zone {
+      display: flex;
+      position: absolute;
+      top: 21px;
+      right: -23px;
+      width: calc(100% - 62px);
+      justify-content: space-between;
+    }
+
+    .horizontal-item-zone {
+      position: absolute;
+      right: 0;
+      bottom: 3px;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: calc(100% - 68px);
+      width: calc(100% - 73px);
+    }
+
+    .vertical-zone {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+
+    .vertical-text-zone {
+      position: absolute;
+      bottom: -7px;
+      left: 27px;
+      height: calc(100% - 50px);
+      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vertical-item-zone {
+      position: absolute;
+      height: calc(100% - 40px);
+      width: calc(100% - 108px);
+      bottom: 0;
+      right: 3px;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .hline {
+      flex-grow: 0;
+      width: 100%;
+      /* height: 1px; */
+      /* border-bottom: 2px solid #535453; */
+      border: 1px solid #535453;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    .vline {
+      flex-grow: 0;
+      height: 100%;
+      /* width: 1px; */
+      /* border-right: 2px solid #535453; */
+      border: 1px solid #535453;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    .background {
+      display: grid;
+      position: absolute;
+      height: 390px;
+      width: 390px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      border: 4px solid #69b156;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    .background-item {
+      border: 4px solid #69b156;
+      border-radius: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Grid布局教程</h1>
+  </header>
+  <main>
+    <article>
+      <header>
+        <h2>Grid布局</h2>
+      </header>
+      <section>
+        <h3>一、概述</h3>
+        <p>网格布局（Grid）是强大的 CSS 布局方案</p>
+        <p>它将网页划分成为一个一个网格，可以任意组合不同的网格，做出各种各样的布局。</p>
+        <div class="grid grid-demo">
+          <div class="grid-item red grid-item1">1</div>
+          <div class="grid-item green grid-item2">2</div>
+          <div class="grid-item blue grid-item3">3</div>
+          <div class="grid-item purple grid-item4">4</div>
+          <div class="grid-item orange grid-item5">5</div>
+        </div>
+        <p>上图这样的布局，就是Grid布局的拿手好戏。</p>
+        <p>Grid 布局与Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，它们也存在一些区别。</p>
+        <p>Flex
+          布局是轴线布局，只能指定“项目(item)”针对轴线的位置，可以看作是<b>一维布局</b>。Grid布局则是将容器划分成“行”和“列”，产生单元格，然后指定“项目(item)”所在的单元格，可以看作是<b>二维布局</b>。Grid布局远比Flex布局强大。
+        </p>
+      </section>
+      <section>
+        <h3>二、基本概念</h3>
+        <p>学习Grid布局前，需要先了解一些基本概念。</p>
+        <h4>2.1 容器和项目</h4>
+        <p>采用网格布局的区域，称为“容器(container)”。容器内部采用网格定位的子元素，称为“项目(item)”。</p>
+        <pre>&lt;div&gt;
+    &lt;div&lt;p&gt;1&lt;/p&gt;&lt;/div&gt;
+    &lt;div&lt;p&gt;2&lt;/p&gt;&lt;/div&gt;
+    &lt;div&lt;p&gt;3&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+        </pre>
+        <p>上面的代码中，最外层的&lt;div&gt;元素就是容器，内层的三个&lt;div&gt;元素就是项目。</p>
+        <p><b>注意：</b>项目只能是容器的顶层子元素，不包含项目的子元素，比如上面代码的&lt;p&gt;元素就不是项目。Grid布局只对项目生效。</p>
+        <h4>2.2 行和列</h4>
+        <p>容器里水平区域称为“行(row)”，垂直区域称为“列(column)”。</p>
+        <div class="row-col-example">
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item deepblue"></div>
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item"></div>
+
+          <div class="row-col-example-item deepblue"></div>
+          <div class="row-col-example-item deepblue"></div>
+          <div class="row-col-example-item deepblue"></div>
+          <div class="row-col-example-item deepblue"></div>
+          <div class="row-col-example-item deepblue"></div>
+
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item deepblue"></div>
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item"></div>
+
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item deepblue"></div>
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item"></div>
+
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item deepblue"></div>
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item"></div>
+          <div class="row-col-example-item"></div>
+        </div>
+        <p>上图中，水平的深色区域就是“行”，垂直的深色区域就是“列”。</p>
+        <h4>2.3 单元格</h4>
+        <p>行和列交叉的区域，称为“单元格(cell)”。</p>
+        <p>正常情况下，n 行和 m 列会产生 n &times; m 个单元格。比如，3行3列会产生9个单元格。</p>
+        <h4>2.4 网格线</h4>
+        <p>划分网格的线，称为“网格线(grid line)”。水平网格线划分出行，垂直网格线划分出列。</p>
+        <p>正常情况下，n行有n+1根水平网格线，m列有m+1根垂直网格线，比如3行就有四根水平网格线。</p>
+        <div class="grid-line-example">
+          <div class="background">
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+            <div class="no-padding-no-margin background-item"></div>
+          </div>
+
+          <div class="horizontal-zone no-padding-no-margin">
+            <div class="horizontal-text-zone no-padding-no-margin">
+              <div class="no-padding-no-margin">line1</div>
+              <div class="no-padding-no-margin">line2</div>
+              <div class="no-padding-no-margin">line3</div>
+              <div class="no-padding-no-margin">line4</div>
+              <div class="no-padding-no-margin">line5</div>
+            </div>
+            <div class="horizontal-item-zone no-padding-no-margin">
+              <div class="hline"></div>
+              <div class="hline"></div>
+              <div class="hline"></div>
+              <div class="hline"></div>
+              <div class="hline"></div>
+            </div>
+          </div>
+          <div class="vertical-zone no-padding-no-margin">
+            <div class="vertical-text-zone no-padding-no-margin">
+              <div class="no-padding-no-margin">line1</div>
+              <div class="no-padding-no-margin">line2</div>
+              <div class="no-padding-no-margin">line3</div>
+              <div class="no-padding-no-margin">line4</div>
+              <div class="no-padding-no-margin">line5</div>
+            </div>
+            <div class="vertical-item-zone no-padding-no-margin">
+              <div class="vline"></div>
+              <div class="vline"></div>
+              <div class="vline"></div>
+              <div class="vline"></div>
+              <div class="vline"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+</body>
+
+</html>
