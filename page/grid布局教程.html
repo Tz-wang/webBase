@@ -3,7 +3,7 @@
 
 <head>
   <title>Grid布局教程</title>
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="../main.css">
   <style>
     * {
       font-weight: inherit;
@@ -28,6 +28,7 @@
         'c e d';
       border: 3px solid #e1dfce;
       position: relative;
+      height: 480px;
     }
 
     .grid-demo::before {
@@ -148,8 +149,9 @@
     .hline {
       flex-grow: 0;
       width: 100%;
-      /* height: 1px; */
+      /* height: 2px; */
       /* border-bottom: 2px solid #535453; */
+      background-color: #535453;
       border: 1px solid #535453;
       box-sizing: border-box;
       padding: 0;
@@ -158,10 +160,12 @@
 
     .vline {
       flex-grow: 0;
+      flex-shrink: 0;
       height: 100%;
-      /* width: 1px; */
+      /* width: 2px; */
       /* border-right: 2px solid #535453; */
       border: 1px solid #535453;
+      background-color: #535453;
       box-sizing: border-box;
       padding: 0;
       margin: 0;
