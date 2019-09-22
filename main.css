@@ -116,8 +116,19 @@ pre {
   border: 2px solid #aaafb1;
   text-align: left;
   flex-grow: 1;
+  white-space: pre-wrap;
 }
 
+code {
+  background-color: turquoise;
+  margin: 0;
+  padding: 0;
+}
+strong {
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
 .red {
   background-color: #b22c2f;
 }
@@ -135,10 +146,24 @@ pre {
 .purple {
   background-color: #68488d;
 }
-
+.gold {
+  background-color: #eebd7d;
+}
 .orange {
   background-color: #dd6a2f;
 }
+.brown-green {
+  background-color: khaki;
+}
+.light-green {
+  background-color: lightgreen;
+}
 b {
   font-weight: bold;
+}
+.flex-div {
+  display: flex;
+}
+.fill-space-div {
+  margin: auto;
 }

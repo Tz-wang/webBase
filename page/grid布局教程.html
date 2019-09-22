@@ -13,6 +13,27 @@
       display: grid;
     }
 
+    .grid-ordinary-9-item {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      border: 3px solid #e1dfce;
+      position: relative;
+    }
+
+    .height-width-equal-250px {
+      height: 250px;
+      width: 250px;
+    }
+
+    .grid-ordinary-9-item::before {
+      content: 'display: grid';
+      position: absolute;
+      top: -13px;
+      left: 10px;
+      background-color: white;
+      color: #929187;
+    }
+
     .grid-item {
       color: white;
       padding: 20px;
@@ -190,6 +211,42 @@
       border: 4px solid #69b156;
       border-radius: 0;
     }
+
+    .align-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .height100width100 {
+      display: grid;
+      grid-template-columns: 100px 100px 100px;
+      grid-template-rows: 100px 100px 100px;
+    }
+
+    .grid-item-not-padding-not-margin {
+      padding: 0;
+      margin: 0;
+    }
+    .grid-repeat-example {
+      display: grid;
+      grid-template-columns: repeat(2, 100px 20px 80px);
+      border: 3px solid #e1dfce;
+      position: relative;
+    }
+    .grid-repeat-example .grid-item {
+      margin: 1px;
+      padding: 0;
+      height: 50px;
+    }
+    .grid-repeat-example::before {
+      content: 'repeat(2, 100px 20px 80px)';
+      position: absolute;
+      top: -13px;
+      left: 10px;
+      background-color: white;
+      color: #929187;
+    }
   </style>
 </head>
 
@@ -325,6 +382,86 @@
             </div>
           </div>
         </div>
+        <p>上图是一个4&times;4的网格，共有5根水平网格线和5根垂直网格线。</p>
+        <h3>三、容器属性</h3>
+        <p>Grid布局的属性分成两类。一类定义在容器上面，称为容器属性；另一类定义在项目上面，称为项目属性。首先介绍容器属性。</p>
+        <h4>3.1 display属性</h4>
+        <p><code>display: grid</code>指定一个容器采用网格布局。</p>
+        <pre>div {
+  display: grid;
+}</pre>
+        <dir class="grid grid-ordinary-9-item height-width-equal-250px">
+          <dir class="grid-item align-center red">1</dir>
+          <dir class="grid-item align-center orange">2</dir>
+          <dir class="grid-item align-center green">3</dir>
+          <dir class="grid-item align-center blue">4</dir>
+          <dir class="grid-item align-center purple">5</dir>
+          <dir class="grid-item align-center gold">6</dir>
+          <dir class="grid-item align-center brown-green">7</dir>
+          <dir class="grid-item align-center light-green">8</dir>
+          <dir class="grid-item align-center deepblue">9</dir>
+        </dir>
+        <p>上图是<code>display: grid;</code>的效果。</p>
+        <p>默认情况下，<strong>容器元素</strong></strong>都是块元素，但也可以设置成行内元素。</p>
+        <pre>div {
+  display: inline-grid;
+}</pre>
+        <p>上面代码指定<code>div</code>是一个行内元素，该元素内部采用网格布局。</p>
+        <pre><b>注意：</b>设为网格布局以后，容器子元素（项目）的<code>float</code>、<code>display: inline-block</code>、<code>display: table-cell</code>、<code>vertical-align</code>和<code>column-*</code>等设置都将失效。</pre>
+        <h4>3.2 grid-template-columns属性，grid-template-rows属性</h4>
+        <p>容器指定了网格布局以后，接着就要划分行和列。<code>grid-template-columns</code>属性定义每一列的列宽，<code>grid-template-rows</code>属性定义每一行的行高。
+        </p>
+        <pre>.container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+}</pre>
+        <p>上面代码指定了一个三行三列的网格，列宽和行高都是100px。</p>
+        <div class="no-padding-no-margin flex-div">
+          <dir class="grid grid-ordinary-9-item height100width100">
+            <dir class="grid-item align-center red">1</dir>
+            <dir class="grid-item align-center orange">2</dir>
+            <dir class="grid-item align-center green">3</dir>
+            <dir class="grid-item align-center blue">4</dir>
+            <dir class="grid-item align-center purple">5</dir>
+            <dir class="grid-item align-center gold">6</dir>
+            <dir class="grid-item align-center brown-green">7</dir>
+            <dir class="grid-item align-center light-green">8</dir>
+            <dir class="grid-item align-center deepblue">9</dir>
+          </dir>
+          <div class="fill-space-div"></div>
+        </div>
+        <p>除了使用绝对单位，也可以使用百分比。</p>
+        <pre>.container {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  grid-template-rows: 33.33% 33.33% 33.33%;
+}</pre>
+        <h5>(1) repeat()</h5>
+        <p>有时候，重复写同样的值非常麻烦，尤其网格很多时。这时，可以使用<code>repeat()</code>函数，简化重复的值。上面的代码用<code>repeat()</code>改写如下。</p>
+        <pre>.container {
+  display: grid;
+  grid-template-columns: repeat(3, 33.33%);
+  grid-template-rows: repeat(3, 33.33%);
+}</pre>
+      <p><code>repeat()</code>接受两个参数，第一个参数是重复的次数（上例是3），第二个参数是所要重复的值。</p>
+      <p><code>repeat()</code>重复某种模式也是可以的。</p>
+      <pre>grid-template-columns: repeat(2, 100px 20px 80px);</pre>
+      <p>上面的代码定义了6列，第一列和第四列的宽度是<code>100px</code>，第二列和第五列为<code>20px</code>，第三列和第六列为<code>80px</code>。</p>
+      <div class="no-padding-no-margin flex-div">
+        <div class="grid grid-repeat-example">
+            <dir class="grid-item align-center red">1</dir>
+            <dir class="grid-item align-center orange">2</dir>
+            <dir class="grid-item align-center green">3</dir>
+            <dir class="grid-item align-center blue">4</dir>
+            <dir class="grid-item align-center purple">5</dir>
+            <dir class="grid-item align-center gold">6</dir>
+            <dir class="grid-item align-center brown-green">7</dir>
+            <dir class="grid-item align-center light-green">8</dir>
+            <dir class="grid-item align-center deepblue">9</dir>
+        </div>
+        <div class="fill-space-div"></div>
+      </div>
       </section>
     </article>
   </main>
