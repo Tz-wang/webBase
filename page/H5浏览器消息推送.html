@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        if (Notification.permission === 'granted') {
+            console.log('用户允许通知');
+            let notification = new Notification('通知测试', {body: '这是一条测试'})
+        } else if (Notification.permission === 'denied') {
+            console.log('用户拒绝通知');
+        } else {
+            console.log('用户还没有选择，可以申请权限');
+            Notification.requestPermission().then(function (permission) {
+                if (permission === 'granted') {
+                    console.log('用户允许通知')
+                    let notification = new Notification('通知测试', {body: '这是一条测试'})
+                } else if (permission === 'denied') {
+                    console.log('用户拒绝通知');
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
