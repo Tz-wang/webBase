@@ -167,3 +167,6 @@ b {
 .fill-space-div {
   margin: auto;
 }
+.grid-box {
+  display: grid;
+}
