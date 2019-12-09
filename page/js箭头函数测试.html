@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>js箭头函数测试</title>
+	<link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+	<main>
+		<div id="btn1" title="this指针问题">
+			<h1>this指针问题</h1>
+			<pre>function func() {
+	print(this);
+}</pre>
+			<div class="flex-box">
+				<button class="btn" id="btn1btn1">1. element.onclick = func</button>
+				<button class="btn" id="btn1btn2">2. element.onclick = () => func</button>
+				<button class="btn" id="btn1btn3">3. element.onclick = () => func()</button>
+				<button class="btn" id="btn1btn4">4. element.onclick = function () {func()}</button>
+				<button class="btn" id="btn1btn5">5. element.onclick = () => print(this)</button>
+				<button class="btn" id="btn1btn6">6. element.onclick = function () {print(this)}</button>
+				<button class="btn" id="btn1btn7">7.
+					element.onclick = () => setTimeout(() => {
+					print(this);
+					}, 0);
+				</button>
+				<button class="btn" id="btn1btn8">8.
+					element.onclick = function() {
+					setTimeout(() => {
+					print(this);
+					}, 0);
+					}
+				</button>
+				<button class="btn" id="btn1btn9">9.
+					element.onclick = () => {
+					setTimeout(function () {
+					print(this);
+					}, 0);
+					}
+				</button>
+				<button class="btn" id="btn1btn10">10.
+					element.onclick = function() {
+					setTimeout(function () {
+					print(this);
+					}, 0);
+					}
+				</button>
+				<button class="btn" id="btn1btn11">11.对象方法的this指针指向
+					
+				</button>
+			</div>
+			<pre id="btn1pre" style="transition: test 1s;"></pre>
+			<pre>总结：
+	1、【1, 6】onclick = func 与 onclick = function () {print(this)} 是等效的，且this指向发出click事件的元素
+	2、function函数的this指针指向function函数的运行环境，【1】中是element，
+	3、箭头函数没有this指针，这句话的意思是箭头函数的this指针并不指向运行环境，而是指向调用这个this函数的对象或函数所在的运行环境
+			</pre>
+		</div>
+		<div id="" title="">
+
+		</div>
+	</main>
+	<script>
+		function setText(elementId, text) {
+			document.getElementById(elementId).textContent = text;
+		}
+		function func() {
+			document.getElementById('btn1pre').textContent = this;
+		}
+		window.addEventListener('click', (event) => {
+			const elementId = event.toElement.id.substr(0, 4);
+			if (elementId === 'btn1btn') {
+				document.getElementById('btn1pre').textContent = '不执行';
+			} else {
+				document.getElementById('btn1pre').textContent = '';
+			}
+		}, true)
+		document.getElementById('btn1btn1').onclick = func
+		document.getElementById('btn1btn2').onclick = () => func
+		document.getElementById('btn1btn3').onclick = () => func()
+		document.getElementById('btn1btn4').onclick = function () {
+			func()
+		}
+		document.getElementById('btn1btn5').onclick = () => document.getElementById('btn1pre').textContent = this
+		document.getElementById('btn1btn6').onclick = function () {
+			document.getElementById('btn1pre').textContent = this
+		}
+
+		document.getElementById('btn1btn7').onclick = () => setTimeout(function () {
+			document.getElementById('btn1pre').textContent = this
+		}, 0)
+
+		document.getElementById('btn1btn8').onclick = function () {
+			setTimeout(() => {
+				document.getElementById('btn1pre').textContent = this
+			}, 0);
+		}
+
+		document.getElementById('btn1btn9').onclick = () => {
+			setTimeout(function () {
+				document.getElementById('btn1pre').textContent = this
+			}, 0);
+		}
+
+		document.getElementById('btn1btn10').onclick = function () {
+			setTimeout(function () {
+				document.getElementById('btn1pre').textContent = this
+			}, 0);
+		}
+
+		class Environment {
+			func () {
+				document.getElementById('btn1pre').textContent = this + ' name' + this.constructor.name
+			}
+		}
+		const environment = new Environment();
+		
+		document.getElementById('btn1btn11').onclick = () => environment.func()
+
+	</script>
+</body>
+
+</html>
