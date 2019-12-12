@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript控制scroll</title>
+  <link rel="stylesheet" href="../main.css">
+  <style>
+    #scrollDiv {
+      height: 500px;
+      border: 1px solid #999;
+      overflow: auto;
+    }
+
+    #scroll1 {
+      height: 500px;
+      border: 1px solid #999;
+      overflow: auto;
+    }
+
+    #scroll2 {
+      height: 500px;
+      border: 1px solid #999;
+      overflow: hidden;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+
+    p {
+      white-space: pre-wrap;
+    }
+
+    .superButton {
+      position: relative;
+    }
+
+    .hoverText {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: -20px;
+      border: 1px solid #ffffe6;
+      background-color: #ffffe3;
+      white-space: pre;
+    }
+
+    .superButton:hover .hoverText {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <script>
+      const content = [];
+      for (let i = 0; i < 100; i++) {
+        content.push(`${i}. ${Math.random() * 1000000}`);
+      }
+    </script>
+    <article>
+      <h1>JavaScript控制scroll</h1>
+      <h2>scroll介绍</h2>
+      <section>
+        <p>
+          scroll方法仅在元素触发overflow后才有效。
+        </p>
+        <p>
+          一个element对象通常拥有以下与scroll相关的属性和方法:
+          <strong>属性：</strong>
+          1、element.scrollHeight 表示元素内内容的总高度
+          2、element.clientHeight 表示元素窗口大小，即可视部分的高度
+
+          <strong>方法：</strong>
+          1、element.scroll() 有两种格式，
+        </p>
+        <script>
+          document.getElementById
+        </script>
+      </section>
+      <section>
+        <h2>监听滚动</h2>
+        <p></p>
+        <span>当前div的滚动量为：</span><span id="watchScroll"></span>
+        <div id="scrollDiv">
+          <p id="scrollDivP"></p>
+          <script>
+            const scrollDivP = document.getElementById('scrollDivP')
+            scrollDivP.textContent = content.join('\n');
+          </script>
+        </div>
+        <script>
+          const scrollDiv = document.getElementById('scrollDiv');
+          scrollDiv.addEventListener('scroll', function (evt) {
+            console.log(this.scrollTop);
+            const watchScroll = document.getElementById('watchScroll');
+            watchScroll.textContent = this.scrollTop;
+          })
+        </script>
+      </section>
+      <section>
+        <h2>点击不同按钮可以使页面滚动到不同的地方</h2>
+        <button onclick="scroll1GotoTop()" class="superButton">回到顶部
+          <p class="hoverText">element.scroll(0, 0);</p>
+        </button>
+        <button onclick="scroll1GotoMiddle()" class="superButton">定位到中间
+          <p class="hoverText">element.scroll(0, element.scrollHeight / 2)</p>
+        </button>
+        <button onclick="scroll1GotoBottom()" class="superButton">定位到底部
+          <p class="hoverText">element.scroll(0, element.scrollHeight);</p>
+        </button>
+        <button onclick="scroll1GotoNextPage()" class="superButton">下一页
+          <p class="hoverText">element.scroll(0, element.scrollTop + element.clientHeight);
+            nowPosition: 用于记录当前的滚动位置</p>
+        </button>
+        <button onclick="scrllo1GotoPrevPage()" class="superButton">上一页
+          <p class="hoverText">element.scroll(0, nowPosition - element.clientHeight);
+            nowPosition: 用于记录当前的滚动位置</p>
+        </button>
+        <script>
+          const scroll1GotoTop = function () {
+            const scroll1 = document.getElementById('scroll1');
+            scroll1.scroll(0, 0);
+          }
+          const scroll1GotoMiddle = function () {
+            const scroll1 = document.getElementById('scroll1');
+            const middlePosition = Math.floor(scroll1.scrollHeight / 2);
+            scroll1.scroll(0, middlePosition);
+
+          }
+          const scroll1GotoBottom = function () {
+            const scroll1 = document.getElementById('scroll1');
+            const bottomPosition = scroll1.scrollHeight;
+            scroll1.scroll(0, bottomPosition);
+          }
+          const scroll1GotoNextPage = function () {
+            const scroll1 = document.getElementById('scroll1');
+            const pageSize = scroll1.clientHeight;
+            const newPosition = scroll1.scrollTop + pageSize;
+            if (newPosition < scroll1.scrollHeight) {
+              scroll1.scroll(0, newPosition);
+              // scrollTop = newPosition;
+            }
+          };
+          const scrllo1GotoPrevPage = function () {
+            const scroll1 = document.getElementById('scroll1');
+            const pageSize = scroll1.clientHeight;
+            const newPosition = scroll1.scrollTop - pageSize;
+            if (newPosition > 0) {
+              scroll1.scroll(0, newPosition);
+              // window.nowPosition = newPosition;
+            } else {
+              scroll1.scroll(0, 0);
+              // window.nowPosition = 0;
+            }
+          }
+        </script>
+        <div id="scroll1">
+          <p id="scroll1P"></p>
+          <script>
+            const scroll1P = document.getElementById('scroll1P')
+            scroll1P.textContent = content.join('\n');
+          </script>
+        </div>
+      </section>
+      <section>
+        <h2>使用鼠标滚轮控制设置了overflow: hidden的元素</h2>
+        <p>
+          基本思路是给元素添加事件监听，被监听的事件是鼠标滚轮事件mousewheel，
+          然后设置scroll为当前位置加鼠标滚轮事件的deltaY，这样即可使用js控制scroll
+        </p>
+        <div id="scroll2">
+          <p id="scroll2P"></p>
+          <script>
+            const scroll2P = document.getElementById('scroll2P')
+            scroll2P.textContent = content.join('\n');
+          </script>
+        </div>
+        <script>
+          const scroll2 = document.getElementById('scroll2');
+          let scrollNowPosition = 0;
+          scroll2.addEventListener('mousewheel', function (evt) {
+            const scrollPosition = this.scrollTop + evt.deltaY
+            console.log({
+              evt,
+              scrollPosition,
+              scrollNowPosition
+            });
+            if (0 <= scrollPosition && scrollPosition <= this.scrollHeight - (this.clientHeight + evt.deltaY -
+                1)) {
+              this.scroll(0, scrollPosition);
+              evt.preventDefault();
+            } else if (scrollPosition > this.scrollHeight - (this.clientHeight + evt.deltaY - 1)) {
+              this.scroll(0, this.scrollHeight);
+            } else if (scrollPosition < 0) {
+              this.scroll(0, 0);
+            }
+          })
+        </script>
+      </section>
+    </article>
+  </main>
+</body>
+
+</html>
