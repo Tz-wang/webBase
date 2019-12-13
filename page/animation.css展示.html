@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>animation.css库的展示</title>
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <style>
+    .parent {
+      border: 1px solid #edecec;
+    }
+
+    .child {
+      background-color: #65799b;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <main onload="getHtml()">
+    <div class="wrap-flex" id="allAnimation">
+
+      <div class="parent">
+        bounce
+        <button id="bounceBtn" onclick="showBtn('bounce')">显示</button>
+        <button id="bounceOnceBtn" onclick="showOnce('bounce')">单次显示</button>
+        <button id="bounceOnceBtn" onclick="infiniteShow('bounce')">循环显示</button>
+        <div id="bounce" class="child animated infinite bounce"></div>
+      </div>
+
+      <div class="parent">
+        flash
+        <button id="flashBtn" onclick="showBtn('flash')">显示</button>
+        <button id="flashOnceBtn" onclick="showOnce('flash')">单次显示</button>
+        <button id="flashOnceBtn" onclick="infiniteShow('flash')">循环显示</button>
+        <div id="flash" class="child animated infinite flash"></div>
+      </div>
+
+      <div class="parent">
+        pulse
+        <button id="pulseBtn" onclick="showBtn('pulse')">显示</button>
+        <button id="pulseOnceBtn" onclick="showOnce('pulse')">单次显示</button>
+        <button id="pulseOnceBtn" onclick="infiniteShow('pulse')">循环显示</button>
+        <div id="pulse" class="child animated infinite pulse"></div>
+      </div>
+
+      <div class="parent">
+        rubberBand
+        <button id="rubberBandBtn" onclick="showBtn('rubberBand')">显示</button>
+        <button id="rubberBandOnceBtn" onclick="showOnce('rubberBand')">单次显示</button>
+        <button id="rubberBandOnceBtn" onclick="infiniteShow('rubberBand')">循环显示</button>
+        <div id="rubberBand" class="child animated infinite rubberBand"></div>
+      </div>
+
+      <div class="parent">
+        shake
+        <button id="shakeBtn" onclick="showBtn('shake')">显示</button>
+        <button id="shakeOnceBtn" onclick="showOnce('shake')">单次显示</button>
+        <button id="shakeOnceBtn" onclick="infiniteShow('shake')">循环显示</button>
+        <div id="shake" class="child animated infinite shake"></div>
+      </div>
+
+      <div class="parent">
+        headShake
+        <button id="headShakeBtn" onclick="showBtn('headShake')">显示</button>
+        <button id="headShakeOnceBtn" onclick="showOnce('headShake')">单次显示</button>
+        <button id="headShakeOnceBtn" onclick="infiniteShow('headShake')">循环显示</button>
+        <div id="headShake" class="child animated infinite headShake"></div>
+      </div>
+
+      <div class="parent">
+        swing
+        <button id="swingBtn" onclick="showBtn('swing')">显示</button>
+        <button id="swingOnceBtn" onclick="showOnce('swing')">单次显示</button>
+        <button id="swingOnceBtn" onclick="infiniteShow('swing')">循环显示</button>
+        <div id="swing" class="child animated infinite swing"></div>
+      </div>
+
+      <div class="parent">
+        tada
+        <button id="tadaBtn" onclick="showBtn('tada')">显示</button>
+        <button id="tadaOnceBtn" onclick="showOnce('tada')">单次显示</button>
+        <button id="tadaOnceBtn" onclick="infiniteShow('tada')">循环显示</button>
+        <div id="tada" class="child animated infinite tada"></div>
+      </div>
+
+      <div class="parent">
+        wobble
+        <button id="wobbleBtn" onclick="showBtn('wobble')">显示</button>
+        <button id="wobbleOnceBtn" onclick="showOnce('wobble')">单次显示</button>
+        <button id="wobbleOnceBtn" onclick="infiniteShow('wobble')">循环显示</button>
+        <div id="wobble" class="child animated infinite wobble"></div>
+      </div>
+
+      <div class="parent">
+        jello
+        <button id="jelloBtn" onclick="showBtn('jello')">显示</button>
+        <button id="jelloOnceBtn" onclick="showOnce('jello')">单次显示</button>
+        <button id="jelloOnceBtn" onclick="infiniteShow('jello')">循环显示</button>
+        <div id="jello" class="child animated infinite jello"></div>
+      </div>
+
+      <div class="parent">
+        bounceIn
+        <button id="bounceInBtn" onclick="showBtn('bounceIn')">显示</button>
+        <button id="bounceInOnceBtn" onclick="showOnce('bounceIn')">单次显示</button>
+        <button id="bounceInOnceBtn" onclick="infiniteShow('bounceIn')">循环显示</button>
+        <div id="bounceIn" class="child animated infinite bounceIn"></div>
+      </div>
+
+      <div class="parent">
+        bounceInDown
+        <button id="bounceInDownBtn" onclick="showBtn('bounceInDown')">显示</button>
+        <button id="bounceInDownOnceBtn" onclick="showOnce('bounceInDown')">单次显示</button>
+        <button id="bounceInDownOnceBtn" onclick="infiniteShow('bounceInDown')">循环显示</button>
+        <div id="bounceInDown" class="child animated infinite bounceInDown"></div>
+      </div>
+
+      <div class="parent">
+        bounceInLeft
+        <button id="bounceInLeftBtn" onclick="showBtn('bounceInLeft')">显示</button>
+        <button id="bounceInLeftOnceBtn" onclick="showOnce('bounceInLeft')">单次显示</button>
+        <button id="bounceInLeftOnceBtn" onclick="infiniteShow('bounceInLeft')">循环显示</button>
+        <div id="bounceInLeft" class="child animated infinite bounceInLeft"></div>
+      </div>
+
+      <div class="parent">
+        bounceInRight
+        <button id="bounceInRightBtn" onclick="showBtn('bounceInRight')">显示</button>
+        <button id="bounceInRightOnceBtn" onclick="showOnce('bounceInRight')">单次显示</button>
+        <button id="bounceInRightOnceBtn" onclick="infiniteShow('bounceInRight')">循环显示</button>
+        <div id="bounceInRight" class="child animated infinite bounceInRight"></div>
+      </div>
+
+      <div class="parent">
+        bounceInUp
+        <button id="bounceInUpBtn" onclick="showBtn('bounceInUp')">显示</button>
+        <button id="bounceInUpOnceBtn" onclick="showOnce('bounceInUp')">单次显示</button>
+        <button id="bounceInUpOnceBtn" onclick="infiniteShow('bounceInUp')">循环显示</button>
+        <div id="bounceInUp" class="child animated infinite bounceInUp"></div>
+      </div>
+
+      <div class="parent">
+        bounceOut
+        <button id="bounceOutBtn" onclick="showBtn('bounceOut')">显示</button>
+        <button id="bounceOutOnceBtn" onclick="showOnce('bounceOut')">单次显示</button>
+        <button id="bounceOutOnceBtn" onclick="infiniteShow('bounceOut')">循环显示</button>
+        <div id="bounceOut" class="child animated infinite bounceOut"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutDown
+        <button id="bounceOutDownBtn" onclick="showBtn('bounceOutDown')">显示</button>
+        <button id="bounceOutDownOnceBtn" onclick="showOnce('bounceOutDown')">单次显示</button>
+        <button id="bounceOutDownOnceBtn" onclick="infiniteShow('bounceOutDown')">循环显示</button>
+        <div id="bounceOutDown" class="child animated infinite bounceOutDown"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutLeft
+        <button id="bounceOutLeftBtn" onclick="showBtn('bounceOutLeft')">显示</button>
+        <button id="bounceOutLeftOnceBtn" onclick="showOnce('bounceOutLeft')">单次显示</button>
+        <button id="bounceOutLeftOnceBtn" onclick="infiniteShow('bounceOutLeft')">循环显示</button>
+        <div id="bounceOutLeft" class="child animated infinite bounceOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutRight
+        <button id="bounceOutRightBtn" onclick="showBtn('bounceOutRight')">显示</button>
+        <button id="bounceOutRightOnceBtn" onclick="showOnce('bounceOutRight')">单次显示</button>
+        <button id="bounceOutRightOnceBtn" onclick="infiniteShow('bounceOutRight')">循环显示</button>
+        <div id="bounceOutRight" class="child animated infinite bounceOutRight"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutUp
+        <button id="bounceOutUpBtn" onclick="showBtn('bounceOutUp')">显示</button>
+        <button id="bounceOutUpOnceBtn" onclick="showOnce('bounceOutUp')">单次显示</button>
+        <button id="bounceOutUpOnceBtn" onclick="infiniteShow('bounceOutUp')">循环显示</button>
+        <div id="bounceOutUp" class="child animated infinite bounceOutUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeIn
+        <button id="fadeInBtn" onclick="showBtn('fadeIn')">显示</button>
+        <button id="fadeInOnceBtn" onclick="showOnce('fadeIn')">单次显示</button>
+        <button id="fadeInOnceBtn" onclick="infiniteShow('fadeIn')">循环显示</button>
+        <div id="fadeIn" class="child animated infinite fadeIn"></div>
+      </div>
+
+      <div class="parent">
+        fadeInDown
+        <button id="fadeInDownBtn" onclick="showBtn('fadeInDown')">显示</button>
+        <button id="fadeInDownOnceBtn" onclick="showOnce('fadeInDown')">单次显示</button>
+        <button id="fadeInDownOnceBtn" onclick="infiniteShow('fadeInDown')">循环显示</button>
+        <div id="fadeInDown" class="child animated infinite fadeInDown"></div>
+      </div>
+
+      <div class="parent">
+        fadeInDownBig
+        <button id="fadeInDownBigBtn" onclick="showBtn('fadeInDownBig')">显示</button>
+        <button id="fadeInDownBigOnceBtn" onclick="showOnce('fadeInDownBig')">单次显示</button>
+        <button id="fadeInDownBigOnceBtn" onclick="infiniteShow('fadeInDownBig')">循环显示</button>
+        <div id="fadeInDownBig" class="child animated infinite fadeInDownBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInLeft
+        <button id="fadeInLeftBtn" onclick="showBtn('fadeInLeft')">显示</button>
+        <button id="fadeInLeftOnceBtn" onclick="showOnce('fadeInLeft')">单次显示</button>
+        <button id="fadeInLeftOnceBtn" onclick="infiniteShow('fadeInLeft')">循环显示</button>
+        <div id="fadeInLeft" class="child animated infinite fadeInLeft"></div>
+      </div>
+
+      <div class="parent">
+        fadeInLeftBig
+        <button id="fadeInLeftBigBtn" onclick="showBtn('fadeInLeftBig')">显示</button>
+        <button id="fadeInLeftBigOnceBtn" onclick="showOnce('fadeInLeftBig')">单次显示</button>
+        <button id="fadeInLeftBigOnceBtn" onclick="infiniteShow('fadeInLeftBig')">循环显示</button>
+        <div id="fadeInLeftBig" class="child animated infinite fadeInLeftBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInRight
+        <button id="fadeInRightBtn" onclick="showBtn('fadeInRight')">显示</button>
+        <button id="fadeInRightOnceBtn" onclick="showOnce('fadeInRight')">单次显示</button>
+        <button id="fadeInRightOnceBtn" onclick="infiniteShow('fadeInRight')">循环显示</button>
+        <div id="fadeInRight" class="child animated infinite fadeInRight"></div>
+      </div>
+
+      <div class="parent">
+        fadeInRightBig
+        <button id="fadeInRightBigBtn" onclick="showBtn('fadeInRightBig')">显示</button>
+        <button id="fadeInRightBigOnceBtn" onclick="showOnce('fadeInRightBig')">单次显示</button>
+        <button id="fadeInRightBigOnceBtn" onclick="infiniteShow('fadeInRightBig')">循环显示</button>
+        <div id="fadeInRightBig" class="child animated infinite fadeInRightBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInUp
+        <button id="fadeInUpBtn" onclick="showBtn('fadeInUp')">显示</button>
+        <button id="fadeInUpOnceBtn" onclick="showOnce('fadeInUp')">单次显示</button>
+        <button id="fadeInUpOnceBtn" onclick="infiniteShow('fadeInUp')">循环显示</button>
+        <div id="fadeInUp" class="child animated infinite fadeInUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeInUpBig
+        <button id="fadeInUpBigBtn" onclick="showBtn('fadeInUpBig')">显示</button>
+        <button id="fadeInUpBigOnceBtn" onclick="showOnce('fadeInUpBig')">单次显示</button>
+        <button id="fadeInUpBigOnceBtn" onclick="infiniteShow('fadeInUpBig')">循环显示</button>
+        <div id="fadeInUpBig" class="child animated infinite fadeInUpBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOut
+        <button id="fadeOutBtn" onclick="showBtn('fadeOut')">显示</button>
+        <button id="fadeOutOnceBtn" onclick="showOnce('fadeOut')">单次显示</button>
+        <button id="fadeOutOnceBtn" onclick="infiniteShow('fadeOut')">循环显示</button>
+        <div id="fadeOut" class="child animated infinite fadeOut"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutDown
+        <button id="fadeOutDownBtn" onclick="showBtn('fadeOutDown')">显示</button>
+        <button id="fadeOutDownOnceBtn" onclick="showOnce('fadeOutDown')">单次显示</button>
+        <button id="fadeOutDownOnceBtn" onclick="infiniteShow('fadeOutDown')">循环显示</button>
+        <div id="fadeOutDown" class="child animated infinite fadeOutDown"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutDownBig
+        <button id="fadeOutDownBigBtn" onclick="showBtn('fadeOutDownBig')">显示</button>
+        <button id="fadeOutDownBigOnceBtn" onclick="showOnce('fadeOutDownBig')">单次显示</button>
+        <button id="fadeOutDownBigOnceBtn" onclick="infiniteShow('fadeOutDownBig')">循环显示</button>
+        <div id="fadeOutDownBig" class="child animated infinite fadeOutDownBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutLeft
+        <button id="fadeOutLeftBtn" onclick="showBtn('fadeOutLeft')">显示</button>
+        <button id="fadeOutLeftOnceBtn" onclick="showOnce('fadeOutLeft')">单次显示</button>
+        <button id="fadeOutLeftOnceBtn" onclick="infiniteShow('fadeOutLeft')">循环显示</button>
+        <div id="fadeOutLeft" class="child animated infinite fadeOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutLeftBig
+        <button id="fadeOutLeftBigBtn" onclick="showBtn('fadeOutLeftBig')">显示</button>
+        <button id="fadeOutLeftBigOnceBtn" onclick="showOnce('fadeOutLeftBig')">单次显示</button>
+        <button id="fadeOutLeftBigOnceBtn" onclick="infiniteShow('fadeOutLeftBig')">循环显示</button>
+        <div id="fadeOutLeftBig" class="child animated infinite fadeOutLeftBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutRight
+        <button id="fadeOutRightBtn" onclick="showBtn('fadeOutRight')">显示</button>
+        <button id="fadeOutRightOnceBtn" onclick="showOnce('fadeOutRight')">单次显示</button>
+        <button id="fadeOutRightOnceBtn" onclick="infiniteShow('fadeOutRight')">循环显示</button>
+        <div id="fadeOutRight" class="child animated infinite fadeOutRight"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutRightBig
+        <button id="fadeOutRightBigBtn" onclick="showBtn('fadeOutRightBig')">显示</button>
+        <button id="fadeOutRightBigOnceBtn" onclick="showOnce('fadeOutRightBig')">单次显示</button>
+        <button id="fadeOutRightBigOnceBtn" onclick="infiniteShow('fadeOutRightBig')">循环显示</button>
+        <div id="fadeOutRightBig" class="child animated infinite fadeOutRightBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutUp
+        <button id="fadeOutUpBtn" onclick="showBtn('fadeOutUp')">显示</button>
+        <button id="fadeOutUpOnceBtn" onclick="showOnce('fadeOutUp')">单次显示</button>
+        <button id="fadeOutUpOnceBtn" onclick="infiniteShow('fadeOutUp')">循环显示</button>
+        <div id="fadeOutUp" class="child animated infinite fadeOutUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutUpBig
+        <button id="fadeOutUpBigBtn" onclick="showBtn('fadeOutUpBig')">显示</button>
+        <button id="fadeOutUpBigOnceBtn" onclick="showOnce('fadeOutUpBig')">单次显示</button>
+        <button id="fadeOutUpBigOnceBtn" onclick="infiniteShow('fadeOutUpBig')">循环显示</button>
+        <div id="fadeOutUpBig" class="child animated infinite fadeOutUpBig"></div>
+      </div>
+
+      <div class="parent">
+        flipInX
+        <button id="flipInXBtn" onclick="showBtn('flipInX')">显示</button>
+        <button id="flipInXOnceBtn" onclick="showOnce('flipInX')">单次显示</button>
+        <button id="flipInXOnceBtn" onclick="infiniteShow('flipInX')">循环显示</button>
+        <div id="flipInX" class="child animated infinite flipInX"></div>
+      </div>
+
+      <div class="parent">
+        flipInY
+        <button id="flipInYBtn" onclick="showBtn('flipInY')">显示</button>
+        <button id="flipInYOnceBtn" onclick="showOnce('flipInY')">单次显示</button>
+        <button id="flipInYOnceBtn" onclick="infiniteShow('flipInY')">循环显示</button>
+        <div id="flipInY" class="child animated infinite flipInY"></div>
+      </div>
+
+      <div class="parent">
+        flipOutX
+        <button id="flipOutXBtn" onclick="showBtn('flipOutX')">显示</button>
+        <button id="flipOutXOnceBtn" onclick="showOnce('flipOutX')">单次显示</button>
+        <button id="flipOutXOnceBtn" onclick="infiniteShow('flipOutX')">循环显示</button>
+        <div id="flipOutX" class="child animated infinite flipOutX"></div>
+      </div>
+
+      <div class="parent">
+        flipOutY
+        <button id="flipOutYBtn" onclick="showBtn('flipOutY')">显示</button>
+        <button id="flipOutYOnceBtn" onclick="showOnce('flipOutY')">单次显示</button>
+        <button id="flipOutYOnceBtn" onclick="infiniteShow('flipOutY')">循环显示</button>
+        <div id="flipOutY" class="child animated infinite flipOutY"></div>
+      </div>
+
+      <div class="parent">
+        lightSpeedIn
+        <button id="lightSpeedInBtn" onclick="showBtn('lightSpeedIn')">显示</button>
+        <button id="lightSpeedInOnceBtn" onclick="showOnce('lightSpeedIn')">单次显示</button>
+        <button id="lightSpeedInOnceBtn" onclick="infiniteShow('lightSpeedIn')">循环显示</button>
+        <div id="lightSpeedIn" class="child animated infinite lightSpeedIn"></div>
+      </div>
+
+      <div class="parent">
+        lightSpeedOut
+        <button id="lightSpeedOutBtn" onclick="showBtn('lightSpeedOut')">显示</button>
+        <button id="lightSpeedOutOnceBtn" onclick="showOnce('lightSpeedOut')">单次显示</button>
+        <button id="lightSpeedOutOnceBtn" onclick="infiniteShow('lightSpeedOut')">循环显示</button>
+        <div id="lightSpeedOut" class="child animated infinite lightSpeedOut"></div>
+      </div>
+
+      <div class="parent">
+        rotateIn
+        <button id="rotateInBtn" onclick="showBtn('rotateIn')">显示</button>
+        <button id="rotateInOnceBtn" onclick="showOnce('rotateIn')">单次显示</button>
+        <button id="rotateInOnceBtn" onclick="infiniteShow('rotateIn')">循环显示</button>
+        <div id="rotateIn" class="child animated infinite rotateIn"></div>
+      </div>
+
+      <div class="parent">
+        rotateInDownLeft
+        <button id="rotateInDownLeftBtn" onclick="showBtn('rotateInDownLeft')">显示</button>
+        <button id="rotateInDownLeftOnceBtn" onclick="showOnce('rotateInDownLeft')">单次显示</button>
+        <button id="rotateInDownLeftOnceBtn" onclick="infiniteShow('rotateInDownLeft')">循环显示</button>
+        <div id="rotateInDownLeft" class="child animated infinite rotateInDownLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateInDownRight
+        <button id="rotateInDownRightBtn" onclick="showBtn('rotateInDownRight')">显示</button>
+        <button id="rotateInDownRightOnceBtn" onclick="showOnce('rotateInDownRight')">单次显示</button>
+        <button id="rotateInDownRightOnceBtn" onclick="infiniteShow('rotateInDownRight')">循环显示</button>
+        <div id="rotateInDownRight" class="child animated infinite rotateInDownRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateInUpLeft
+        <button id="rotateInUpLeftBtn" onclick="showBtn('rotateInUpLeft')">显示</button>
+        <button id="rotateInUpLeftOnceBtn" onclick="showOnce('rotateInUpLeft')">单次显示</button>
+        <button id="rotateInUpLeftOnceBtn" onclick="infiniteShow('rotateInUpLeft')">循环显示</button>
+        <div id="rotateInUpLeft" class="child animated infinite rotateInUpLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateInUpRight
+        <button id="rotateInUpRightBtn" onclick="showBtn('rotateInUpRight')">显示</button>
+        <button id="rotateInUpRightOnceBtn" onclick="showOnce('rotateInUpRight')">单次显示</button>
+        <button id="rotateInUpRightOnceBtn" onclick="infiniteShow('rotateInUpRight')">循环显示</button>
+        <div id="rotateInUpRight" class="child animated infinite rotateInUpRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateOut
+        <button id="rotateOutBtn" onclick="showBtn('rotateOut')">显示</button>
+        <button id="rotateOutOnceBtn" onclick="showOnce('rotateOut')">单次显示</button>
+        <button id="rotateOutOnceBtn" onclick="infiniteShow('rotateOut')">循环显示</button>
+        <div id="rotateOut" class="child animated infinite rotateOut"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutDownLeft
+        <button id="rotateOutDownLeftBtn" onclick="showBtn('rotateOutDownLeft')">显示</button>
+        <button id="rotateOutDownLeftOnceBtn" onclick="showOnce('rotateOutDownLeft')">单次显示</button>
+        <button id="rotateOutDownLeftOnceBtn" onclick="infiniteShow('rotateOutDownLeft')">循环显示</button>
+        <div id="rotateOutDownLeft" class="child animated infinite rotateOutDownLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutDownRight
+        <button id="rotateOutDownRightBtn" onclick="showBtn('rotateOutDownRight')">显示</button>
+        <button id="rotateOutDownRightOnceBtn" onclick="showOnce('rotateOutDownRight')">单次显示</button>
+        <button id="rotateOutDownRightOnceBtn" onclick="infiniteShow('rotateOutDownRight')">循环显示</button>
+        <div id="rotateOutDownRight" class="child animated infinite rotateOutDownRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutUpLeft
+        <button id="rotateOutUpLeftBtn" onclick="showBtn('rotateOutUpLeft')">显示</button>
+        <button id="rotateOutUpLeftOnceBtn" onclick="showOnce('rotateOutUpLeft')">单次显示</button>
+        <button id="rotateOutUpLeftOnceBtn" onclick="infiniteShow('rotateOutUpLeft')">循环显示</button>
+        <div id="rotateOutUpLeft" class="child animated infinite rotateOutUpLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutUpRight
+        <button id="rotateOutUpRightBtn" onclick="showBtn('rotateOutUpRight')">显示</button>
+        <button id="rotateOutUpRightOnceBtn" onclick="showOnce('rotateOutUpRight')">单次显示</button>
+        <button id="rotateOutUpRightOnceBtn" onclick="infiniteShow('rotateOutUpRight')">循环显示</button>
+        <div id="rotateOutUpRight" class="child animated infinite rotateOutUpRight"></div>
+      </div>
+
+      <div class="parent">
+        hinge
+        <button id="hingeBtn" onclick="showBtn('hinge')">显示</button>
+        <button id="hingeOnceBtn" onclick="showOnce('hinge')">单次显示</button>
+        <button id="hingeOnceBtn" onclick="infiniteShow('hinge')">循环显示</button>
+        <div id="hinge" class="child animated infinite hinge"></div>
+      </div>
+
+      <div class="parent">
+        jackInTheBox
+        <button id="jackInTheBoxBtn" onclick="showBtn('jackInTheBox')">显示</button>
+        <button id="jackInTheBoxOnceBtn" onclick="showOnce('jackInTheBox')">单次显示</button>
+        <button id="jackInTheBoxOnceBtn" onclick="infiniteShow('jackInTheBox')">循环显示</button>
+        <div id="jackInTheBox" class="child animated infinite jackInTheBox"></div>
+      </div>
+
+      <div class="parent">
+        bounce
+        <button id="bounceBtn" onclick="showBtn('bounce')">显示</button>
+        <button id="bounceOnceBtn" onclick="showOnce('bounce')">单次显示</button>
+        <button id="bounceOnceBtn" onclick="infiniteShow('bounce')">循环显示</button>
+        <div id="bounce" class="child animated infinite bounce"></div>
+      </div>
+
+      <div class="parent">
+        flash
+        <button id="flashBtn" onclick="showBtn('flash')">显示</button>
+        <button id="flashOnceBtn" onclick="showOnce('flash')">单次显示</button>
+        <button id="flashOnceBtn" onclick="infiniteShow('flash')">循环显示</button>
+        <div id="flash" class="child animated infinite flash"></div>
+      </div>
+
+      <div class="parent">
+        pulse
+        <button id="pulseBtn" onclick="showBtn('pulse')">显示</button>
+        <button id="pulseOnceBtn" onclick="showOnce('pulse')">单次显示</button>
+        <button id="pulseOnceBtn" onclick="infiniteShow('pulse')">循环显示</button>
+        <div id="pulse" class="child animated infinite pulse"></div>
+      </div>
+
+      <div class="parent">
+        rubberBand
+        <button id="rubberBandBtn" onclick="showBtn('rubberBand')">显示</button>
+        <button id="rubberBandOnceBtn" onclick="showOnce('rubberBand')">单次显示</button>
+        <button id="rubberBandOnceBtn" onclick="infiniteShow('rubberBand')">循环显示</button>
+        <div id="rubberBand" class="child animated infinite rubberBand"></div>
+      </div>
+
+      <div class="parent">
+        shake
+        <button id="shakeBtn" onclick="showBtn('shake')">显示</button>
+        <button id="shakeOnceBtn" onclick="showOnce('shake')">单次显示</button>
+        <button id="shakeOnceBtn" onclick="infiniteShow('shake')">循环显示</button>
+        <div id="shake" class="child animated infinite shake"></div>
+      </div>
+
+      <div class="parent">
+        headShake
+        <button id="headShakeBtn" onclick="showBtn('headShake')">显示</button>
+        <button id="headShakeOnceBtn" onclick="showOnce('headShake')">单次显示</button>
+        <button id="headShakeOnceBtn" onclick="infiniteShow('headShake')">循环显示</button>
+        <div id="headShake" class="child animated infinite headShake"></div>
+      </div>
+
+      <div class="parent">
+        swing
+        <button id="swingBtn" onclick="showBtn('swing')">显示</button>
+        <button id="swingOnceBtn" onclick="showOnce('swing')">单次显示</button>
+        <button id="swingOnceBtn" onclick="infiniteShow('swing')">循环显示</button>
+        <div id="swing" class="child animated infinite swing"></div>
+      </div>
+
+      <div class="parent">
+        tada
+        <button id="tadaBtn" onclick="showBtn('tada')">显示</button>
+        <button id="tadaOnceBtn" onclick="showOnce('tada')">单次显示</button>
+        <button id="tadaOnceBtn" onclick="infiniteShow('tada')">循环显示</button>
+        <div id="tada" class="child animated infinite tada"></div>
+      </div>
+
+      <div class="parent">
+        wobble
+        <button id="wobbleBtn" onclick="showBtn('wobble')">显示</button>
+        <button id="wobbleOnceBtn" onclick="showOnce('wobble')">单次显示</button>
+        <button id="wobbleOnceBtn" onclick="infiniteShow('wobble')">循环显示</button>
+        <div id="wobble" class="child animated infinite wobble"></div>
+      </div>
+
+      <div class="parent">
+        jello
+        <button id="jelloBtn" onclick="showBtn('jello')">显示</button>
+        <button id="jelloOnceBtn" onclick="showOnce('jello')">单次显示</button>
+        <button id="jelloOnceBtn" onclick="infiniteShow('jello')">循环显示</button>
+        <div id="jello" class="child animated infinite jello"></div>
+      </div>
+
+      <div class="parent">
+        bounceIn
+        <button id="bounceInBtn" onclick="showBtn('bounceIn')">显示</button>
+        <button id="bounceInOnceBtn" onclick="showOnce('bounceIn')">单次显示</button>
+        <button id="bounceInOnceBtn" onclick="infiniteShow('bounceIn')">循环显示</button>
+        <div id="bounceIn" class="child animated infinite bounceIn"></div>
+      </div>
+
+      <div class="parent">
+        bounceInDown
+        <button id="bounceInDownBtn" onclick="showBtn('bounceInDown')">显示</button>
+        <button id="bounceInDownOnceBtn" onclick="showOnce('bounceInDown')">单次显示</button>
+        <button id="bounceInDownOnceBtn" onclick="infiniteShow('bounceInDown')">循环显示</button>
+        <div id="bounceInDown" class="child animated infinite bounceInDown"></div>
+      </div>
+
+      <div class="parent">
+        bounceInLeft
+        <button id="bounceInLeftBtn" onclick="showBtn('bounceInLeft')">显示</button>
+        <button id="bounceInLeftOnceBtn" onclick="showOnce('bounceInLeft')">单次显示</button>
+        <button id="bounceInLeftOnceBtn" onclick="infiniteShow('bounceInLeft')">循环显示</button>
+        <div id="bounceInLeft" class="child animated infinite bounceInLeft"></div>
+      </div>
+
+      <div class="parent">
+        bounceInRight
+        <button id="bounceInRightBtn" onclick="showBtn('bounceInRight')">显示</button>
+        <button id="bounceInRightOnceBtn" onclick="showOnce('bounceInRight')">单次显示</button>
+        <button id="bounceInRightOnceBtn" onclick="infiniteShow('bounceInRight')">循环显示</button>
+        <div id="bounceInRight" class="child animated infinite bounceInRight"></div>
+      </div>
+
+      <div class="parent">
+        bounceInUp
+        <button id="bounceInUpBtn" onclick="showBtn('bounceInUp')">显示</button>
+        <button id="bounceInUpOnceBtn" onclick="showOnce('bounceInUp')">单次显示</button>
+        <button id="bounceInUpOnceBtn" onclick="infiniteShow('bounceInUp')">循环显示</button>
+        <div id="bounceInUp" class="child animated infinite bounceInUp"></div>
+      </div>
+
+      <div class="parent">
+        bounceOut
+        <button id="bounceOutBtn" onclick="showBtn('bounceOut')">显示</button>
+        <button id="bounceOutOnceBtn" onclick="showOnce('bounceOut')">单次显示</button>
+        <button id="bounceOutOnceBtn" onclick="infiniteShow('bounceOut')">循环显示</button>
+        <div id="bounceOut" class="child animated infinite bounceOut"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutDown
+        <button id="bounceOutDownBtn" onclick="showBtn('bounceOutDown')">显示</button>
+        <button id="bounceOutDownOnceBtn" onclick="showOnce('bounceOutDown')">单次显示</button>
+        <button id="bounceOutDownOnceBtn" onclick="infiniteShow('bounceOutDown')">循环显示</button>
+        <div id="bounceOutDown" class="child animated infinite bounceOutDown"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutLeft
+        <button id="bounceOutLeftBtn" onclick="showBtn('bounceOutLeft')">显示</button>
+        <button id="bounceOutLeftOnceBtn" onclick="showOnce('bounceOutLeft')">单次显示</button>
+        <button id="bounceOutLeftOnceBtn" onclick="infiniteShow('bounceOutLeft')">循环显示</button>
+        <div id="bounceOutLeft" class="child animated infinite bounceOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutRight
+        <button id="bounceOutRightBtn" onclick="showBtn('bounceOutRight')">显示</button>
+        <button id="bounceOutRightOnceBtn" onclick="showOnce('bounceOutRight')">单次显示</button>
+        <button id="bounceOutRightOnceBtn" onclick="infiniteShow('bounceOutRight')">循环显示</button>
+        <div id="bounceOutRight" class="child animated infinite bounceOutRight"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutUp
+        <button id="bounceOutUpBtn" onclick="showBtn('bounceOutUp')">显示</button>
+        <button id="bounceOutUpOnceBtn" onclick="showOnce('bounceOutUp')">单次显示</button>
+        <button id="bounceOutUpOnceBtn" onclick="infiniteShow('bounceOutUp')">循环显示</button>
+        <div id="bounceOutUp" class="child animated infinite bounceOutUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeIn
+        <button id="fadeInBtn" onclick="showBtn('fadeIn')">显示</button>
+        <button id="fadeInOnceBtn" onclick="showOnce('fadeIn')">单次显示</button>
+        <button id="fadeInOnceBtn" onclick="infiniteShow('fadeIn')">循环显示</button>
+        <div id="fadeIn" class="child animated infinite fadeIn"></div>
+      </div>
+
+      <div class="parent">
+        fadeInDown
+        <button id="fadeInDownBtn" onclick="showBtn('fadeInDown')">显示</button>
+        <button id="fadeInDownOnceBtn" onclick="showOnce('fadeInDown')">单次显示</button>
+        <button id="fadeInDownOnceBtn" onclick="infiniteShow('fadeInDown')">循环显示</button>
+        <div id="fadeInDown" class="child animated infinite fadeInDown"></div>
+      </div>
+
+      <div class="parent">
+        fadeInDownBig
+        <button id="fadeInDownBigBtn" onclick="showBtn('fadeInDownBig')">显示</button>
+        <button id="fadeInDownBigOnceBtn" onclick="showOnce('fadeInDownBig')">单次显示</button>
+        <button id="fadeInDownBigOnceBtn" onclick="infiniteShow('fadeInDownBig')">循环显示</button>
+        <div id="fadeInDownBig" class="child animated infinite fadeInDownBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInLeft
+        <button id="fadeInLeftBtn" onclick="showBtn('fadeInLeft')">显示</button>
+        <button id="fadeInLeftOnceBtn" onclick="showOnce('fadeInLeft')">单次显示</button>
+        <button id="fadeInLeftOnceBtn" onclick="infiniteShow('fadeInLeft')">循环显示</button>
+        <div id="fadeInLeft" class="child animated infinite fadeInLeft"></div>
+      </div>
+
+      <div class="parent">
+        fadeInLeftBig
+        <button id="fadeInLeftBigBtn" onclick="showBtn('fadeInLeftBig')">显示</button>
+        <button id="fadeInLeftBigOnceBtn" onclick="showOnce('fadeInLeftBig')">单次显示</button>
+        <button id="fadeInLeftBigOnceBtn" onclick="infiniteShow('fadeInLeftBig')">循环显示</button>
+        <div id="fadeInLeftBig" class="child animated infinite fadeInLeftBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInRight
+        <button id="fadeInRightBtn" onclick="showBtn('fadeInRight')">显示</button>
+        <button id="fadeInRightOnceBtn" onclick="showOnce('fadeInRight')">单次显示</button>
+        <button id="fadeInRightOnceBtn" onclick="infiniteShow('fadeInRight')">循环显示</button>
+        <div id="fadeInRight" class="child animated infinite fadeInRight"></div>
+      </div>
+
+      <div class="parent">
+        fadeInRightBig
+        <button id="fadeInRightBigBtn" onclick="showBtn('fadeInRightBig')">显示</button>
+        <button id="fadeInRightBigOnceBtn" onclick="showOnce('fadeInRightBig')">单次显示</button>
+        <button id="fadeInRightBigOnceBtn" onclick="infiniteShow('fadeInRightBig')">循环显示</button>
+        <div id="fadeInRightBig" class="child animated infinite fadeInRightBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInUp
+        <button id="fadeInUpBtn" onclick="showBtn('fadeInUp')">显示</button>
+        <button id="fadeInUpOnceBtn" onclick="showOnce('fadeInUp')">单次显示</button>
+        <button id="fadeInUpOnceBtn" onclick="infiniteShow('fadeInUp')">循环显示</button>
+        <div id="fadeInUp" class="child animated infinite fadeInUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeInUpBig
+        <button id="fadeInUpBigBtn" onclick="showBtn('fadeInUpBig')">显示</button>
+        <button id="fadeInUpBigOnceBtn" onclick="showOnce('fadeInUpBig')">单次显示</button>
+        <button id="fadeInUpBigOnceBtn" onclick="infiniteShow('fadeInUpBig')">循环显示</button>
+        <div id="fadeInUpBig" class="child animated infinite fadeInUpBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOut
+        <button id="fadeOutBtn" onclick="showBtn('fadeOut')">显示</button>
+        <button id="fadeOutOnceBtn" onclick="showOnce('fadeOut')">单次显示</button>
+        <button id="fadeOutOnceBtn" onclick="infiniteShow('fadeOut')">循环显示</button>
+        <div id="fadeOut" class="child animated infinite fadeOut"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutDown
+        <button id="fadeOutDownBtn" onclick="showBtn('fadeOutDown')">显示</button>
+        <button id="fadeOutDownOnceBtn" onclick="showOnce('fadeOutDown')">单次显示</button>
+        <button id="fadeOutDownOnceBtn" onclick="infiniteShow('fadeOutDown')">循环显示</button>
+        <div id="fadeOutDown" class="child animated infinite fadeOutDown"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutDownBig
+        <button id="fadeOutDownBigBtn" onclick="showBtn('fadeOutDownBig')">显示</button>
+        <button id="fadeOutDownBigOnceBtn" onclick="showOnce('fadeOutDownBig')">单次显示</button>
+        <button id="fadeOutDownBigOnceBtn" onclick="infiniteShow('fadeOutDownBig')">循环显示</button>
+        <div id="fadeOutDownBig" class="child animated infinite fadeOutDownBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutLeft
+        <button id="fadeOutLeftBtn" onclick="showBtn('fadeOutLeft')">显示</button>
+        <button id="fadeOutLeftOnceBtn" onclick="showOnce('fadeOutLeft')">单次显示</button>
+        <button id="fadeOutLeftOnceBtn" onclick="infiniteShow('fadeOutLeft')">循环显示</button>
+        <div id="fadeOutLeft" class="child animated infinite fadeOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutLeftBig
+        <button id="fadeOutLeftBigBtn" onclick="showBtn('fadeOutLeftBig')">显示</button>
+        <button id="fadeOutLeftBigOnceBtn" onclick="showOnce('fadeOutLeftBig')">单次显示</button>
+        <button id="fadeOutLeftBigOnceBtn" onclick="infiniteShow('fadeOutLeftBig')">循环显示</button>
+        <div id="fadeOutLeftBig" class="child animated infinite fadeOutLeftBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutRight
+        <button id="fadeOutRightBtn" onclick="showBtn('fadeOutRight')">显示</button>
+        <button id="fadeOutRightOnceBtn" onclick="showOnce('fadeOutRight')">单次显示</button>
+        <button id="fadeOutRightOnceBtn" onclick="infiniteShow('fadeOutRight')">循环显示</button>
+        <div id="fadeOutRight" class="child animated infinite fadeOutRight"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutRightBig
+        <button id="fadeOutRightBigBtn" onclick="showBtn('fadeOutRightBig')">显示</button>
+        <button id="fadeOutRightBigOnceBtn" onclick="showOnce('fadeOutRightBig')">单次显示</button>
+        <button id="fadeOutRightBigOnceBtn" onclick="infiniteShow('fadeOutRightBig')">循环显示</button>
+        <div id="fadeOutRightBig" class="child animated infinite fadeOutRightBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutUp
+        <button id="fadeOutUpBtn" onclick="showBtn('fadeOutUp')">显示</button>
+        <button id="fadeOutUpOnceBtn" onclick="showOnce('fadeOutUp')">单次显示</button>
+        <button id="fadeOutUpOnceBtn" onclick="infiniteShow('fadeOutUp')">循环显示</button>
+        <div id="fadeOutUp" class="child animated infinite fadeOutUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutUpBig
+        <button id="fadeOutUpBigBtn" onclick="showBtn('fadeOutUpBig')">显示</button>
+        <button id="fadeOutUpBigOnceBtn" onclick="showOnce('fadeOutUpBig')">单次显示</button>
+        <button id="fadeOutUpBigOnceBtn" onclick="infiniteShow('fadeOutUpBig')">循环显示</button>
+        <div id="fadeOutUpBig" class="child animated infinite fadeOutUpBig"></div>
+      </div>
+
+      <div class="parent">
+        flipInX
+        <button id="flipInXBtn" onclick="showBtn('flipInX')">显示</button>
+        <button id="flipInXOnceBtn" onclick="showOnce('flipInX')">单次显示</button>
+        <button id="flipInXOnceBtn" onclick="infiniteShow('flipInX')">循环显示</button>
+        <div id="flipInX" class="child animated infinite flipInX"></div>
+      </div>
+
+      <div class="parent">
+        flipInY
+        <button id="flipInYBtn" onclick="showBtn('flipInY')">显示</button>
+        <button id="flipInYOnceBtn" onclick="showOnce('flipInY')">单次显示</button>
+        <button id="flipInYOnceBtn" onclick="infiniteShow('flipInY')">循环显示</button>
+        <div id="flipInY" class="child animated infinite flipInY"></div>
+      </div>
+
+      <div class="parent">
+        flipOutX
+        <button id="flipOutXBtn" onclick="showBtn('flipOutX')">显示</button>
+        <button id="flipOutXOnceBtn" onclick="showOnce('flipOutX')">单次显示</button>
+        <button id="flipOutXOnceBtn" onclick="infiniteShow('flipOutX')">循环显示</button>
+        <div id="flipOutX" class="child animated infinite flipOutX"></div>
+      </div>
+
+      <div class="parent">
+        flipOutY
+        <button id="flipOutYBtn" onclick="showBtn('flipOutY')">显示</button>
+        <button id="flipOutYOnceBtn" onclick="showOnce('flipOutY')">单次显示</button>
+        <button id="flipOutYOnceBtn" onclick="infiniteShow('flipOutY')">循环显示</button>
+        <div id="flipOutY" class="child animated infinite flipOutY"></div>
+      </div>
+
+      <div class="parent">
+        lightSpeedIn
+        <button id="lightSpeedInBtn" onclick="showBtn('lightSpeedIn')">显示</button>
+        <button id="lightSpeedInOnceBtn" onclick="showOnce('lightSpeedIn')">单次显示</button>
+        <button id="lightSpeedInOnceBtn" onclick="infiniteShow('lightSpeedIn')">循环显示</button>
+        <div id="lightSpeedIn" class="child animated infinite lightSpeedIn"></div>
+      </div>
+
+      <div class="parent">
+        lightSpeedOut
+        <button id="lightSpeedOutBtn" onclick="showBtn('lightSpeedOut')">显示</button>
+        <button id="lightSpeedOutOnceBtn" onclick="showOnce('lightSpeedOut')">单次显示</button>
+        <button id="lightSpeedOutOnceBtn" onclick="infiniteShow('lightSpeedOut')">循环显示</button>
+        <div id="lightSpeedOut" class="child animated infinite lightSpeedOut"></div>
+      </div>
+
+      <div class="parent">
+        rotateIn
+        <button id="rotateInBtn" onclick="showBtn('rotateIn')">显示</button>
+        <button id="rotateInOnceBtn" onclick="showOnce('rotateIn')">单次显示</button>
+        <button id="rotateInOnceBtn" onclick="infiniteShow('rotateIn')">循环显示</button>
+        <div id="rotateIn" class="child animated infinite rotateIn"></div>
+      </div>
+
+      <div class="parent">
+        rotateInDownLeft
+        <button id="rotateInDownLeftBtn" onclick="showBtn('rotateInDownLeft')">显示</button>
+        <button id="rotateInDownLeftOnceBtn" onclick="showOnce('rotateInDownLeft')">单次显示</button>
+        <button id="rotateInDownLeftOnceBtn" onclick="infiniteShow('rotateInDownLeft')">循环显示</button>
+        <div id="rotateInDownLeft" class="child animated infinite rotateInDownLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateInDownRight
+        <button id="rotateInDownRightBtn" onclick="showBtn('rotateInDownRight')">显示</button>
+        <button id="rotateInDownRightOnceBtn" onclick="showOnce('rotateInDownRight')">单次显示</button>
+        <button id="rotateInDownRightOnceBtn" onclick="infiniteShow('rotateInDownRight')">循环显示</button>
+        <div id="rotateInDownRight" class="child animated infinite rotateInDownRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateInUpLeft
+        <button id="rotateInUpLeftBtn" onclick="showBtn('rotateInUpLeft')">显示</button>
+        <button id="rotateInUpLeftOnceBtn" onclick="showOnce('rotateInUpLeft')">单次显示</button>
+        <button id="rotateInUpLeftOnceBtn" onclick="infiniteShow('rotateInUpLeft')">循环显示</button>
+        <div id="rotateInUpLeft" class="child animated infinite rotateInUpLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateInUpRight
+        <button id="rotateInUpRightBtn" onclick="showBtn('rotateInUpRight')">显示</button>
+        <button id="rotateInUpRightOnceBtn" onclick="showOnce('rotateInUpRight')">单次显示</button>
+        <button id="rotateInUpRightOnceBtn" onclick="infiniteShow('rotateInUpRight')">循环显示</button>
+        <div id="rotateInUpRight" class="child animated infinite rotateInUpRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateOut
+        <button id="rotateOutBtn" onclick="showBtn('rotateOut')">显示</button>
+        <button id="rotateOutOnceBtn" onclick="showOnce('rotateOut')">单次显示</button>
+        <button id="rotateOutOnceBtn" onclick="infiniteShow('rotateOut')">循环显示</button>
+        <div id="rotateOut" class="child animated infinite rotateOut"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutDownLeft
+        <button id="rotateOutDownLeftBtn" onclick="showBtn('rotateOutDownLeft')">显示</button>
+        <button id="rotateOutDownLeftOnceBtn" onclick="showOnce('rotateOutDownLeft')">单次显示</button>
+        <button id="rotateOutDownLeftOnceBtn" onclick="infiniteShow('rotateOutDownLeft')">循环显示</button>
+        <div id="rotateOutDownLeft" class="child animated infinite rotateOutDownLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutDownRight
+        <button id="rotateOutDownRightBtn" onclick="showBtn('rotateOutDownRight')">显示</button>
+        <button id="rotateOutDownRightOnceBtn" onclick="showOnce('rotateOutDownRight')">单次显示</button>
+        <button id="rotateOutDownRightOnceBtn" onclick="infiniteShow('rotateOutDownRight')">循环显示</button>
+        <div id="rotateOutDownRight" class="child animated infinite rotateOutDownRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutUpLeft
+        <button id="rotateOutUpLeftBtn" onclick="showBtn('rotateOutUpLeft')">显示</button>
+        <button id="rotateOutUpLeftOnceBtn" onclick="showOnce('rotateOutUpLeft')">单次显示</button>
+        <button id="rotateOutUpLeftOnceBtn" onclick="infiniteShow('rotateOutUpLeft')">循环显示</button>
+        <div id="rotateOutUpLeft" class="child animated infinite rotateOutUpLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutUpRight
+        <button id="rotateOutUpRightBtn" onclick="showBtn('rotateOutUpRight')">显示</button>
+        <button id="rotateOutUpRightOnceBtn" onclick="showOnce('rotateOutUpRight')">单次显示</button>
+        <button id="rotateOutUpRightOnceBtn" onclick="infiniteShow('rotateOutUpRight')">循环显示</button>
+        <div id="rotateOutUpRight" class="child animated infinite rotateOutUpRight"></div>
+      </div>
+
+      <div class="parent">
+        hinge
+        <button id="hingeBtn" onclick="showBtn('hinge')">显示</button>
+        <button id="hingeOnceBtn" onclick="showOnce('hinge')">单次显示</button>
+        <button id="hingeOnceBtn" onclick="infiniteShow('hinge')">循环显示</button>
+        <div id="hinge" class="child animated infinite hinge"></div>
+      </div>
+
+      <div class="parent">
+        jackInTheBox
+        <button id="jackInTheBoxBtn" onclick="showBtn('jackInTheBox')">显示</button>
+        <button id="jackInTheBoxOnceBtn" onclick="showOnce('jackInTheBox')">单次显示</button>
+        <button id="jackInTheBoxOnceBtn" onclick="infiniteShow('jackInTheBox')">循环显示</button>
+        <div id="jackInTheBox" class="child animated infinite jackInTheBox"></div>
+      </div>
+
+      <div class="parent">
+        rollIn
+        <button id="rollInBtn" onclick="showBtn('rollIn')">显示</button>
+        <button id="rollInOnceBtn" onclick="showOnce('rollIn')">单次显示</button>
+        <button id="rollInOnceBtn" onclick="infiniteShow('rollIn')">循环显示</button>
+        <div id="rollIn" class="child animated infinite rollIn"></div>
+      </div>
+
+      <div class="parent">
+        rollOut
+        <button id="rollOutBtn" onclick="showBtn('rollOut')">显示</button>
+        <button id="rollOutOnceBtn" onclick="showOnce('rollOut')">单次显示</button>
+        <button id="rollOutOnceBtn" onclick="infiniteShow('rollOut')">循环显示</button>
+        <div id="rollOut" class="child animated infinite rollOut"></div>
+      </div>
+
+      <div class="parent">
+        zoomIn
+        <button id="zoomInBtn" onclick="showBtn('zoomIn')">显示</button>
+        <button id="zoomInOnceBtn" onclick="showOnce('zoomIn')">单次显示</button>
+        <button id="zoomInOnceBtn" onclick="infiniteShow('zoomIn')">循环显示</button>
+        <div id="zoomIn" class="child animated infinite zoomIn"></div>
+      </div>
+
+      <div class="parent">
+        zoomInDown
+        <button id="zoomInDownBtn" onclick="showBtn('zoomInDown')">显示</button>
+        <button id="zoomInDownOnceBtn" onclick="showOnce('zoomInDown')">单次显示</button>
+        <button id="zoomInDownOnceBtn" onclick="infiniteShow('zoomInDown')">循环显示</button>
+        <div id="zoomInDown" class="child animated infinite zoomInDown"></div>
+      </div>
+
+      <div class="parent">
+        zoomInLeft
+        <button id="zoomInLeftBtn" onclick="showBtn('zoomInLeft')">显示</button>
+        <button id="zoomInLeftOnceBtn" onclick="showOnce('zoomInLeft')">单次显示</button>
+        <button id="zoomInLeftOnceBtn" onclick="infiniteShow('zoomInLeft')">循环显示</button>
+        <div id="zoomInLeft" class="child animated infinite zoomInLeft"></div>
+      </div>
+
+      <div class="parent">
+        zoomInRight
+        <button id="zoomInRightBtn" onclick="showBtn('zoomInRight')">显示</button>
+        <button id="zoomInRightOnceBtn" onclick="showOnce('zoomInRight')">单次显示</button>
+        <button id="zoomInRightOnceBtn" onclick="infiniteShow('zoomInRight')">循环显示</button>
+        <div id="zoomInRight" class="child animated infinite zoomInRight"></div>
+      </div>
+
+      <div class="parent">
+        zoomInUp
+        <button id="zoomInUpBtn" onclick="showBtn('zoomInUp')">显示</button>
+        <button id="zoomInUpOnceBtn" onclick="showOnce('zoomInUp')">单次显示</button>
+        <button id="zoomInUpOnceBtn" onclick="infiniteShow('zoomInUp')">循环显示</button>
+        <div id="zoomInUp" class="child animated infinite zoomInUp"></div>
+      </div>
+
+      <div class="parent">
+        zoomOut
+        <button id="zoomOutBtn" onclick="showBtn('zoomOut')">显示</button>
+        <button id="zoomOutOnceBtn" onclick="showOnce('zoomOut')">单次显示</button>
+        <button id="zoomOutOnceBtn" onclick="infiniteShow('zoomOut')">循环显示</button>
+        <div id="zoomOut" class="child animated infinite zoomOut"></div>
+      </div>
+
+      <div class="parent">
+        zoomOutDown
+        <button id="zoomOutDownBtn" onclick="showBtn('zoomOutDown')">显示</button>
+        <button id="zoomOutDownOnceBtn" onclick="showOnce('zoomOutDown')">单次显示</button>
+        <button id="zoomOutDownOnceBtn" onclick="infiniteShow('zoomOutDown')">循环显示</button>
+        <div id="zoomOutDown" class="child animated infinite zoomOutDown"></div>
+      </div>
+
+      <div class="parent">
+        zoomOutLeft
+        <button id="zoomOutLeftBtn" onclick="showBtn('zoomOutLeft')">显示</button>
+        <button id="zoomOutLeftOnceBtn" onclick="showOnce('zoomOutLeft')">单次显示</button>
+        <button id="zoomOutLeftOnceBtn" onclick="infiniteShow('zoomOutLeft')">循环显示</button>
+        <div id="zoomOutLeft" class="child animated infinite zoomOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        zoomOutRight
+        <button id="zoomOutRightBtn" onclick="showBtn('zoomOutRight')">显示</button>
+        <button id="zoomOutRightOnceBtn" onclick="showOnce('zoomOutRight')">单次显示</button>
+        <button id="zoomOutRightOnceBtn" onclick="infiniteShow('zoomOutRight')">循环显示</button>
+        <div id="zoomOutRight" class="child animated infinite zoomOutRight"></div>
+      </div>
+
+      <div class="parent">
+        zoomOutUp
+        <button id="zoomOutUpBtn" onclick="showBtn('zoomOutUp')">显示</button>
+        <button id="zoomOutUpOnceBtn" onclick="showOnce('zoomOutUp')">单次显示</button>
+        <button id="zoomOutUpOnceBtn" onclick="infiniteShow('zoomOutUp')">循环显示</button>
+        <div id="zoomOutUp" class="child animated infinite zoomOutUp"></div>
+      </div>
+
+      <div class="parent">
+        slideInDown
+        <button id="slideInDownBtn" onclick="showBtn('slideInDown')">显示</button>
+        <button id="slideInDownOnceBtn" onclick="showOnce('slideInDown')">单次显示</button>
+        <button id="slideInDownOnceBtn" onclick="infiniteShow('slideInDown')">循环显示</button>
+        <div id="slideInDown" class="child animated infinite slideInDown"></div>
+      </div>
+
+      <div class="parent">
+        slideInLeft
+        <button id="slideInLeftBtn" onclick="showBtn('slideInLeft')">显示</button>
+        <button id="slideInLeftOnceBtn" onclick="showOnce('slideInLeft')">单次显示</button>
+        <button id="slideInLeftOnceBtn" onclick="infiniteShow('slideInLeft')">循环显示</button>
+        <div id="slideInLeft" class="child animated infinite slideInLeft"></div>
+      </div>
+
+      <div class="parent">
+        slideInRight
+        <button id="slideInRightBtn" onclick="showBtn('slideInRight')">显示</button>
+        <button id="slideInRightOnceBtn" onclick="showOnce('slideInRight')">单次显示</button>
+        <button id="slideInRightOnceBtn" onclick="infiniteShow('slideInRight')">循环显示</button>
+        <div id="slideInRight" class="child animated infinite slideInRight"></div>
+      </div>
+
+      <div class="parent">
+        slideInUp
+        <button id="slideInUpBtn" onclick="showBtn('slideInUp')">显示</button>
+        <button id="slideInUpOnceBtn" onclick="showOnce('slideInUp')">单次显示</button>
+        <button id="slideInUpOnceBtn" onclick="infiniteShow('slideInUp')">循环显示</button>
+        <div id="slideInUp" class="child animated infinite slideInUp"></div>
+      </div>
+
+      <div class="parent">
+        slideOutDown
+        <button id="slideOutDownBtn" onclick="showBtn('slideOutDown')">显示</button>
+        <button id="slideOutDownOnceBtn" onclick="showOnce('slideOutDown')">单次显示</button>
+        <button id="slideOutDownOnceBtn" onclick="infiniteShow('slideOutDown')">循环显示</button>
+        <div id="slideOutDown" class="child animated infinite slideOutDown"></div>
+      </div>
+
+      <div class="parent">
+        slideOutLeft
+        <button id="slideOutLeftBtn" onclick="showBtn('slideOutLeft')">显示</button>
+        <button id="slideOutLeftOnceBtn" onclick="showOnce('slideOutLeft')">单次显示</button>
+        <button id="slideOutLeftOnceBtn" onclick="infiniteShow('slideOutLeft')">循环显示</button>
+        <div id="slideOutLeft" class="child animated infinite slideOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        slideOutRight
+        <button id="slideOutRightBtn" onclick="showBtn('slideOutRight')">显示</button>
+        <button id="slideOutRightOnceBtn" onclick="showOnce('slideOutRight')">单次显示</button>
+        <button id="slideOutRightOnceBtn" onclick="infiniteShow('slideOutRight')">循环显示</button>
+        <div id="slideOutRight" class="child animated infinite slideOutRight"></div>
+      </div>
+
+      <div class="parent">
+        slideOutUp
+        <button id="slideOutUpBtn" onclick="showBtn('slideOutUp')">显示</button>
+        <button id="slideOutUpOnceBtn" onclick="showOnce('slideOutUp')">单次显示</button>
+        <button id="slideOutUpOnceBtn" onclick="infiniteShow('slideOutUp')">循环显示</button>
+        <div id="slideOutUp" class="child animated infinite slideOutUp"></div>
+      </div>
+
+      <div class="parent">
+        heartBeat
+        <button id="heartBeatBtn" onclick="showBtn('heartBeat')">显示</button>
+        <button id="heartBeatOnceBtn" onclick="showOnce('heartBeat')">单次显示</button>
+        <button id="heartBeatOnceBtn" onclick="infiniteShow('heartBeat')">循环显示</button>
+        <div id="heartBeat" class="child animated infinite heartBeat"></div>
+      </div>
+
+      <div class="parent">
+        bounce
+        <button id="bounceBtn" onclick="showBtn('bounce')">显示</button>
+        <button id="bounceOnceBtn" onclick="showOnce('bounce')">单次显示</button>
+        <button id="bounceOnceBtn" onclick="infiniteShow('bounce')">循环显示</button>
+        <div id="bounce" class="child animated infinite bounce"></div>
+      </div>
+
+      <div class="parent">
+        flash
+        <button id="flashBtn" onclick="showBtn('flash')">显示</button>
+        <button id="flashOnceBtn" onclick="showOnce('flash')">单次显示</button>
+        <button id="flashOnceBtn" onclick="infiniteShow('flash')">循环显示</button>
+        <div id="flash" class="child animated infinite flash"></div>
+      </div>
+
+      <div class="parent">
+        pulse
+        <button id="pulseBtn" onclick="showBtn('pulse')">显示</button>
+        <button id="pulseOnceBtn" onclick="showOnce('pulse')">单次显示</button>
+        <button id="pulseOnceBtn" onclick="infiniteShow('pulse')">循环显示</button>
+        <div id="pulse" class="child animated infinite pulse"></div>
+      </div>
+
+      <div class="parent">
+        rubberBand
+        <button id="rubberBandBtn" onclick="showBtn('rubberBand')">显示</button>
+        <button id="rubberBandOnceBtn" onclick="showOnce('rubberBand')">单次显示</button>
+        <button id="rubberBandOnceBtn" onclick="infiniteShow('rubberBand')">循环显示</button>
+        <div id="rubberBand" class="child animated infinite rubberBand"></div>
+      </div>
+
+      <div class="parent">
+        shake
+        <button id="shakeBtn" onclick="showBtn('shake')">显示</button>
+        <button id="shakeOnceBtn" onclick="showOnce('shake')">单次显示</button>
+        <button id="shakeOnceBtn" onclick="infiniteShow('shake')">循环显示</button>
+        <div id="shake" class="child animated infinite shake"></div>
+      </div>
+
+      <div class="parent">
+        headShake
+        <button id="headShakeBtn" onclick="showBtn('headShake')">显示</button>
+        <button id="headShakeOnceBtn" onclick="showOnce('headShake')">单次显示</button>
+        <button id="headShakeOnceBtn" onclick="infiniteShow('headShake')">循环显示</button>
+        <div id="headShake" class="child animated infinite headShake"></div>
+      </div>
+
+      <div class="parent">
+        swing
+        <button id="swingBtn" onclick="showBtn('swing')">显示</button>
+        <button id="swingOnceBtn" onclick="showOnce('swing')">单次显示</button>
+        <button id="swingOnceBtn" onclick="infiniteShow('swing')">循环显示</button>
+        <div id="swing" class="child animated infinite swing"></div>
+      </div>
+
+      <div class="parent">
+        tada
+        <button id="tadaBtn" onclick="showBtn('tada')">显示</button>
+        <button id="tadaOnceBtn" onclick="showOnce('tada')">单次显示</button>
+        <button id="tadaOnceBtn" onclick="infiniteShow('tada')">循环显示</button>
+        <div id="tada" class="child animated infinite tada"></div>
+      </div>
+
+      <div class="parent">
+        wobble
+        <button id="wobbleBtn" onclick="showBtn('wobble')">显示</button>
+        <button id="wobbleOnceBtn" onclick="showOnce('wobble')">单次显示</button>
+        <button id="wobbleOnceBtn" onclick="infiniteShow('wobble')">循环显示</button>
+        <div id="wobble" class="child animated infinite wobble"></div>
+      </div>
+
+      <div class="parent">
+        jello
+        <button id="jelloBtn" onclick="showBtn('jello')">显示</button>
+        <button id="jelloOnceBtn" onclick="showOnce('jello')">单次显示</button>
+        <button id="jelloOnceBtn" onclick="infiniteShow('jello')">循环显示</button>
+        <div id="jello" class="child animated infinite jello"></div>
+      </div>
+
+      <div class="parent">
+        bounceIn
+        <button id="bounceInBtn" onclick="showBtn('bounceIn')">显示</button>
+        <button id="bounceInOnceBtn" onclick="showOnce('bounceIn')">单次显示</button>
+        <button id="bounceInOnceBtn" onclick="infiniteShow('bounceIn')">循环显示</button>
+        <div id="bounceIn" class="child animated infinite bounceIn"></div>
+      </div>
+
+      <div class="parent">
+        bounceInDown
+        <button id="bounceInDownBtn" onclick="showBtn('bounceInDown')">显示</button>
+        <button id="bounceInDownOnceBtn" onclick="showOnce('bounceInDown')">单次显示</button>
+        <button id="bounceInDownOnceBtn" onclick="infiniteShow('bounceInDown')">循环显示</button>
+        <div id="bounceInDown" class="child animated infinite bounceInDown"></div>
+      </div>
+
+      <div class="parent">
+        bounceInLeft
+        <button id="bounceInLeftBtn" onclick="showBtn('bounceInLeft')">显示</button>
+        <button id="bounceInLeftOnceBtn" onclick="showOnce('bounceInLeft')">单次显示</button>
+        <button id="bounceInLeftOnceBtn" onclick="infiniteShow('bounceInLeft')">循环显示</button>
+        <div id="bounceInLeft" class="child animated infinite bounceInLeft"></div>
+      </div>
+
+      <div class="parent">
+        bounceInRight
+        <button id="bounceInRightBtn" onclick="showBtn('bounceInRight')">显示</button>
+        <button id="bounceInRightOnceBtn" onclick="showOnce('bounceInRight')">单次显示</button>
+        <button id="bounceInRightOnceBtn" onclick="infiniteShow('bounceInRight')">循环显示</button>
+        <div id="bounceInRight" class="child animated infinite bounceInRight"></div>
+      </div>
+
+      <div class="parent">
+        bounceInUp
+        <button id="bounceInUpBtn" onclick="showBtn('bounceInUp')">显示</button>
+        <button id="bounceInUpOnceBtn" onclick="showOnce('bounceInUp')">单次显示</button>
+        <button id="bounceInUpOnceBtn" onclick="infiniteShow('bounceInUp')">循环显示</button>
+        <div id="bounceInUp" class="child animated infinite bounceInUp"></div>
+      </div>
+
+      <div class="parent">
+        bounceOut
+        <button id="bounceOutBtn" onclick="showBtn('bounceOut')">显示</button>
+        <button id="bounceOutOnceBtn" onclick="showOnce('bounceOut')">单次显示</button>
+        <button id="bounceOutOnceBtn" onclick="infiniteShow('bounceOut')">循环显示</button>
+        <div id="bounceOut" class="child animated infinite bounceOut"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutDown
+        <button id="bounceOutDownBtn" onclick="showBtn('bounceOutDown')">显示</button>
+        <button id="bounceOutDownOnceBtn" onclick="showOnce('bounceOutDown')">单次显示</button>
+        <button id="bounceOutDownOnceBtn" onclick="infiniteShow('bounceOutDown')">循环显示</button>
+        <div id="bounceOutDown" class="child animated infinite bounceOutDown"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutLeft
+        <button id="bounceOutLeftBtn" onclick="showBtn('bounceOutLeft')">显示</button>
+        <button id="bounceOutLeftOnceBtn" onclick="showOnce('bounceOutLeft')">单次显示</button>
+        <button id="bounceOutLeftOnceBtn" onclick="infiniteShow('bounceOutLeft')">循环显示</button>
+        <div id="bounceOutLeft" class="child animated infinite bounceOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutRight
+        <button id="bounceOutRightBtn" onclick="showBtn('bounceOutRight')">显示</button>
+        <button id="bounceOutRightOnceBtn" onclick="showOnce('bounceOutRight')">单次显示</button>
+        <button id="bounceOutRightOnceBtn" onclick="infiniteShow('bounceOutRight')">循环显示</button>
+        <div id="bounceOutRight" class="child animated infinite bounceOutRight"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutUp
+        <button id="bounceOutUpBtn" onclick="showBtn('bounceOutUp')">显示</button>
+        <button id="bounceOutUpOnceBtn" onclick="showOnce('bounceOutUp')">单次显示</button>
+        <button id="bounceOutUpOnceBtn" onclick="infiniteShow('bounceOutUp')">循环显示</button>
+        <div id="bounceOutUp" class="child animated infinite bounceOutUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeIn
+        <button id="fadeInBtn" onclick="showBtn('fadeIn')">显示</button>
+        <button id="fadeInOnceBtn" onclick="showOnce('fadeIn')">单次显示</button>
+        <button id="fadeInOnceBtn" onclick="infiniteShow('fadeIn')">循环显示</button>
+        <div id="fadeIn" class="child animated infinite fadeIn"></div>
+      </div>
+
+      <div class="parent">
+        fadeInDown
+        <button id="fadeInDownBtn" onclick="showBtn('fadeInDown')">显示</button>
+        <button id="fadeInDownOnceBtn" onclick="showOnce('fadeInDown')">单次显示</button>
+        <button id="fadeInDownOnceBtn" onclick="infiniteShow('fadeInDown')">循环显示</button>
+        <div id="fadeInDown" class="child animated infinite fadeInDown"></div>
+      </div>
+
+      <div class="parent">
+        fadeInDownBig
+        <button id="fadeInDownBigBtn" onclick="showBtn('fadeInDownBig')">显示</button>
+        <button id="fadeInDownBigOnceBtn" onclick="showOnce('fadeInDownBig')">单次显示</button>
+        <button id="fadeInDownBigOnceBtn" onclick="infiniteShow('fadeInDownBig')">循环显示</button>
+        <div id="fadeInDownBig" class="child animated infinite fadeInDownBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInLeft
+        <button id="fadeInLeftBtn" onclick="showBtn('fadeInLeft')">显示</button>
+        <button id="fadeInLeftOnceBtn" onclick="showOnce('fadeInLeft')">单次显示</button>
+        <button id="fadeInLeftOnceBtn" onclick="infiniteShow('fadeInLeft')">循环显示</button>
+        <div id="fadeInLeft" class="child animated infinite fadeInLeft"></div>
+      </div>
+
+      <div class="parent">
+        fadeInLeftBig
+        <button id="fadeInLeftBigBtn" onclick="showBtn('fadeInLeftBig')">显示</button>
+        <button id="fadeInLeftBigOnceBtn" onclick="showOnce('fadeInLeftBig')">单次显示</button>
+        <button id="fadeInLeftBigOnceBtn" onclick="infiniteShow('fadeInLeftBig')">循环显示</button>
+        <div id="fadeInLeftBig" class="child animated infinite fadeInLeftBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInRight
+        <button id="fadeInRightBtn" onclick="showBtn('fadeInRight')">显示</button>
+        <button id="fadeInRightOnceBtn" onclick="showOnce('fadeInRight')">单次显示</button>
+        <button id="fadeInRightOnceBtn" onclick="infiniteShow('fadeInRight')">循环显示</button>
+        <div id="fadeInRight" class="child animated infinite fadeInRight"></div>
+      </div>
+
+      <div class="parent">
+        fadeInRightBig
+        <button id="fadeInRightBigBtn" onclick="showBtn('fadeInRightBig')">显示</button>
+        <button id="fadeInRightBigOnceBtn" onclick="showOnce('fadeInRightBig')">单次显示</button>
+        <button id="fadeInRightBigOnceBtn" onclick="infiniteShow('fadeInRightBig')">循环显示</button>
+        <div id="fadeInRightBig" class="child animated infinite fadeInRightBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInUp
+        <button id="fadeInUpBtn" onclick="showBtn('fadeInUp')">显示</button>
+        <button id="fadeInUpOnceBtn" onclick="showOnce('fadeInUp')">单次显示</button>
+        <button id="fadeInUpOnceBtn" onclick="infiniteShow('fadeInUp')">循环显示</button>
+        <div id="fadeInUp" class="child animated infinite fadeInUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeInUpBig
+        <button id="fadeInUpBigBtn" onclick="showBtn('fadeInUpBig')">显示</button>
+        <button id="fadeInUpBigOnceBtn" onclick="showOnce('fadeInUpBig')">单次显示</button>
+        <button id="fadeInUpBigOnceBtn" onclick="infiniteShow('fadeInUpBig')">循环显示</button>
+        <div id="fadeInUpBig" class="child animated infinite fadeInUpBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOut
+        <button id="fadeOutBtn" onclick="showBtn('fadeOut')">显示</button>
+        <button id="fadeOutOnceBtn" onclick="showOnce('fadeOut')">单次显示</button>
+        <button id="fadeOutOnceBtn" onclick="infiniteShow('fadeOut')">循环显示</button>
+        <div id="fadeOut" class="child animated infinite fadeOut"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutDown
+        <button id="fadeOutDownBtn" onclick="showBtn('fadeOutDown')">显示</button>
+        <button id="fadeOutDownOnceBtn" onclick="showOnce('fadeOutDown')">单次显示</button>
+        <button id="fadeOutDownOnceBtn" onclick="infiniteShow('fadeOutDown')">循环显示</button>
+        <div id="fadeOutDown" class="child animated infinite fadeOutDown"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutDownBig
+        <button id="fadeOutDownBigBtn" onclick="showBtn('fadeOutDownBig')">显示</button>
+        <button id="fadeOutDownBigOnceBtn" onclick="showOnce('fadeOutDownBig')">单次显示</button>
+        <button id="fadeOutDownBigOnceBtn" onclick="infiniteShow('fadeOutDownBig')">循环显示</button>
+        <div id="fadeOutDownBig" class="child animated infinite fadeOutDownBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutLeft
+        <button id="fadeOutLeftBtn" onclick="showBtn('fadeOutLeft')">显示</button>
+        <button id="fadeOutLeftOnceBtn" onclick="showOnce('fadeOutLeft')">单次显示</button>
+        <button id="fadeOutLeftOnceBtn" onclick="infiniteShow('fadeOutLeft')">循环显示</button>
+        <div id="fadeOutLeft" class="child animated infinite fadeOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutLeftBig
+        <button id="fadeOutLeftBigBtn" onclick="showBtn('fadeOutLeftBig')">显示</button>
+        <button id="fadeOutLeftBigOnceBtn" onclick="showOnce('fadeOutLeftBig')">单次显示</button>
+        <button id="fadeOutLeftBigOnceBtn" onclick="infiniteShow('fadeOutLeftBig')">循环显示</button>
+        <div id="fadeOutLeftBig" class="child animated infinite fadeOutLeftBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutRight
+        <button id="fadeOutRightBtn" onclick="showBtn('fadeOutRight')">显示</button>
+        <button id="fadeOutRightOnceBtn" onclick="showOnce('fadeOutRight')">单次显示</button>
+        <button id="fadeOutRightOnceBtn" onclick="infiniteShow('fadeOutRight')">循环显示</button>
+        <div id="fadeOutRight" class="child animated infinite fadeOutRight"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutRightBig
+        <button id="fadeOutRightBigBtn" onclick="showBtn('fadeOutRightBig')">显示</button>
+        <button id="fadeOutRightBigOnceBtn" onclick="showOnce('fadeOutRightBig')">单次显示</button>
+        <button id="fadeOutRightBigOnceBtn" onclick="infiniteShow('fadeOutRightBig')">循环显示</button>
+        <div id="fadeOutRightBig" class="child animated infinite fadeOutRightBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutUp
+        <button id="fadeOutUpBtn" onclick="showBtn('fadeOutUp')">显示</button>
+        <button id="fadeOutUpOnceBtn" onclick="showOnce('fadeOutUp')">单次显示</button>
+        <button id="fadeOutUpOnceBtn" onclick="infiniteShow('fadeOutUp')">循环显示</button>
+        <div id="fadeOutUp" class="child animated infinite fadeOutUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutUpBig
+        <button id="fadeOutUpBigBtn" onclick="showBtn('fadeOutUpBig')">显示</button>
+        <button id="fadeOutUpBigOnceBtn" onclick="showOnce('fadeOutUpBig')">单次显示</button>
+        <button id="fadeOutUpBigOnceBtn" onclick="infiniteShow('fadeOutUpBig')">循环显示</button>
+        <div id="fadeOutUpBig" class="child animated infinite fadeOutUpBig"></div>
+      </div>
+
+      <div class="parent">
+        flipInX
+        <button id="flipInXBtn" onclick="showBtn('flipInX')">显示</button>
+        <button id="flipInXOnceBtn" onclick="showOnce('flipInX')">单次显示</button>
+        <button id="flipInXOnceBtn" onclick="infiniteShow('flipInX')">循环显示</button>
+        <div id="flipInX" class="child animated infinite flipInX"></div>
+      </div>
+
+      <div class="parent">
+        flipInY
+        <button id="flipInYBtn" onclick="showBtn('flipInY')">显示</button>
+        <button id="flipInYOnceBtn" onclick="showOnce('flipInY')">单次显示</button>
+        <button id="flipInYOnceBtn" onclick="infiniteShow('flipInY')">循环显示</button>
+        <div id="flipInY" class="child animated infinite flipInY"></div>
+      </div>
+
+      <div class="parent">
+        flipOutX
+        <button id="flipOutXBtn" onclick="showBtn('flipOutX')">显示</button>
+        <button id="flipOutXOnceBtn" onclick="showOnce('flipOutX')">单次显示</button>
+        <button id="flipOutXOnceBtn" onclick="infiniteShow('flipOutX')">循环显示</button>
+        <div id="flipOutX" class="child animated infinite flipOutX"></div>
+      </div>
+
+      <div class="parent">
+        flipOutY
+        <button id="flipOutYBtn" onclick="showBtn('flipOutY')">显示</button>
+        <button id="flipOutYOnceBtn" onclick="showOnce('flipOutY')">单次显示</button>
+        <button id="flipOutYOnceBtn" onclick="infiniteShow('flipOutY')">循环显示</button>
+        <div id="flipOutY" class="child animated infinite flipOutY"></div>
+      </div>
+
+      <div class="parent">
+        lightSpeedIn
+        <button id="lightSpeedInBtn" onclick="showBtn('lightSpeedIn')">显示</button>
+        <button id="lightSpeedInOnceBtn" onclick="showOnce('lightSpeedIn')">单次显示</button>
+        <button id="lightSpeedInOnceBtn" onclick="infiniteShow('lightSpeedIn')">循环显示</button>
+        <div id="lightSpeedIn" class="child animated infinite lightSpeedIn"></div>
+      </div>
+
+      <div class="parent">
+        lightSpeedOut
+        <button id="lightSpeedOutBtn" onclick="showBtn('lightSpeedOut')">显示</button>
+        <button id="lightSpeedOutOnceBtn" onclick="showOnce('lightSpeedOut')">单次显示</button>
+        <button id="lightSpeedOutOnceBtn" onclick="infiniteShow('lightSpeedOut')">循环显示</button>
+        <div id="lightSpeedOut" class="child animated infinite lightSpeedOut"></div>
+      </div>
+
+      <div class="parent">
+        rotateIn
+        <button id="rotateInBtn" onclick="showBtn('rotateIn')">显示</button>
+        <button id="rotateInOnceBtn" onclick="showOnce('rotateIn')">单次显示</button>
+        <button id="rotateInOnceBtn" onclick="infiniteShow('rotateIn')">循环显示</button>
+        <div id="rotateIn" class="child animated infinite rotateIn"></div>
+      </div>
+
+      <div class="parent">
+        rotateInDownLeft
+        <button id="rotateInDownLeftBtn" onclick="showBtn('rotateInDownLeft')">显示</button>
+        <button id="rotateInDownLeftOnceBtn" onclick="showOnce('rotateInDownLeft')">单次显示</button>
+        <button id="rotateInDownLeftOnceBtn" onclick="infiniteShow('rotateInDownLeft')">循环显示</button>
+        <div id="rotateInDownLeft" class="child animated infinite rotateInDownLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateInDownRight
+        <button id="rotateInDownRightBtn" onclick="showBtn('rotateInDownRight')">显示</button>
+        <button id="rotateInDownRightOnceBtn" onclick="showOnce('rotateInDownRight')">单次显示</button>
+        <button id="rotateInDownRightOnceBtn" onclick="infiniteShow('rotateInDownRight')">循环显示</button>
+        <div id="rotateInDownRight" class="child animated infinite rotateInDownRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateInUpLeft
+        <button id="rotateInUpLeftBtn" onclick="showBtn('rotateInUpLeft')">显示</button>
+        <button id="rotateInUpLeftOnceBtn" onclick="showOnce('rotateInUpLeft')">单次显示</button>
+        <button id="rotateInUpLeftOnceBtn" onclick="infiniteShow('rotateInUpLeft')">循环显示</button>
+        <div id="rotateInUpLeft" class="child animated infinite rotateInUpLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateInUpRight
+        <button id="rotateInUpRightBtn" onclick="showBtn('rotateInUpRight')">显示</button>
+        <button id="rotateInUpRightOnceBtn" onclick="showOnce('rotateInUpRight')">单次显示</button>
+        <button id="rotateInUpRightOnceBtn" onclick="infiniteShow('rotateInUpRight')">循环显示</button>
+        <div id="rotateInUpRight" class="child animated infinite rotateInUpRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateOut
+        <button id="rotateOutBtn" onclick="showBtn('rotateOut')">显示</button>
+        <button id="rotateOutOnceBtn" onclick="showOnce('rotateOut')">单次显示</button>
+        <button id="rotateOutOnceBtn" onclick="infiniteShow('rotateOut')">循环显示</button>
+        <div id="rotateOut" class="child animated infinite rotateOut"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutDownLeft
+        <button id="rotateOutDownLeftBtn" onclick="showBtn('rotateOutDownLeft')">显示</button>
+        <button id="rotateOutDownLeftOnceBtn" onclick="showOnce('rotateOutDownLeft')">单次显示</button>
+        <button id="rotateOutDownLeftOnceBtn" onclick="infiniteShow('rotateOutDownLeft')">循环显示</button>
+        <div id="rotateOutDownLeft" class="child animated infinite rotateOutDownLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutDownRight
+        <button id="rotateOutDownRightBtn" onclick="showBtn('rotateOutDownRight')">显示</button>
+        <button id="rotateOutDownRightOnceBtn" onclick="showOnce('rotateOutDownRight')">单次显示</button>
+        <button id="rotateOutDownRightOnceBtn" onclick="infiniteShow('rotateOutDownRight')">循环显示</button>
+        <div id="rotateOutDownRight" class="child animated infinite rotateOutDownRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutUpLeft
+        <button id="rotateOutUpLeftBtn" onclick="showBtn('rotateOutUpLeft')">显示</button>
+        <button id="rotateOutUpLeftOnceBtn" onclick="showOnce('rotateOutUpLeft')">单次显示</button>
+        <button id="rotateOutUpLeftOnceBtn" onclick="infiniteShow('rotateOutUpLeft')">循环显示</button>
+        <div id="rotateOutUpLeft" class="child animated infinite rotateOutUpLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutUpRight
+        <button id="rotateOutUpRightBtn" onclick="showBtn('rotateOutUpRight')">显示</button>
+        <button id="rotateOutUpRightOnceBtn" onclick="showOnce('rotateOutUpRight')">单次显示</button>
+        <button id="rotateOutUpRightOnceBtn" onclick="infiniteShow('rotateOutUpRight')">循环显示</button>
+        <div id="rotateOutUpRight" class="child animated infinite rotateOutUpRight"></div>
+      </div>
+
+      <div class="parent">
+        hinge
+        <button id="hingeBtn" onclick="showBtn('hinge')">显示</button>
+        <button id="hingeOnceBtn" onclick="showOnce('hinge')">单次显示</button>
+        <button id="hingeOnceBtn" onclick="infiniteShow('hinge')">循环显示</button>
+        <div id="hinge" class="child animated infinite hinge"></div>
+      </div>
+
+      <div class="parent">
+        jackInTheBox
+        <button id="jackInTheBoxBtn" onclick="showBtn('jackInTheBox')">显示</button>
+        <button id="jackInTheBoxOnceBtn" onclick="showOnce('jackInTheBox')">单次显示</button>
+        <button id="jackInTheBoxOnceBtn" onclick="infiniteShow('jackInTheBox')">循环显示</button>
+        <div id="jackInTheBox" class="child animated infinite jackInTheBox"></div>
+      </div>
+
+      <div class="parent">
+        bounce
+        <button id="bounceBtn" onclick="showBtn('bounce')">显示</button>
+        <button id="bounceOnceBtn" onclick="showOnce('bounce')">单次显示</button>
+        <button id="bounceOnceBtn" onclick="infiniteShow('bounce')">循环显示</button>
+        <div id="bounce" class="child animated infinite bounce"></div>
+      </div>
+
+      <div class="parent">
+        flash
+        <button id="flashBtn" onclick="showBtn('flash')">显示</button>
+        <button id="flashOnceBtn" onclick="showOnce('flash')">单次显示</button>
+        <button id="flashOnceBtn" onclick="infiniteShow('flash')">循环显示</button>
+        <div id="flash" class="child animated infinite flash"></div>
+      </div>
+
+      <div class="parent">
+        pulse
+        <button id="pulseBtn" onclick="showBtn('pulse')">显示</button>
+        <button id="pulseOnceBtn" onclick="showOnce('pulse')">单次显示</button>
+        <button id="pulseOnceBtn" onclick="infiniteShow('pulse')">循环显示</button>
+        <div id="pulse" class="child animated infinite pulse"></div>
+      </div>
+
+      <div class="parent">
+        rubberBand
+        <button id="rubberBandBtn" onclick="showBtn('rubberBand')">显示</button>
+        <button id="rubberBandOnceBtn" onclick="showOnce('rubberBand')">单次显示</button>
+        <button id="rubberBandOnceBtn" onclick="infiniteShow('rubberBand')">循环显示</button>
+        <div id="rubberBand" class="child animated infinite rubberBand"></div>
+      </div>
+
+      <div class="parent">
+        shake
+        <button id="shakeBtn" onclick="showBtn('shake')">显示</button>
+        <button id="shakeOnceBtn" onclick="showOnce('shake')">单次显示</button>
+        <button id="shakeOnceBtn" onclick="infiniteShow('shake')">循环显示</button>
+        <div id="shake" class="child animated infinite shake"></div>
+      </div>
+
+      <div class="parent">
+        headShake
+        <button id="headShakeBtn" onclick="showBtn('headShake')">显示</button>
+        <button id="headShakeOnceBtn" onclick="showOnce('headShake')">单次显示</button>
+        <button id="headShakeOnceBtn" onclick="infiniteShow('headShake')">循环显示</button>
+        <div id="headShake" class="child animated infinite headShake"></div>
+      </div>
+
+      <div class="parent">
+        swing
+        <button id="swingBtn" onclick="showBtn('swing')">显示</button>
+        <button id="swingOnceBtn" onclick="showOnce('swing')">单次显示</button>
+        <button id="swingOnceBtn" onclick="infiniteShow('swing')">循环显示</button>
+        <div id="swing" class="child animated infinite swing"></div>
+      </div>
+
+      <div class="parent">
+        tada
+        <button id="tadaBtn" onclick="showBtn('tada')">显示</button>
+        <button id="tadaOnceBtn" onclick="showOnce('tada')">单次显示</button>
+        <button id="tadaOnceBtn" onclick="infiniteShow('tada')">循环显示</button>
+        <div id="tada" class="child animated infinite tada"></div>
+      </div>
+
+      <div class="parent">
+        wobble
+        <button id="wobbleBtn" onclick="showBtn('wobble')">显示</button>
+        <button id="wobbleOnceBtn" onclick="showOnce('wobble')">单次显示</button>
+        <button id="wobbleOnceBtn" onclick="infiniteShow('wobble')">循环显示</button>
+        <div id="wobble" class="child animated infinite wobble"></div>
+      </div>
+
+      <div class="parent">
+        jello
+        <button id="jelloBtn" onclick="showBtn('jello')">显示</button>
+        <button id="jelloOnceBtn" onclick="showOnce('jello')">单次显示</button>
+        <button id="jelloOnceBtn" onclick="infiniteShow('jello')">循环显示</button>
+        <div id="jello" class="child animated infinite jello"></div>
+      </div>
+
+      <div class="parent">
+        bounceIn
+        <button id="bounceInBtn" onclick="showBtn('bounceIn')">显示</button>
+        <button id="bounceInOnceBtn" onclick="showOnce('bounceIn')">单次显示</button>
+        <button id="bounceInOnceBtn" onclick="infiniteShow('bounceIn')">循环显示</button>
+        <div id="bounceIn" class="child animated infinite bounceIn"></div>
+      </div>
+
+      <div class="parent">
+        bounceInDown
+        <button id="bounceInDownBtn" onclick="showBtn('bounceInDown')">显示</button>
+        <button id="bounceInDownOnceBtn" onclick="showOnce('bounceInDown')">单次显示</button>
+        <button id="bounceInDownOnceBtn" onclick="infiniteShow('bounceInDown')">循环显示</button>
+        <div id="bounceInDown" class="child animated infinite bounceInDown"></div>
+      </div>
+
+      <div class="parent">
+        bounceInLeft
+        <button id="bounceInLeftBtn" onclick="showBtn('bounceInLeft')">显示</button>
+        <button id="bounceInLeftOnceBtn" onclick="showOnce('bounceInLeft')">单次显示</button>
+        <button id="bounceInLeftOnceBtn" onclick="infiniteShow('bounceInLeft')">循环显示</button>
+        <div id="bounceInLeft" class="child animated infinite bounceInLeft"></div>
+      </div>
+
+      <div class="parent">
+        bounceInRight
+        <button id="bounceInRightBtn" onclick="showBtn('bounceInRight')">显示</button>
+        <button id="bounceInRightOnceBtn" onclick="showOnce('bounceInRight')">单次显示</button>
+        <button id="bounceInRightOnceBtn" onclick="infiniteShow('bounceInRight')">循环显示</button>
+        <div id="bounceInRight" class="child animated infinite bounceInRight"></div>
+      </div>
+
+      <div class="parent">
+        bounceInUp
+        <button id="bounceInUpBtn" onclick="showBtn('bounceInUp')">显示</button>
+        <button id="bounceInUpOnceBtn" onclick="showOnce('bounceInUp')">单次显示</button>
+        <button id="bounceInUpOnceBtn" onclick="infiniteShow('bounceInUp')">循环显示</button>
+        <div id="bounceInUp" class="child animated infinite bounceInUp"></div>
+      </div>
+
+      <div class="parent">
+        bounceOut
+        <button id="bounceOutBtn" onclick="showBtn('bounceOut')">显示</button>
+        <button id="bounceOutOnceBtn" onclick="showOnce('bounceOut')">单次显示</button>
+        <button id="bounceOutOnceBtn" onclick="infiniteShow('bounceOut')">循环显示</button>
+        <div id="bounceOut" class="child animated infinite bounceOut"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutDown
+        <button id="bounceOutDownBtn" onclick="showBtn('bounceOutDown')">显示</button>
+        <button id="bounceOutDownOnceBtn" onclick="showOnce('bounceOutDown')">单次显示</button>
+        <button id="bounceOutDownOnceBtn" onclick="infiniteShow('bounceOutDown')">循环显示</button>
+        <div id="bounceOutDown" class="child animated infinite bounceOutDown"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutLeft
+        <button id="bounceOutLeftBtn" onclick="showBtn('bounceOutLeft')">显示</button>
+        <button id="bounceOutLeftOnceBtn" onclick="showOnce('bounceOutLeft')">单次显示</button>
+        <button id="bounceOutLeftOnceBtn" onclick="infiniteShow('bounceOutLeft')">循环显示</button>
+        <div id="bounceOutLeft" class="child animated infinite bounceOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutRight
+        <button id="bounceOutRightBtn" onclick="showBtn('bounceOutRight')">显示</button>
+        <button id="bounceOutRightOnceBtn" onclick="showOnce('bounceOutRight')">单次显示</button>
+        <button id="bounceOutRightOnceBtn" onclick="infiniteShow('bounceOutRight')">循环显示</button>
+        <div id="bounceOutRight" class="child animated infinite bounceOutRight"></div>
+      </div>
+
+      <div class="parent">
+        bounceOutUp
+        <button id="bounceOutUpBtn" onclick="showBtn('bounceOutUp')">显示</button>
+        <button id="bounceOutUpOnceBtn" onclick="showOnce('bounceOutUp')">单次显示</button>
+        <button id="bounceOutUpOnceBtn" onclick="infiniteShow('bounceOutUp')">循环显示</button>
+        <div id="bounceOutUp" class="child animated infinite bounceOutUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeIn
+        <button id="fadeInBtn" onclick="showBtn('fadeIn')">显示</button>
+        <button id="fadeInOnceBtn" onclick="showOnce('fadeIn')">单次显示</button>
+        <button id="fadeInOnceBtn" onclick="infiniteShow('fadeIn')">循环显示</button>
+        <div id="fadeIn" class="child animated infinite fadeIn"></div>
+      </div>
+
+      <div class="parent">
+        fadeInDown
+        <button id="fadeInDownBtn" onclick="showBtn('fadeInDown')">显示</button>
+        <button id="fadeInDownOnceBtn" onclick="showOnce('fadeInDown')">单次显示</button>
+        <button id="fadeInDownOnceBtn" onclick="infiniteShow('fadeInDown')">循环显示</button>
+        <div id="fadeInDown" class="child animated infinite fadeInDown"></div>
+      </div>
+
+      <div class="parent">
+        fadeInDownBig
+        <button id="fadeInDownBigBtn" onclick="showBtn('fadeInDownBig')">显示</button>
+        <button id="fadeInDownBigOnceBtn" onclick="showOnce('fadeInDownBig')">单次显示</button>
+        <button id="fadeInDownBigOnceBtn" onclick="infiniteShow('fadeInDownBig')">循环显示</button>
+        <div id="fadeInDownBig" class="child animated infinite fadeInDownBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInLeft
+        <button id="fadeInLeftBtn" onclick="showBtn('fadeInLeft')">显示</button>
+        <button id="fadeInLeftOnceBtn" onclick="showOnce('fadeInLeft')">单次显示</button>
+        <button id="fadeInLeftOnceBtn" onclick="infiniteShow('fadeInLeft')">循环显示</button>
+        <div id="fadeInLeft" class="child animated infinite fadeInLeft"></div>
+      </div>
+
+      <div class="parent">
+        fadeInLeftBig
+        <button id="fadeInLeftBigBtn" onclick="showBtn('fadeInLeftBig')">显示</button>
+        <button id="fadeInLeftBigOnceBtn" onclick="showOnce('fadeInLeftBig')">单次显示</button>
+        <button id="fadeInLeftBigOnceBtn" onclick="infiniteShow('fadeInLeftBig')">循环显示</button>
+        <div id="fadeInLeftBig" class="child animated infinite fadeInLeftBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInRight
+        <button id="fadeInRightBtn" onclick="showBtn('fadeInRight')">显示</button>
+        <button id="fadeInRightOnceBtn" onclick="showOnce('fadeInRight')">单次显示</button>
+        <button id="fadeInRightOnceBtn" onclick="infiniteShow('fadeInRight')">循环显示</button>
+        <div id="fadeInRight" class="child animated infinite fadeInRight"></div>
+      </div>
+
+      <div class="parent">
+        fadeInRightBig
+        <button id="fadeInRightBigBtn" onclick="showBtn('fadeInRightBig')">显示</button>
+        <button id="fadeInRightBigOnceBtn" onclick="showOnce('fadeInRightBig')">单次显示</button>
+        <button id="fadeInRightBigOnceBtn" onclick="infiniteShow('fadeInRightBig')">循环显示</button>
+        <div id="fadeInRightBig" class="child animated infinite fadeInRightBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeInUp
+        <button id="fadeInUpBtn" onclick="showBtn('fadeInUp')">显示</button>
+        <button id="fadeInUpOnceBtn" onclick="showOnce('fadeInUp')">单次显示</button>
+        <button id="fadeInUpOnceBtn" onclick="infiniteShow('fadeInUp')">循环显示</button>
+        <div id="fadeInUp" class="child animated infinite fadeInUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeInUpBig
+        <button id="fadeInUpBigBtn" onclick="showBtn('fadeInUpBig')">显示</button>
+        <button id="fadeInUpBigOnceBtn" onclick="showOnce('fadeInUpBig')">单次显示</button>
+        <button id="fadeInUpBigOnceBtn" onclick="infiniteShow('fadeInUpBig')">循环显示</button>
+        <div id="fadeInUpBig" class="child animated infinite fadeInUpBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOut
+        <button id="fadeOutBtn" onclick="showBtn('fadeOut')">显示</button>
+        <button id="fadeOutOnceBtn" onclick="showOnce('fadeOut')">单次显示</button>
+        <button id="fadeOutOnceBtn" onclick="infiniteShow('fadeOut')">循环显示</button>
+        <div id="fadeOut" class="child animated infinite fadeOut"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutDown
+        <button id="fadeOutDownBtn" onclick="showBtn('fadeOutDown')">显示</button>
+        <button id="fadeOutDownOnceBtn" onclick="showOnce('fadeOutDown')">单次显示</button>
+        <button id="fadeOutDownOnceBtn" onclick="infiniteShow('fadeOutDown')">循环显示</button>
+        <div id="fadeOutDown" class="child animated infinite fadeOutDown"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutDownBig
+        <button id="fadeOutDownBigBtn" onclick="showBtn('fadeOutDownBig')">显示</button>
+        <button id="fadeOutDownBigOnceBtn" onclick="showOnce('fadeOutDownBig')">单次显示</button>
+        <button id="fadeOutDownBigOnceBtn" onclick="infiniteShow('fadeOutDownBig')">循环显示</button>
+        <div id="fadeOutDownBig" class="child animated infinite fadeOutDownBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutLeft
+        <button id="fadeOutLeftBtn" onclick="showBtn('fadeOutLeft')">显示</button>
+        <button id="fadeOutLeftOnceBtn" onclick="showOnce('fadeOutLeft')">单次显示</button>
+        <button id="fadeOutLeftOnceBtn" onclick="infiniteShow('fadeOutLeft')">循环显示</button>
+        <div id="fadeOutLeft" class="child animated infinite fadeOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutLeftBig
+        <button id="fadeOutLeftBigBtn" onclick="showBtn('fadeOutLeftBig')">显示</button>
+        <button id="fadeOutLeftBigOnceBtn" onclick="showOnce('fadeOutLeftBig')">单次显示</button>
+        <button id="fadeOutLeftBigOnceBtn" onclick="infiniteShow('fadeOutLeftBig')">循环显示</button>
+        <div id="fadeOutLeftBig" class="child animated infinite fadeOutLeftBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutRight
+        <button id="fadeOutRightBtn" onclick="showBtn('fadeOutRight')">显示</button>
+        <button id="fadeOutRightOnceBtn" onclick="showOnce('fadeOutRight')">单次显示</button>
+        <button id="fadeOutRightOnceBtn" onclick="infiniteShow('fadeOutRight')">循环显示</button>
+        <div id="fadeOutRight" class="child animated infinite fadeOutRight"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutRightBig
+        <button id="fadeOutRightBigBtn" onclick="showBtn('fadeOutRightBig')">显示</button>
+        <button id="fadeOutRightBigOnceBtn" onclick="showOnce('fadeOutRightBig')">单次显示</button>
+        <button id="fadeOutRightBigOnceBtn" onclick="infiniteShow('fadeOutRightBig')">循环显示</button>
+        <div id="fadeOutRightBig" class="child animated infinite fadeOutRightBig"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutUp
+        <button id="fadeOutUpBtn" onclick="showBtn('fadeOutUp')">显示</button>
+        <button id="fadeOutUpOnceBtn" onclick="showOnce('fadeOutUp')">单次显示</button>
+        <button id="fadeOutUpOnceBtn" onclick="infiniteShow('fadeOutUp')">循环显示</button>
+        <div id="fadeOutUp" class="child animated infinite fadeOutUp"></div>
+      </div>
+
+      <div class="parent">
+        fadeOutUpBig
+        <button id="fadeOutUpBigBtn" onclick="showBtn('fadeOutUpBig')">显示</button>
+        <button id="fadeOutUpBigOnceBtn" onclick="showOnce('fadeOutUpBig')">单次显示</button>
+        <button id="fadeOutUpBigOnceBtn" onclick="infiniteShow('fadeOutUpBig')">循环显示</button>
+        <div id="fadeOutUpBig" class="child animated infinite fadeOutUpBig"></div>
+      </div>
+
+      <div class="parent">
+        flipInX
+        <button id="flipInXBtn" onclick="showBtn('flipInX')">显示</button>
+        <button id="flipInXOnceBtn" onclick="showOnce('flipInX')">单次显示</button>
+        <button id="flipInXOnceBtn" onclick="infiniteShow('flipInX')">循环显示</button>
+        <div id="flipInX" class="child animated infinite flipInX"></div>
+      </div>
+
+      <div class="parent">
+        flipInY
+        <button id="flipInYBtn" onclick="showBtn('flipInY')">显示</button>
+        <button id="flipInYOnceBtn" onclick="showOnce('flipInY')">单次显示</button>
+        <button id="flipInYOnceBtn" onclick="infiniteShow('flipInY')">循环显示</button>
+        <div id="flipInY" class="child animated infinite flipInY"></div>
+      </div>
+
+      <div class="parent">
+        flipOutX
+        <button id="flipOutXBtn" onclick="showBtn('flipOutX')">显示</button>
+        <button id="flipOutXOnceBtn" onclick="showOnce('flipOutX')">单次显示</button>
+        <button id="flipOutXOnceBtn" onclick="infiniteShow('flipOutX')">循环显示</button>
+        <div id="flipOutX" class="child animated infinite flipOutX"></div>
+      </div>
+
+      <div class="parent">
+        flipOutY
+        <button id="flipOutYBtn" onclick="showBtn('flipOutY')">显示</button>
+        <button id="flipOutYOnceBtn" onclick="showOnce('flipOutY')">单次显示</button>
+        <button id="flipOutYOnceBtn" onclick="infiniteShow('flipOutY')">循环显示</button>
+        <div id="flipOutY" class="child animated infinite flipOutY"></div>
+      </div>
+
+      <div class="parent">
+        lightSpeedIn
+        <button id="lightSpeedInBtn" onclick="showBtn('lightSpeedIn')">显示</button>
+        <button id="lightSpeedInOnceBtn" onclick="showOnce('lightSpeedIn')">单次显示</button>
+        <button id="lightSpeedInOnceBtn" onclick="infiniteShow('lightSpeedIn')">循环显示</button>
+        <div id="lightSpeedIn" class="child animated infinite lightSpeedIn"></div>
+      </div>
+
+      <div class="parent">
+        lightSpeedOut
+        <button id="lightSpeedOutBtn" onclick="showBtn('lightSpeedOut')">显示</button>
+        <button id="lightSpeedOutOnceBtn" onclick="showOnce('lightSpeedOut')">单次显示</button>
+        <button id="lightSpeedOutOnceBtn" onclick="infiniteShow('lightSpeedOut')">循环显示</button>
+        <div id="lightSpeedOut" class="child animated infinite lightSpeedOut"></div>
+      </div>
+
+      <div class="parent">
+        rotateIn
+        <button id="rotateInBtn" onclick="showBtn('rotateIn')">显示</button>
+        <button id="rotateInOnceBtn" onclick="showOnce('rotateIn')">单次显示</button>
+        <button id="rotateInOnceBtn" onclick="infiniteShow('rotateIn')">循环显示</button>
+        <div id="rotateIn" class="child animated infinite rotateIn"></div>
+      </div>
+
+      <div class="parent">
+        rotateInDownLeft
+        <button id="rotateInDownLeftBtn" onclick="showBtn('rotateInDownLeft')">显示</button>
+        <button id="rotateInDownLeftOnceBtn" onclick="showOnce('rotateInDownLeft')">单次显示</button>
+        <button id="rotateInDownLeftOnceBtn" onclick="infiniteShow('rotateInDownLeft')">循环显示</button>
+        <div id="rotateInDownLeft" class="child animated infinite rotateInDownLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateInDownRight
+        <button id="rotateInDownRightBtn" onclick="showBtn('rotateInDownRight')">显示</button>
+        <button id="rotateInDownRightOnceBtn" onclick="showOnce('rotateInDownRight')">单次显示</button>
+        <button id="rotateInDownRightOnceBtn" onclick="infiniteShow('rotateInDownRight')">循环显示</button>
+        <div id="rotateInDownRight" class="child animated infinite rotateInDownRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateInUpLeft
+        <button id="rotateInUpLeftBtn" onclick="showBtn('rotateInUpLeft')">显示</button>
+        <button id="rotateInUpLeftOnceBtn" onclick="showOnce('rotateInUpLeft')">单次显示</button>
+        <button id="rotateInUpLeftOnceBtn" onclick="infiniteShow('rotateInUpLeft')">循环显示</button>
+        <div id="rotateInUpLeft" class="child animated infinite rotateInUpLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateInUpRight
+        <button id="rotateInUpRightBtn" onclick="showBtn('rotateInUpRight')">显示</button>
+        <button id="rotateInUpRightOnceBtn" onclick="showOnce('rotateInUpRight')">单次显示</button>
+        <button id="rotateInUpRightOnceBtn" onclick="infiniteShow('rotateInUpRight')">循环显示</button>
+        <div id="rotateInUpRight" class="child animated infinite rotateInUpRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateOut
+        <button id="rotateOutBtn" onclick="showBtn('rotateOut')">显示</button>
+        <button id="rotateOutOnceBtn" onclick="showOnce('rotateOut')">单次显示</button>
+        <button id="rotateOutOnceBtn" onclick="infiniteShow('rotateOut')">循环显示</button>
+        <div id="rotateOut" class="child animated infinite rotateOut"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutDownLeft
+        <button id="rotateOutDownLeftBtn" onclick="showBtn('rotateOutDownLeft')">显示</button>
+        <button id="rotateOutDownLeftOnceBtn" onclick="showOnce('rotateOutDownLeft')">单次显示</button>
+        <button id="rotateOutDownLeftOnceBtn" onclick="infiniteShow('rotateOutDownLeft')">循环显示</button>
+        <div id="rotateOutDownLeft" class="child animated infinite rotateOutDownLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutDownRight
+        <button id="rotateOutDownRightBtn" onclick="showBtn('rotateOutDownRight')">显示</button>
+        <button id="rotateOutDownRightOnceBtn" onclick="showOnce('rotateOutDownRight')">单次显示</button>
+        <button id="rotateOutDownRightOnceBtn" onclick="infiniteShow('rotateOutDownRight')">循环显示</button>
+        <div id="rotateOutDownRight" class="child animated infinite rotateOutDownRight"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutUpLeft
+        <button id="rotateOutUpLeftBtn" onclick="showBtn('rotateOutUpLeft')">显示</button>
+        <button id="rotateOutUpLeftOnceBtn" onclick="showOnce('rotateOutUpLeft')">单次显示</button>
+        <button id="rotateOutUpLeftOnceBtn" onclick="infiniteShow('rotateOutUpLeft')">循环显示</button>
+        <div id="rotateOutUpLeft" class="child animated infinite rotateOutUpLeft"></div>
+      </div>
+
+      <div class="parent">
+        rotateOutUpRight
+        <button id="rotateOutUpRightBtn" onclick="showBtn('rotateOutUpRight')">显示</button>
+        <button id="rotateOutUpRightOnceBtn" onclick="showOnce('rotateOutUpRight')">单次显示</button>
+        <button id="rotateOutUpRightOnceBtn" onclick="infiniteShow('rotateOutUpRight')">循环显示</button>
+        <div id="rotateOutUpRight" class="child animated infinite rotateOutUpRight"></div>
+      </div>
+
+      <div class="parent">
+        hinge
+        <button id="hingeBtn" onclick="showBtn('hinge')">显示</button>
+        <button id="hingeOnceBtn" onclick="showOnce('hinge')">单次显示</button>
+        <button id="hingeOnceBtn" onclick="infiniteShow('hinge')">循环显示</button>
+        <div id="hinge" class="child animated infinite hinge"></div>
+      </div>
+
+      <div class="parent">
+        jackInTheBox
+        <button id="jackInTheBoxBtn" onclick="showBtn('jackInTheBox')">显示</button>
+        <button id="jackInTheBoxOnceBtn" onclick="showOnce('jackInTheBox')">单次显示</button>
+        <button id="jackInTheBoxOnceBtn" onclick="infiniteShow('jackInTheBox')">循环显示</button>
+        <div id="jackInTheBox" class="child animated infinite jackInTheBox"></div>
+      </div>
+
+      <div class="parent">
+        rollIn
+        <button id="rollInBtn" onclick="showBtn('rollIn')">显示</button>
+        <button id="rollInOnceBtn" onclick="showOnce('rollIn')">单次显示</button>
+        <button id="rollInOnceBtn" onclick="infiniteShow('rollIn')">循环显示</button>
+        <div id="rollIn" class="child animated infinite rollIn"></div>
+      </div>
+
+      <div class="parent">
+        rollOut
+        <button id="rollOutBtn" onclick="showBtn('rollOut')">显示</button>
+        <button id="rollOutOnceBtn" onclick="showOnce('rollOut')">单次显示</button>
+        <button id="rollOutOnceBtn" onclick="infiniteShow('rollOut')">循环显示</button>
+        <div id="rollOut" class="child animated infinite rollOut"></div>
+      </div>
+
+      <div class="parent">
+        zoomIn
+        <button id="zoomInBtn" onclick="showBtn('zoomIn')">显示</button>
+        <button id="zoomInOnceBtn" onclick="showOnce('zoomIn')">单次显示</button>
+        <button id="zoomInOnceBtn" onclick="infiniteShow('zoomIn')">循环显示</button>
+        <div id="zoomIn" class="child animated infinite zoomIn"></div>
+      </div>
+
+      <div class="parent">
+        zoomInDown
+        <button id="zoomInDownBtn" onclick="showBtn('zoomInDown')">显示</button>
+        <button id="zoomInDownOnceBtn" onclick="showOnce('zoomInDown')">单次显示</button>
+        <button id="zoomInDownOnceBtn" onclick="infiniteShow('zoomInDown')">循环显示</button>
+        <div id="zoomInDown" class="child animated infinite zoomInDown"></div>
+      </div>
+
+      <div class="parent">
+        zoomInLeft
+        <button id="zoomInLeftBtn" onclick="showBtn('zoomInLeft')">显示</button>
+        <button id="zoomInLeftOnceBtn" onclick="showOnce('zoomInLeft')">单次显示</button>
+        <button id="zoomInLeftOnceBtn" onclick="infiniteShow('zoomInLeft')">循环显示</button>
+        <div id="zoomInLeft" class="child animated infinite zoomInLeft"></div>
+      </div>
+
+      <div class="parent">
+        zoomInRight
+        <button id="zoomInRightBtn" onclick="showBtn('zoomInRight')">显示</button>
+        <button id="zoomInRightOnceBtn" onclick="showOnce('zoomInRight')">单次显示</button>
+        <button id="zoomInRightOnceBtn" onclick="infiniteShow('zoomInRight')">循环显示</button>
+        <div id="zoomInRight" class="child animated infinite zoomInRight"></div>
+      </div>
+
+      <div class="parent">
+        zoomInUp
+        <button id="zoomInUpBtn" onclick="showBtn('zoomInUp')">显示</button>
+        <button id="zoomInUpOnceBtn" onclick="showOnce('zoomInUp')">单次显示</button>
+        <button id="zoomInUpOnceBtn" onclick="infiniteShow('zoomInUp')">循环显示</button>
+        <div id="zoomInUp" class="child animated infinite zoomInUp"></div>
+      </div>
+
+      <div class="parent">
+        zoomOut
+        <button id="zoomOutBtn" onclick="showBtn('zoomOut')">显示</button>
+        <button id="zoomOutOnceBtn" onclick="showOnce('zoomOut')">单次显示</button>
+        <button id="zoomOutOnceBtn" onclick="infiniteShow('zoomOut')">循环显示</button>
+        <div id="zoomOut" class="child animated infinite zoomOut"></div>
+      </div>
+
+      <div class="parent">
+        zoomOutDown
+        <button id="zoomOutDownBtn" onclick="showBtn('zoomOutDown')">显示</button>
+        <button id="zoomOutDownOnceBtn" onclick="showOnce('zoomOutDown')">单次显示</button>
+        <button id="zoomOutDownOnceBtn" onclick="infiniteShow('zoomOutDown')">循环显示</button>
+        <div id="zoomOutDown" class="child animated infinite zoomOutDown"></div>
+      </div>
+
+      <div class="parent">
+        zoomOutLeft
+        <button id="zoomOutLeftBtn" onclick="showBtn('zoomOutLeft')">显示</button>
+        <button id="zoomOutLeftOnceBtn" onclick="showOnce('zoomOutLeft')">单次显示</button>
+        <button id="zoomOutLeftOnceBtn" onclick="infiniteShow('zoomOutLeft')">循环显示</button>
+        <div id="zoomOutLeft" class="child animated infinite zoomOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        zoomOutRight
+        <button id="zoomOutRightBtn" onclick="showBtn('zoomOutRight')">显示</button>
+        <button id="zoomOutRightOnceBtn" onclick="showOnce('zoomOutRight')">单次显示</button>
+        <button id="zoomOutRightOnceBtn" onclick="infiniteShow('zoomOutRight')">循环显示</button>
+        <div id="zoomOutRight" class="child animated infinite zoomOutRight"></div>
+      </div>
+
+      <div class="parent">
+        zoomOutUp
+        <button id="zoomOutUpBtn" onclick="showBtn('zoomOutUp')">显示</button>
+        <button id="zoomOutUpOnceBtn" onclick="showOnce('zoomOutUp')">单次显示</button>
+        <button id="zoomOutUpOnceBtn" onclick="infiniteShow('zoomOutUp')">循环显示</button>
+        <div id="zoomOutUp" class="child animated infinite zoomOutUp"></div>
+      </div>
+
+      <div class="parent">
+        slideInDown
+        <button id="slideInDownBtn" onclick="showBtn('slideInDown')">显示</button>
+        <button id="slideInDownOnceBtn" onclick="showOnce('slideInDown')">单次显示</button>
+        <button id="slideInDownOnceBtn" onclick="infiniteShow('slideInDown')">循环显示</button>
+        <div id="slideInDown" class="child animated infinite slideInDown"></div>
+      </div>
+
+      <div class="parent">
+        slideInLeft
+        <button id="slideInLeftBtn" onclick="showBtn('slideInLeft')">显示</button>
+        <button id="slideInLeftOnceBtn" onclick="showOnce('slideInLeft')">单次显示</button>
+        <button id="slideInLeftOnceBtn" onclick="infiniteShow('slideInLeft')">循环显示</button>
+        <div id="slideInLeft" class="child animated infinite slideInLeft"></div>
+      </div>
+
+      <div class="parent">
+        slideInRight
+        <button id="slideInRightBtn" onclick="showBtn('slideInRight')">显示</button>
+        <button id="slideInRightOnceBtn" onclick="showOnce('slideInRight')">单次显示</button>
+        <button id="slideInRightOnceBtn" onclick="infiniteShow('slideInRight')">循环显示</button>
+        <div id="slideInRight" class="child animated infinite slideInRight"></div>
+      </div>
+
+      <div class="parent">
+        slideInUp
+        <button id="slideInUpBtn" onclick="showBtn('slideInUp')">显示</button>
+        <button id="slideInUpOnceBtn" onclick="showOnce('slideInUp')">单次显示</button>
+        <button id="slideInUpOnceBtn" onclick="infiniteShow('slideInUp')">循环显示</button>
+        <div id="slideInUp" class="child animated infinite slideInUp"></div>
+      </div>
+
+      <div class="parent">
+        slideOutDown
+        <button id="slideOutDownBtn" onclick="showBtn('slideOutDown')">显示</button>
+        <button id="slideOutDownOnceBtn" onclick="showOnce('slideOutDown')">单次显示</button>
+        <button id="slideOutDownOnceBtn" onclick="infiniteShow('slideOutDown')">循环显示</button>
+        <div id="slideOutDown" class="child animated infinite slideOutDown"></div>
+      </div>
+
+      <div class="parent">
+        slideOutLeft
+        <button id="slideOutLeftBtn" onclick="showBtn('slideOutLeft')">显示</button>
+        <button id="slideOutLeftOnceBtn" onclick="showOnce('slideOutLeft')">单次显示</button>
+        <button id="slideOutLeftOnceBtn" onclick="infiniteShow('slideOutLeft')">循环显示</button>
+        <div id="slideOutLeft" class="child animated infinite slideOutLeft"></div>
+      </div>
+
+      <div class="parent">
+        slideOutRight
+        <button id="slideOutRightBtn" onclick="showBtn('slideOutRight')">显示</button>
+        <button id="slideOutRightOnceBtn" onclick="showOnce('slideOutRight')">单次显示</button>
+        <button id="slideOutRightOnceBtn" onclick="infiniteShow('slideOutRight')">循环显示</button>
+        <div id="slideOutRight" class="child animated infinite slideOutRight"></div>
+      </div>
+
+      <div class="parent">
+        slideOutUp
+        <button id="slideOutUpBtn" onclick="showBtn('slideOutUp')">显示</button>
+        <button id="slideOutUpOnceBtn" onclick="showOnce('slideOutUp')">单次显示</button>
+        <button id="slideOutUpOnceBtn" onclick="infiniteShow('slideOutUp')">循环显示</button>
+        <div id="slideOutUp" class="child animated infinite slideOutUp"></div>
+      </div>
+
+      <div class="parent">
+        heartBeat
+        <button id="heartBeatBtn" onclick="showBtn('heartBeat')">显示</button>
+        <button id="heartBeatOnceBtn" onclick="showOnce('heartBeat')">单次显示</button>
+        <button id="heartBeatOnceBtn" onclick="infiniteShow('heartBeat')">循环显示</button>
+        <div id="heartBeat" class="child animated infinite heartBeat"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    const getHtml = function () {
+
+    }
+    const showBtn = function (id) {
+      const element = document.getElementById(id)
+      const elementBtn = document.getElementById(id + 'Btn');
+      if (element.style.display === 'none' || element.style.display === "") {
+        element.style.display = 'block';
+        elementBtn.textContent = "停止显示"
+      } else if (element.style.display === 'block') {
+        element.style.display = 'none';
+        elementBtn.textContent = "显示"
+      } else {
+        element.style.display = 'none';
+        elementBtn.textContent = "显示"
+      }
+    }
+    const showOnce = function (id) {
+      const element = document.getElementById(id)
+      element.style.display = 'none'
+      setTimeout(() => {
+        element.classList.remove('infinite')
+        element.style.display = 'block'
+      }, 0)
+    }
+    const infiniteShow = function (id) {
+      const element = document.getElementById(id)
+      element.style.display = 'none'
+      setTimeout(() => {
+
+        element.classList.add('infinite')
+        element.style.display = 'block'
+      }, 0)
+    }
+  </script>
+</body>
+
+</html>

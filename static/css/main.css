@@ -1,6 +1,6 @@
 @font-face {
   font-family: HYZhuZiLieYanTiW;
-  src: url('./font/HYZhuZiLieYanTiW.ttf');
+  src: url('../../font/HYZhuZiLieYanTiW.ttf');
 }
 
 * {
@@ -163,6 +163,10 @@ b {
 }
 .flex-div {
   display: flex;
+}
+.wrap-flex {
+  display: flex;
+  flex-wrap: wrap;
 }
 .fill-space-div {
   margin: auto;
