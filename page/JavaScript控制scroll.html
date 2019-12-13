@@ -85,7 +85,17 @@
       <section>
         <h2>监听滚动</h2>
         <p></p>
-        <span>当前div的滚动量为：</span><span id="watchScroll"></span>
+        <div style="display: flex;">
+          <span>
+          <span>当前div的滚动量为：</span><span id="watchScroll"></span>
+          </span>  
+          <span>
+            <span>实际scroll长度为：</span><span id="scrollHeight"></span>
+          </span>  
+          <span>
+            <span>实际div长度为：</span><span id="clientHeight"></span>
+          </span>  
+        </div>
         <div id="scrollDiv">
           <p id="scrollDivP"></p>
           <script>
@@ -95,10 +105,24 @@
         </div>
         <script>
           const scrollDiv = document.getElementById('scrollDiv');
+          document.getElementById('scrollHeight').textContent = scrollDiv.scrollHeight;
+          document.getElementById('clientHeight').textContent = scrollDiv.clientHeight;
           scrollDiv.addEventListener('scroll', function (evt) {
-            console.log(this.scrollTop);
             const watchScroll = document.getElementById('watchScroll');
             watchScroll.textContent = this.scrollTop;
+            if (this.scrollTop <= 400) {
+              this.style.backgroundColor = '#e2eff1'
+              this.firstElementChild.style.color = '#5f5f5f'
+            } else if (this.scrollTop > 400 && this.scrollTop <= 800) {
+              this.style.backgroundColor = '#b6d5e1'
+              this.firstElementChild.style.color = '#5f5f5f'
+            } else if (this.scrollTop > 800 && this.scrollTop <= 1200) {
+              this.style.backgroundColor = '#65799b'
+              this.firstElementChild.style.color = '#a8a8aa'
+            } else if (this.scrollTop > 1200) {
+              this.style.backgroundColor = '#555273'
+              this.firstElementChild.style.color = '#a8a8aa'
+            }
           })
         </script>
       </section>
