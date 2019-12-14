@@ -11,11 +11,20 @@
   <style>
     .parent {
       border: 1px solid #edecec;
+      height: 102px;
     }
 
     .child {
       background-color: #65799b;
       display: none;
+    }
+    #stopAll, #showAll {
+      position: fixed;
+      bottom: 100px;
+      left: calc(50% + 470px);
+    }
+    #showAll {
+      bottom: 150px;
     }
   </style>
 </head>
@@ -23,7 +32,8 @@
 <body>
   <main onload="getHtml()">
     <div class="wrap-flex" id="allAnimation">
-
+      <button onclick="stopAll()" id="stopAll">停止所有</button>
+      <button onclick="showAll()" id="showAll">展示所有</button>
       <div class="parent">
         bounce
         <button id="bounceBtn" onclick="showBtn('bounce')">显示</button>
@@ -2156,9 +2166,6 @@
   </main>
 
   <script>
-    const getHtml = function () {
-
-    }
     const showBtn = function (id) {
       const element = document.getElementById(id)
       const elementBtn = document.getElementById(id + 'Btn');
@@ -2190,6 +2197,19 @@
         element.style.display = 'block'
       }, 0)
     }
+    const showAll = function () {
+      const elements = document.getElementsByClassName('child');
+      Array.from(elements).forEach(element => {
+        element.classList.add('infinite')
+        element.style.display = 'block'
+      })
+    }
+    const stopAll = function () {
+      const elements = document.getElementsByClassName('child');
+      Array.from(elements).forEach(element => {
+        element.classList.remove('infinite');
+      });
+    };
   </script>
 </body>
 

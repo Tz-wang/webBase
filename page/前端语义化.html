@@ -8,6 +8,7 @@
     * {
       font-size: 14px;
     }
+
     main {
       display: flex;
     }
@@ -252,6 +253,9 @@
       <li></li>
     </nav>
   </aside>
+  <aside>
+    <button onclick="goTop()" id="goTop">回到顶部</button>
+  </aside>
   <footer>
     <nav class="footerNav">
       <li></li>
@@ -269,5 +273,10 @@
     </nav>
   </footer>
 </body>
+<script>
+  const goTop = function () {
+    window.scroll(0, 0)
+  };
+</script>
 
 </html>

@@ -174,3 +174,9 @@ b {
 .grid-box {
   display: grid;
 }
+
+#goTop {
+  position: fixed;
+  bottom: 100px;
+  left: calc(50% + 470px);
+}

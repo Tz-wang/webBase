@@ -51,6 +51,17 @@
     .superButton:hover .hoverText {
       display: block;
     }
+    #fixShowRight {
+      position: fixed;
+      bottom: 300px;
+      left: calc(50% + 440px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    #fixShowRight > span:first-of-type {
+      writing-mode: tb-rl;
+    }
   </style>
 </head>
 
@@ -226,6 +237,23 @@
           })
         </script>
       </section>
+      <section>
+        <h2>控制整个页面的滚动</h2>
+        <p>其实我们除了可以控制各个element的scroll，还可以控制window的scroll，window没有scrollTop属性，只有scrollY属性</p>
+        <div id="fixShowRight">
+          <span>当前window的滚动量为：</span><span id="windowScroll"></span>
+        </div>
+        <button onclick="toTop()" id="goTop">回到顶部</button>
+        <script>
+          window.addEventListener('scroll', function (evt) {
+            document.getElementById('windowScroll').textContent = window.scrollY;
+          })
+          const toTop = function () {
+            window.scroll(0, 0);
+          };
+        </script>
+      </section>
+
     </article>
   </main>
 </body>
