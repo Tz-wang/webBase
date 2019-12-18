@@ -180,3 +180,6 @@ b {
   bottom: 100px;
   left: calc(50% + 470px);
 }
+.redBox {
+  background-color: #ff4545;
+}
