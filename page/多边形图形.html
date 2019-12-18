@@ -28,7 +28,12 @@
       <section>
         <h2>使用border控制形状</h2>
         <p>使用border控制形状的原理是一个盒模型有四条边，所以可以分别给四条边设置样式,这样可以做出部分图形出来；不过缺点是这样的图形无法放入数据，因为图形的样式是使用border生成的，我们无法在边框上加入数据。</p>
-        <div class="box" style="height: 0; padding: 0; border-right: 20px solid transparent; border-left: 20px solid transparent; border-bottom: 50px solid #ff4545; box-sizing: border-box;">
+        <div class="box" style="height: 0; padding: 0;
+         border-right: 20px solid transparent;
+          border-left: 20px solid transparent; 
+          border-bottom: 50px solid #ff4545; 
+          border-top: 50px solid #ff4545;
+          box-sizing: border-box;">
         </div>
       </section>
       <section>
