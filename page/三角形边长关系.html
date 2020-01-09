@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三角形边长关系</title>
+    <style>
+        .vertex {
+            height: 50px;
+            width: 50px;
+            border: 1px solid #999;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
+            cursor: move;
+            position: fixed;
+        }
+        body {
+            background: url('../images/grid.gif');
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <span>总线长：</span>
+            <span id="lineLength"></span>
+        </div>
+    </header>
+    <aside>
+        <button onclick="autoSetPosition()">
+            一键排序
+        </button>
+    </aside>
+    <main>
+        <div draggable="true" id="A" class="vertex">A</div>
+        <div draggable="true" id="B" class="vertex">B</div>
+        <div draggable="true" id="C" class="vertex">C</div>
+    </main>
+</body>
+<script>
+    console.log('hello world');
+    const A = document.getElementById('A')
+    const B = document.getElementById("B")
+    const C = document.getElementById("C")
+    const AB = document.createElement('canvas');
+    const AC = document.createElement('canvas');
+    const BC = document.createElement('canvas');
+    AB.setAttribute('id', 'AB')
+    AB.style.zIndex = -1
+    AC.setAttribute('id', 'AC')
+    AC.style.zIndex = -1
+    BC.setAttribute('id', 'BC')
+    BC.style.zIndex = -1
+    document.body.appendChild(AB)
+    document.body.appendChild(AC)
+    document.body.appendChild(BC)
+
+    const elementList = {
+        A,
+        B,
+        C,
+        AB,
+        AC,
+        BC
+    }
+
+
+    const positionBackup = {
+        A: {
+            x: 0,
+            y: 0
+        },
+        B: {
+            x: 0,
+            y: 0
+        },
+        C: {
+            x: 0,
+            y: 0
+        },
+    }
+
+    const line = {
+        AB: 0,
+        AC: 0,
+        BC: 0,
+    }
+
+    Object.defineProperties(line, {
+        set(val) {
+            console.log(val);
+            
+        }
+    })
+
+    const setSet = function(id, setFunc) {
+        Object.defineProperty(line, id, {
+            set: setFunc
+        })
+    }
+    // setSet('AB', function (val) {
+    //     console.log(val);
+    //     this._AB = val;
+    // })
+    // setSet('AC', val => console.log('AC', val))
+    // setSet('BC', val => console.log('BC', val))
+
+    let isMove = false;
+
+    const moveStart = function (evt) {
+        const elId = evt.srcElement.id;
+        evt.dataTransfer.setDragImage(document.createElement('img'), 0, 0)
+        positionBackup[elId] = {
+            x: evt.offsetX,
+            y: evt.offsetY
+        }
+    }
+    
+
+    const getElementPosition = function (ele) {
+        const x = parseInt(ele.style.left);
+        const y = parseInt(ele.style.top);
+        return {
+            x,
+            y
+        };
+    }
+
+    const setElementPosition = function (ele, position) {
+        ele.style.position = 'fixed'
+        ele.style.top = `${position.y}px`
+        ele.style.left = `${position.x}px`
+    }
+
+    const drawLine = function (ele1, ele2, line) {
+        const {
+            x: x1,
+            y: y1
+        } = getElementPosition(ele1)
+        const {
+            x: x2,
+            y: y2
+        } = getElementPosition(ele2)
+
+        const x = Math.min(x1, x2);
+        const y = Math.min(y1, y2);
+        
+        setElementPosition(line, {x, y});
+
+        const width = Math.abs(x1 - x2)
+        const height = Math.abs(y1 - y2)
+        line.height = height;
+        line.width = width;
+
+        const isLeft = x1 - x2 <= 0
+        const isTop = y1 - y2 <= 0
+        const lineCtx = line.getContext('2d')
+
+        if (isLeft && isTop || !isLeft && !isTop) {
+            lineCtx.moveTo(0, 0)
+            lineCtx.lineTo(width, height)
+            lineCtx.stroke();
+        } else {
+            lineCtx.moveTo(0, height)
+            lineCtx.lineTo(width, 0);
+            lineCtx.stroke();
+        }
+    }
+
+    const getLineId = function (elId) {
+        let line1Id = '';
+        let line2Id = '';
+        let other1Id = '';
+        let other2Id = '';
+        switch (elId) {
+            case 'A':
+                line1Id = 'AB';
+                line2Id = 'AC'
+                other1Id = 'B';
+                other2Id = 'C';
+                break;
+            case 'B':
+                line1Id = 'AB';
+                line2Id = 'BC';
+                other1Id = 'A';
+                other2Id = 'C';
+                break;
+            case 'C':
+                line1Id = 'AC';
+                line2Id = 'BC';
+                other1Id = 'A';
+                other2Id = 'B';
+                break;
+            default:
+                break;
+        }
+        return {
+            line1Id, line2Id, other1Id, other2Id
+        }
+    }
+
+    const setLine = function (elId) {
+        const {line1Id, line2Id, other1Id, other2Id} = getLineId(elId)
+        drawLine(elementList[elId], elementList[other1Id], elementList[line1Id])
+        drawLine(elementList[elId], elementList[other2Id], elementList[line2Id])
+    }
+
+    const computedLineLength = function (elId) {
+        const {line1Id, line2Id, other1Id, other2Id} = getLineId(elId)
+        const line1 = {width: elementList[line1Id].width, height: elementList[line1Id].height}
+        const line2 = {width: elementList[line2Id].width, height: elementList[line2Id].height}
+        const line1Length = Math.sqrt(Math.pow(line1.width, 2) + Math.pow(line1.height, 2))
+        const line2Lenght = Math.sqrt(Math.pow(line2.width, 2) + Math.pow(line2.height, 2))
+        const line3Id = Object.keys(line).find(item => item !== line1Id && item !== line2Id);
+        line[line1Id] = line1Length;
+        line[line2Id] = line2Lenght;
+        // console.log('allLineLength: ', line1Length + line2Lenght + line[line3Id]);
+        document.getElementById('lineLength').textContent = line1Length + line2Lenght + line[line3Id];
+        
+    }
+
+    const setPosition = function (evt) {
+        if (evt.clientX < 1 || evt.clientY < 1) {
+            return;
+        }
+        const elId = evt.srcElement.id;
+        let x = evt.clientX - positionBackup[elId].x;
+        let y = evt.clientY - positionBackup[elId].y;
+        document.getElementById(elId).style.top = `${y}px`;
+        document.getElementById(elId).style.left = `${x}px`;
+        evt.dataTransfer.effectAllowed = "move";
+        setLine(elId)
+        computedLineLength(elId)
+    }
+
+    A.addEventListener('dragstart', moveStart)
+    A.addEventListener('drag', setPosition)
+    B.addEventListener('dragstart', moveStart)
+    B.addEventListener('drag', setPosition)
+    C.addEventListener('dragstart', moveStart)
+    C.addEventListener('drag', setPosition)
+
+    const autoSetPosition = function (evt) {
+
+    }
+</script>
+
+</html>

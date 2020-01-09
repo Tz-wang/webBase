@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>复制粘贴</title>
+</head>
+<body>
+</body>
+    <script>
+        document.body.addEventListener('paste', (evt) => {
+            console.log(evt);
+            console.log(evt.clipboardData);
+            console.log(evt.clipboardData.types);
+            console.log(evt.clipboardData.items);
+            for (let item of evt.clipboardData.items) {
+                console.log(item);
+            console.log(evt.clipboardData.getData(item.type));
+            }
+            
+        })
+    </script>
+</html>

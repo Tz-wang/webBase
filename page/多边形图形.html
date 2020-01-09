@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>多边形图形设计</title>
+  <link rel="stylesheet" href="../static/css/main.css">
+  <style>
+    .box {
+      height: 50px;
+      width: 200px;
+      margin: 0 auto;
+      border-radius: 0;
+    }
+    .shadowBox {
+      z-index: 1;
+      box-shadow: 0 10px 10px 10px black;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <article>
+      <h1>多边形图形设计</h1>
+      <section>
+        <h2>使用border控制形状</h2>
+        <p>使用border控制形状的原理是一个盒模型有四条边，所以可以分别给四条边设置样式,这样可以做出部分图形出来；不过缺点是这样的图形无法放入数据，因为图形的样式是使用border生成的，我们无法在边框上加入数据。</p>
+        <div class="box" style="height: 0; padding: 0;
+         border-right: 20px solid transparent;
+          border-left: 20px solid transparent; 
+          border-bottom: 50px solid #ff4545; 
+          border-top: 50px solid #ff4545;
+          box-sizing: border-box;">
+        </div>
+      </section>
+      <section>
+        <h2>使用clip-path控制形状</h2>
+        <p>
+          使用clip-path可以处理dom的形状，原理是使用裁剪的方法将区域外的部分去除，可以理解为一层物理遮罩。
+          使用clip-path可以保留dom内的数据，但是无法使用阴影，因为clip-path是使用遮罩挡住了额外的部分，所以连阴影也挡住了。
+        </p>
+        <div>
+          <div class="redBox box shadowBox"
+           style="clip-path: polygon(1px 0, 90% 0, 100% 100%, 10% 100%);">
+            <p>这里面还可以放入文字</p>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+</body>
+
+</html>
