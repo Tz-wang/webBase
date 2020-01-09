@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>z-index测试</title>
+</head>
+
+<body>
+<main>
+  <article>
+    <h1>z-index测试</h1>
+    <div style="background-color: aquamarine;">最底层
+      <button onclick="div1Up()">div1在上</button>
+      <button onclick="div2Up()">div2在上</button>
+      <button onclick="zIndexInit()">全归零</button>
+      <div id="div1">
+        div1
+        <span id="div1zIndexShow"></span>
+        <div id="div1item1"></div>
+      </div>
+      <div id="div2">
+        div2
+        <span id="div2zIndexShow"></span>
+        <div id="div2item1"></div>
+      </div>
+    </div>
+  </article>
+</main>
+</body>
+<script>
+  const div1 = document.getElementById('div1');
+  const div2 = document.getElementById('div2');
+  const div1zIndexShow = document.getElementById('div1zIndexShow');
+  const div2zIndexShow = document.getElementById('div2zIndexShow');
+  Object.defineProperty(div1.style, 'zIndex', {
+    set(v) {
+      div1zIndexShow.textContent = `z-index = ${v}`;
+    }
+  });
+  Object.defineProperty(div2.style, 'zIndex', {
+    set(v) {
+      div2zIndexShow.textContent = `z-index = ${v}`;
+    }
+  });
+  
+  
+  const div1Up = function () {
+    div2.style.zIndex = 'auto';
+    div1.style.zIndex = 1;
+  };
+  const div2Up = function () {
+    div1.style.zIndex = 'auto';
+    div2.style.zIndex = 1;
+  };
+  const zIndexInit = function () {
+    div1.style.zIndex = 0;
+    div2.style.zIndex = 0;
+  };
+</script>
+<style>
+  #div1, #div2 {
+    height: 300px;
+    width: 100%;
+    /*z-index: 0;*/
+    position: relative;
+  }
+  
+  #div1 {
+    background-color: #3d689f;
+  }
+  
+  #div2 {
+    background-color: #0d88c1;
+  }
+  
+  #div1item1 {
+    position: absolute;
+    bottom: -25px;
+    height: 50px;
+    width: 50px;
+    background-color: #65799b;
+  }
+  
+  #div2item1 {
+    position: absolute;
+    top: -25px;
+    height: 50px;
+    width: 50px;
+    margin-left: 50px;
+    background-color: #5f5f5f;
+  }
+
+</style>
+</html>
