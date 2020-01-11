@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas实现波动图</title>
+</head>
+
+<body>
+    <main>
+        <canvas id="canvas"></canvas>
+    </main>
+</body>
+<script>
+    class CanvasControl {
+        constructor(id = "canvas", width = 500, height = 500, ) {
+            this.canvas = document.getElementById('canvas');
+            this.ctx = this.canvas.getContext('2d');
+            this.canvas.setAttribute('height', height + 'px')
+            this.canvas.setAttribute('width', width + 'px');
+            this.canvasHeight = height;
+            this.canvasWidth = width;
+            this.xOffset = 0;
+            this.speed = 0.1;
+        }
+
+        drawSin(xOffset = 0, period = 30, fillColor='#21B8EC') {
+            const points = [];
+            const waveWidth = 1/period;
+            const waveHeight = 10;
+            const canvasWidth = this.canvasWidth
+            const canvasHeight = this.canvasHeight
+
+            const startX = 0;
+            const xOffsetStart = this.xOffset;
+
+            this.ctx.beginPath();
+            this.ctx.lineWidth = 1;
+
+            // const zero = [startX, (canvasHeight / 2) + ]
+            for (let x = startX; x < startX + canvasWidth; x += 20 / canvasWidth) {
+                const y = waveHeight * Math.sin((startX + x) * waveWidth + xOffset + xOffsetStart);
+                points.push([x, (canvasHeight / 2) + y]);
+                this.ctx.lineTo(x, (canvasHeight / 2) + y);
+            }
+
+            this.ctx.lineTo(canvasWidth, canvasHeight);
+            this.ctx.lineTo(startX, canvasHeight);
+            this.ctx.lineTo(points[0][0], points[0][1]);
+            this.ctx.stroke();
+
+            this.ctx.fillStyle = fillColor
+            this.ctx.fill()
+        }
+
+        draw() {
+            this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+            if (!this.isDrawCircle) {
+                this.drawCircle();
+            }
+            this.drawSin(10, 40)
+            this.drawSin(30, 50)
+            this.xOffset += this.speed;
+            requestAnimationFrame(this.draw.bind(this));
+        }
+
+        drawCircle() {
+            const r = this.canvasHeight / 2;
+            const lineWidth = 3;
+            const cR = r - lineWidth;
+            this.ctx.lineWidth = lineWidth;
+            this.ctx.beginPath();
+            this.ctx.arc(r, r, cR, 0, 2 * Math.PI);
+            this.ctx.stroke();
+            this.ctx.clip();
+            this.isDrawCircle = true;
+        }
+    }
+
+    const canvas = new CanvasControl()
+    canvas.draw();
+</script>
+
+</html>
