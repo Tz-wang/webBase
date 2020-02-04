@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画练习</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        .switch {
+            height: 50px;
+            margin: 30px auto;
+            padding: 0;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: white;
+            box-shadow: 2px 2px 5px 0 gray;
+            border-radius: 25px;
+            position: relative;
+        }
+        .switch .switchItem {
+            height: 50px;
+            width: 120px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            line-height: 50px;
+            border-radius: 0;
+            cursor: pointer;
+            z-index: 1;
+            background-color: transparent;
+            transition: color .3s;
+        }
+        .switch #leftButton {
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+        .switch #rightButton {
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+        .switch .isActive {
+            /* background-color: cadetblue; */
+            color: white;
+        }
+        .switch #animationItem {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 0;
+            height: 50px;
+            width: 120px;
+            margin: 0;
+            padding: 0;
+            background-color: cadetblue;
+            border-radius: 25px;
+            transition: left .3s ease;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <header>
+                <h1>类switch切换</h1>
+                <p>使用div控制</p>
+                <div class="switch">
+                    <div id="leftButton" class="switchItem isActive" onclick="setActive('leftButton')">leftButton</div>
+                    <div id="rightButton" class="switchItem" onclick="setActive('rightButton')">rightButton</div>
+                    <div id="animationItem"></div>
+                </div>
+            </header>
+            <article>
+                
+            </article>
+        </section>
+    </main>
+</body>
+<script>
+    const leftButton = document.getElementById('leftButton');
+    const rightButton = document.getElementById('rightButton');
+    const animationItem = document.getElementById('animationItem');
+    const buttonList = {leftButton, rightButton};
+    const setActive = function(buttonId) {
+        switch (buttonId) {
+            case 'leftButton':
+                animationItem.style.left = '0';
+                leftButton.classList.add('isActive');
+                rightButton.classList.remove('isActive');
+                break;
+            case 'rightButton': 
+                animationItem.style.left = `${120}px`;
+                leftButton.classList.remove('isActive');
+                rightButton.classList.add('isActive');
+                break;
+            default: break;
+        }
+    }
+</script>
+</html>
