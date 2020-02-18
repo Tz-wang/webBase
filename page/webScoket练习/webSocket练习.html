@@ -11,9 +11,12 @@
     </style>
 </head>
 <body>
-    <button onclick="send()">发送信息</button>
-    <input type="text" id="sendInput">
-    <p id="message"></p>
+    <main>
+        <p>请打开两个浏览器测试，相互发送信息</p>
+        <button onclick="send()">发送信息</button>
+        <input type="text" id="sendInput">
+        <p id="message"></p>
+    </main>
 </body>
 <script>
     const ws = new WebSocket('ws://localhost:1111');

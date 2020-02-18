@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器的技巧集合</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        @keyframes wave {
+            50%, 75% {
+                transform: scale(2.5);
+            }
+
+            80%, 100% {
+                opacity: 0;
+            }
+        }
+        .dot {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            position: relative;
+            background-color: blue;
+        }
+        .dot::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: inherit;
+            animation: wave 2s ease-out infinite;
+        }
+
+        @keyframes fontFall {
+            from {
+                transform: translate(0, -10px);
+            }
+            to {
+                transform: translate(0);
+            }
+        }
+        #hello {
+            display: inline-block;
+            animation: fontFall 1s ease-out;
+        }
+        #world {
+            display: inline-block;
+            animation: fontFall 2s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <article>
+                <h1>交错动画</h1>
+                <div class="horizontalBox">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </article>
+        </section>
+        <section>
+            <article>
+                <h1>文本下坠</h1>
+                <p>
+                    <span id="hello">hello</span>
+                    <span id="world">world</span>
+                </p>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
