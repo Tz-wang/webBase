@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webSocket练习</title>
+</head>
+<body>
+    <button onclick="send()">发送信息</button>
+    <input type="text" id="sendInput">
+    <p id="message"></p>
+</body>
+<script>
+    const ws = new WebSocket('ws://localhost:1111');
+    ws.onopen = (e) => {
+        if (e) {
+            console.log(e);
+        } else {
+            console.log('建立webSocket连接');
+        }
+    }
+    ws.onmessage = resv;
+    ws.onerror = (e) => {
+        console.error('错误', e)
+    }
+    ws.onclose = (e) => {
+        if (e) {
+            console.error(e);
+        } else {
+            console.log('关闭webSocket连接');
+        }
+    }
+    
+    const sendInput = document.getElementById('sendInput')
+    const message = document.getElementById('message')
+    function send() {
+        const sendMsg = sendInput.value;
+        
+        if (ws.type === "open") {
+            ws.send(sendMsg);
+        }
+    }
+    function resv(e) {
+        console.log(e.message);
+        
+        message.textContent = e.message;
+    }
+</script>
+</html>
