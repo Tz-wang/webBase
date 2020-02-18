@@ -22,39 +22,73 @@
     </style>
 </head>
 <body>
-    <div class="playground">
-        <div class="ball" id="ball"></div>
+    <div class="playground" id="playground">
+        <!-- <div class="ball" id="ball"></div> -->
     </div>
 </body>
 <script>
-    const ball = document.getElementById('ball')
-    ball.style.top = 0;
-    ball.style.left = 0;
+    const playground = document.getElementById('playground')
     const maxX = 700 - 30;
     const maxY = 500 - 30;
-    const setPosition = function (element, x, y) {
-        const positionSet = {x, y}
-        if (x < maxX && x > 0) {
-            positionSet.x = x;
-        } else {
-            const atLetter = (Math.abs(x) % (2 * maxX)) < maxX;
-            positionSet.x = atLetter ? (Math.abs(x) % maxX) : (maxX - (Math.abs(x) % maxX));
+    const ballList = [];
+    class Ball {
+        maxX = maxX;
+        maxY = maxY;
+        height = 30
+        width = 30
+        angle = Math.random() * 90
+        x = Math.floor(Math.random() * this.maxX)
+        y = Math.floor(Math.random() * this.maxY)
+        momentumX = 1 * Math.sin(this.angle);
+        momentumY = 1 * Math.cos(this.angle);
+        quality = 1
+        
+        constructor() {
+            const {x: left, y: top} = this
+            this.element = document.createElement('div', {style: {top, left}});
+            this.element.classList.add('ball')
+            playground.appendChild(this.element);
+            ballList.push(this.element);
         }
-        if (y < maxY && y > 0) {
-            positionSet.y = y;
-        } else {
-            const atLetter = (Math.abs(y) % (2 * maxY)) < maxY;
-            positionSet.y = atLetter ? (Math.abs(y) % maxY) : (maxY - (Math.abs(y) % maxY));
+        setPosition(x, y) {
+            const positionSet = {x, y}
+            if (x < maxX && x > 0) {
+                positionSet.x = x;
+            } else {
+                const atLetter = (Math.abs(x) % (2 * maxX)) < maxX;
+                positionSet.x = atLetter ? (Math.abs(x) % maxX) : (maxX - (Math.abs(x) % maxX));
+            }
+            if (y < maxY && y > 0) {
+                positionSet.y = y;
+            } else {
+                const atLetter = (Math.abs(y) % (2 * maxY)) < maxY;
+                positionSet.y = atLetter ? (Math.abs(y) % maxY) : (maxY - (Math.abs(y) % maxY));
+            }
+            this.element.style.top = `${positionSet.y}px`;
+            this.element.style.left = `${positionSet.x}px`;
         }
-        element.style.top = `${positionSet.y}px`;
-        element.style.left = `${positionSet.x}px`;
+        moveStart() {
+            this.interval = setInterval(() => {
+                this.setPosition(this.x += this.momentumX, this.y += this.momentumY);
+            }, 10);
+        }
+        impactList() {
+            const impactList = ballList.filter(item => {
+                if (item === this) {
+                    return false;
+                }
+                const self = {x: this.x - this.width / 2, y: this.x - this.height / 2};
+                const other = {x: item.x - item.width / 2, y: item.x - item.height / 2};
+            })
+        }
+        isImpact() {
+            
+        }
     }
-    const start = function () {
-        const start = {element: ball, x: 0, y: 0, angle: 60};
-        setInterval(() => {
-            setPosition(start.element, start.x += Math.sin(start.angle), start.y += Math.cos(start.angle));
-        }, 10);
-    }
-    start();
+
+    const ball = new Ball();
+    ball.moveStart();
+    ball.isImpact();
+    
 </script>
 </html>
