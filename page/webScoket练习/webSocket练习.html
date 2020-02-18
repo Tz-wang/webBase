@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>webSocket练习</title>
+    <style>
+        p {
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
     <button onclick="send()">发送信息</button>
@@ -14,12 +19,9 @@
     const ws = new WebSocket('ws://localhost:1111');
     ws.onopen = (e) => {
         if (e) {
-            console.log(e);
-        } else {
-            console.log('建立webSocket连接');
+            console.log('建立webSocket连接', e);
         }
     }
-    ws.onmessage = resv;
     ws.onerror = (e) => {
         console.error('错误', e)
     }
@@ -35,15 +37,18 @@
     const message = document.getElementById('message')
     function send() {
         const sendMsg = sendInput.value;
-        
-        if (ws.type === "open") {
+        if (ws.readyState === WebSocket.OPEN) {
             ws.send(sendMsg);
         }
     }
-    function resv(e) {
-        console.log(e.message);
-        
-        message.textContent = e.message;
-    }
+    const messageList = [];
+    ws.onmessage = (e) => {
+        console.log(e);
+        console.log(e.data)
+        if (ws.readyState === WebSocket.OPEN) {
+            messageList.push(e.data)
+            message.textContent = messageList.join('\n');
+        }
+    };
 </script>
 </html>
