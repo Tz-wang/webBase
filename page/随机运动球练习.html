@@ -31,14 +31,27 @@
     const maxX = 700 - 30;
     const maxY = 500 - 30;
     const ballList = [];
+
     class Ball {
         maxX = maxX;
         maxY = maxY;
         height = 30
         width = 30
         angle = Math.random() * 90
-        x = Math.floor(Math.random() * this.maxX)
-        y = Math.floor(Math.random() * this.maxY)
+        _x = Math.floor(Math.random() * this.maxX)
+        _y = Math.floor(Math.random() * this.maxY)
+        get x() {
+            return this._x;
+        }
+        set x(val) {
+            this._x = val;
+        }
+        get y() {
+            return this._y;
+        }
+        set y(val) {
+            this._y = val;
+        }
         momentumX = 1 * Math.sin(this.angle);
         momentumY = 1 * Math.cos(this.angle);
         quality = 1
@@ -73,16 +86,17 @@
             }, 10);
         }
         impactList() {
-            const impactList = ballList.filter(item => {
+            return ballList.filter(item => {
                 if (item === this) {
                     return false;
                 }
                 const self = {x: this.x - this.width / 2, y: this.x - this.height / 2};
                 const other = {x: item.x - item.width / 2, y: item.x - item.height / 2};
+                return Math.sqrt(Math.pow(self.x - other.x, 2) + Math.pow(self.y - other.y, 2)) < this.width;
             })
         }
         isImpact() {
-            
+            console.log(this.impactList());
         }
     }
 
