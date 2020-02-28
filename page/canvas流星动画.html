@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas流星动画</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            height: 600px;
+            width: 100%;
+            background-color: black;
+        }
+    </style>
+</head>
+<script>
+</script>
+
+<body>
+    <main>
+        <canvas id="canvas"></canvas>
+    </main>
+</body>
+<script>
+    const canvas = document.getElementById('canvas');
+    const height = 600;
+    const width = window.innerWidth;
+    canvas.height = height;
+    canvas.width = width;
+    const startImg = new Image();
+    startImg.src = '../images/流星.png';
+    const startHeight = 87; // 流星图片的高度
+    const startWidth = 148; // 流星图片的宽度
+    const startSpeed = 1; // 流星每秒朝运动方向运动的像素值
+    const angle = Math.atan(startHeight / startWidth) // 流星图片的角度（弧度值）
+    const ctx = canvas.getContext('2d')
+
+
+    // start.onload = function() {
+    //     ctx.drawImage(start, window.innerWidth - 10, 0);
+    //     ctx.drawImage(start, 10, 0);
+    // }
+
+    const getStartSpeed = () => {
+        return Math.max(1, Math.random() * 10);
+    }
+    const getStartX = () => {
+        return Math.random() * (width + startWidth);
+    }
+    const getStartY = () => {
+        return Math.random() * (height + startHeight);
+    }
+
+    const startList = [];
+    for (let i = 0; i < 5; i++) {
+        startList.push({
+            x: width,
+            y: Math.random() * (height + startHeight),
+            speed: Math.ceil(Math.random() * 10),
+        })
+    }
+    const startMove = () => {
+        for (let start of startList) {
+            start.x -= start.speed * Math.cos(angle);
+            start.y += start.speed * Math.sin(angle);
+        }
+    }
+    const startDraw = () => {
+        ctx.clearRect(0, 0, width, height);
+        console.log(startList);
+
+        for (let index in startList) {
+            const start = startList[index];
+            if (start.x < -startWidth || start.y > height) {
+                const newStartPosition = {
+                    speed: Math.ceil(Math.random() * 10),
+                }
+                if (Math.floor(Math.random * 100) % 2) {
+                    newStartPosition.x = width;
+                    newStartPosition.y = Math.random() * (height + startHeight);
+                } else {
+                    newStartPosition.x = Math.random() * (width + startWidth);
+                    newStartPosition.y = -startHeight;
+                }
+                startList.splice(index, 1, newStartPosition)
+                continue;
+            }
+            ctx.drawImage(startImg, start.x, start.y);
+        }
+    }
+    const animate = () => {
+        startMove();
+        startDraw();
+        window.requestAnimationFrame(animate);
+    }
+    window.requestAnimationFrame(animate);
+    animate();
+</script>
+
+</html>
