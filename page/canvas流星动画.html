@@ -30,15 +30,16 @@
 <script>
     const canvas = document.getElementById('canvas');
     const height = 600;
-    const width = window.innerWidth;
+    let width = window.innerWidth;
     canvas.height = height;
     canvas.width = width;
     const startImg = new Image();
     startImg.src = '../images/流星.png';
-    const startHeight = 87; // 流星图片的高度
-    const startWidth = 148; // 流星图片的宽度
-    const startSpeed = 1; // 流星每秒朝运动方向运动的像素值
+    const startHeight = 87;     // 流星图片的高度
+    const startWidth = 148;     // 流星图片的宽度
+    const startSpeed = 1;       // 流星每秒朝运动方向运动的像素值
     const angle = Math.atan(startHeight / startWidth) // 流星图片的角度（弧度值）
+    const startNumber = 10;     // 流星的个数
     const ctx = canvas.getContext('2d')
 
 
@@ -57,49 +58,54 @@
         return Math.random() * (height + startHeight);
     }
 
-    const startList = [];
-    for (let i = 0; i < 5; i++) {
-        startList.push({
+    const startList = []; // 流星集合，永远存放所有的流星
+    const makeStart = () => {       // 创建一个流星
+        const newStart = {
+            speed: Math.ceil(Math.random() * 10),   // 随机速度
             x: width,
-            y: Math.random() * (height + startHeight),
-            speed: Math.ceil(Math.random() * 10),
-        })
+            y: -startHeight,
+        }
+        if (Math.floor(Math.random * 10) % 2) {    // 随机位置
+            newStart.y = Math.random() * (height + startHeight);    // 随机y位置
+        } else {        
+            newStart.x = Math.random() * (width + startWidth);      // 随机x位置
+        }
+        return newStart
     }
+
+    for (let i = 0; i < startNumber; i++) { // 初始化流星列表
+        startList.push(makeStart())
+    }
+
     const startMove = () => {
         for (let start of startList) {
-            start.x -= start.speed * Math.cos(angle);
+            start.x -= start.speed * Math.cos(angle); // 流星朝坠落方向坠落
             start.y += start.speed * Math.sin(angle);
         }
     }
-    const startDraw = () => {
-        ctx.clearRect(0, 0, width, height);
-        console.log(startList);
-
-        for (let index in startList) {
+    const updateStartList = () => {
+        for (let index in startList) { // 遍历流星列表, 删除不显示的流星，添加新的流星
             const start = startList[index];
             if (start.x < -startWidth || start.y > height) {
-                const newStartPosition = {
-                    speed: Math.ceil(Math.random() * 10),
-                }
-                if (Math.floor(Math.random * 100) % 2) {
-                    newStartPosition.x = width;
-                    newStartPosition.y = Math.random() * (height + startHeight);
-                } else {
-                    newStartPosition.x = Math.random() * (width + startWidth);
-                    newStartPosition.y = -startHeight;
-                }
-                startList.splice(index, 1, newStartPosition)
+                startList.splice(index, 1, makeStart())
                 continue;
             }
+        }
+    }
+    const startDraw = () => {
+        ctx.clearRect(0, 0, width, height); // 动画开始前需要清空之前的画布
+
+        for (let index in startList) { // 遍历流星列表，画出新的流星
+            const start = startList[index];
             ctx.drawImage(startImg, start.x, start.y);
         }
     }
-    const animate = () => {
-        startMove();
-        startDraw();
-        window.requestAnimationFrame(animate);
+    const animate = () => {             // 动画函数
+        startMove();                    // 先移动流星
+        updateStartList();              // 更新流星列表
+        startDraw();                    // 画流星
+        window.requestAnimationFrame(animate);  // 设置下一帧的动画
     }
-    window.requestAnimationFrame(animate);
     animate();
 </script>
 
