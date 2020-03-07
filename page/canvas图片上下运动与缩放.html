@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas实现脉冲图</title>
+  <style>
+    body {
+      background-color: black;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+<script>
+  const canvas = document.getElementById('canvas')
+  canvas.width = window.innerWidth;
+  canvas.height = 600;
+  const ctx = canvas.getContext('2d')
+
+  class Cube {
+    center = {x: 100, y: 100}
+    points = [
+      {x: 100, y: 50},
+      {x: 150, y: 100},
+      {x: 100, y: 150},
+      {x: 50, y: 100},
+    ]
+  }
+
+  const cube = new Cube();
+
+  function draw() {
+    ctx.fillStyle = '#2abeff';
+    ctx.strokeStyle = '#2abeff';
+    for (let point of cube.points) {
+      ctx.lineTo(point.x, point.y)
+    }
+    ctx.lineTo(cube.points[0].x, cube.points[0].y)
+    ctx.stroke();
+  }
+
+  draw();
+
+
+</script>
+</html>
