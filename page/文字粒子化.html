@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字粒子化</title>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+<script>
+  let defR = 6; // max radius
+  let gap = 10;
+  let fontS = 500;  // font size
+  let textList = ["00:00", "23:59"];
+  let textCount = 0;
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  canvas.width = w;
+  canvas.height = h;
+
+  function createText(text) {
+    ctx.clearRect(0, 0, w, h);
+    ctx.font = fontS + 'px "微软雅黑"';
+    ctx.fillStyle = 'red';
+
+    ctx.textAlign = "center";
+    ctx.textBaseLine = "middle";
+    ctx.fillText(text, w/2, h/2);
+  }
+
+  function createRadius(data) {
+    ctx.clearRect(0, 0, w, h);
+    for (let i = 0; i < data.length; i++) {
+      ctx.beginPath()
+      ctx.arc(data[i].x, data[i].y, Math.random() * defR, 0, Math.PI * 2);
+      ctx.fillStyle = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+  function findText() {
+    let imageData = ctx.getImageData(0, 0, w, h);
+    let data = imageData.data;
+    let pos = [];
+    for (let i = 0; i < w; i += gap) {
+      for (var j = 0; j < h; j += gap) {
+        let index = (j * w + i) * 4;
+        if (data[index] > 128) {
+          pos.push({
+            x: i,
+            y: j
+          });
+        }
+      }
+    }
+    createRadius(pos);
+  }
+  function drawFont() {
+    if (textCount === textList.length) textCount = 0;
+    createText(textList[textCount]);
+    textCount++;
+    findText()
+  }
+  setInterval(drawFont, 1000);
+</script>
+</html>
