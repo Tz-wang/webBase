@@ -25,6 +25,7 @@
     _y  // now position y
     t_x // target position x
     t_y // target position y
+    radius // circle radius
     
     iterNumber // iteration number
 
@@ -61,11 +62,10 @@
       // this._y = y;
       this.x = x;
       this.y = y;
+      this.radius = radius;
     }
   }
   function createTextImage(text) {
-    console.log(text);
-    
     ctx.clearRect(0, 0, windowW, windowH);
     ctx.font = fontsize + 'px "Tahoma"';
     ctx.fillStyle = "red";
@@ -78,7 +78,7 @@
     ctx.clearRect(0, 0, windowW, windowH);
     for (let position of positions) {
       ctx.beginPath()
-      ctx.arc(position.x, position.y, radius, 0, Math.PI * 2);
+      ctx.arc(position.x, position.y, position.radius, 0, Math.PI * 2);
       ctx.fillStyle = `rgb(0, 0, 0)`;
       ctx.closePath();
       ctx.fill();

@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>three.js使用</title>
-  <script src="https://unpkg.com/three"></script>
+  <script src="https://unpkg.com/three@0.115.0/build/three.js"></script>
 </head>
 
-<body>
+<body onload="main()">
 
 </body>
 <script>
@@ -78,7 +78,9 @@
     document.body.appendChild(renderer.domElement)
     renderer.render(scene, camera)
   }
-  init()
+  function main() {
+    init();
+  }
 </script>
 
 </html>
