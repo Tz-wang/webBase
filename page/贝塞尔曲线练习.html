@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>贝塞尔曲线练习</title>
+  <script src="../js/canvas控制点.js"></script>
+  <style>
+    #canvas {
+      background-color: #d2d2d2;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+<script>
+  // 本项目将使用简单方法绘制任意阶次贝塞尔曲线
+  // 什么是贝塞尔曲线可以参考：https://github.com/hujiulong/blog/issues/1
+  // https://juejin.im/post/5b854e1451882542fe28a53d
+  // 1、首先构建画布对象
+  const canvas = document.getElementById('canvas');
+  canvas.width = 600;
+  canvas.height = 600;
+  const ctx = canvas.getContext('2d');
+  // 2、先进行一阶贝塞尔曲线（也就是直线）
+  // 2.1 一阶贝塞尔曲线由两个点构成（其实也就是直线），并且表现为无控制点
+  function firstOrder(start={x: 0, y: 0}, end={x: 300, y: 300}) {
+    const times = 1000;
+    // const t = 1;
+    // 贝塞尔曲线虽然是多点成线的形式，但是为了更好画图，这里采用极短线的形式
+    // 2.2 计算出极短线（单位时间内运动的开始和结束两点的连线）
+    // 开始点是上一次的结束点，所以我们只需要计算结束点的坐标即可
+    let lastP = start;  // 开始时是起始点
+    const p = (t) => {return {x: (end.x - start.x) / times * t + start.x, y: (end.x - start.x) / times * t + start.y};};
+    // 为了做成动画，需要保存所有中间点的（使用生成器）
+    function* newP() {  // function* 表示生成器函数
+      for (let t = 1; t <= times; t++) {
+        yield [oldP, newP] = [newP ? newP : lastP, p(t)]; // 返回前后两个点，分别为极短线的起始点和终点[起点为上一个终点， 终点为计算值]
+      }
+    }
+    for (let [p1, p2] of newP()) {
+      setTimeout(() => {
+        lineTo(p1, p2);
+      }, 16);
+    }
+  }
+  // 简化一下：
+  function* firstOrderLine(start={x: 0, y: 0}, end={x: 300, y: 300}, times=1000) {
+    const p = t => {return {x: (end.x - start.x) / times * t + start.x, y: (end.y - start.y) / times * t + start.y } }
+    let [oldP, newP] = [start, start];
+    for (let t = 1; t <= times; t++) {
+      [oldP, newP] = [newP ? newP : start, p(t)];
+      yield [oldP, newP];
+    }
+  }
+
+  // firstOrder();
+
+  function lineTo(source, target) {
+    ctx.beginPath();
+    ctx.moveTo(source.x, source.y);
+    ctx.lineTo(target.x, target.y);
+    ctx.stroke();
+  }
+
+  function darwFirstOrder() {
+    ctx.clearRect(0, 0, 600, 600);
+    ctx.beginPath();
+    ctx.fillRect(startP.x, startP.y, 10, 10);
+    ctx.fillRect(endP.x, endP.y, 10, 10);
+    for (let [p1, p2] of firstOrderLine({x: startP.x + 5, y: startP.y + 5}, {x: endP.x + 5, y: endP.y + 5})) {
+      lineTo(p1, p2)
+    }
+  }
+  // 与拖拽控制点结合
+  // startP = new ControlPoint(canvas, darwFirstOrder, {x: 200, y: 400});
+  // endP = new ControlPoint(canvas, darwFirstOrder, {x: 300, y: 500});
+  // firstOrder(startP, endP);
+
+  // 3、二阶贝塞尔曲线
+  // 二阶贝塞尔曲线由三个点构成：起始点、终点以及一个控制点
+  function secondOrder(start={x: 0, y: 0}, end={x: 300, y: 300}, control={x: 0, y: 300}, times=1000) {
+    // 首先进行三点的连线，共生成两条一阶贝塞尔曲线（也就是直线）
+    // const line1 = lineTo(start, control);
+    // const line2 = lineTo(control, end);
+    // 然后画出中间点
+    let [oldP, newP] = [start, start];
+    const point = (t, p1, p2) => {return {x: (p2.x - p1.x) / times * t + p1.x, y: (p2.y - p1.y) / times * t + p1.y}}
+    for (let t = 1; t <= times; t++) {
+      // const line3 = lineTo(point(t, start, control), point(t, control, end));
+      // 当t在增大时，同时有三个点在变化：line1上的点在向控制点方向移动；line2的点在向终点移动；line3的点从line1向line2移动
+      [oldP, newP] = [newP ? newP : start, point(t, point(t, start, control), point(t, control, end))];
+      lineTo(oldP, newP)
+    }
+  }
+
+  // 简化一下
+  function* secondOrderLine(start={x: 0, y: 0}, end={x: 300, y: 300}, control={x: 0, y: 300}, times=1000) {
+    function point(t, p1, p2) {
+      return {x: (p2.x - p1.x) / times * t + p1.x, y: (p2.y - p1.y) / times * t + p1.y}
+    }
+    let [oldP, newP] = [start, start];
+    for (let t = 1; t <= times; t++) {
+      [oldP, newP] = [newP ? newP : start, point(t, point(t, start, control), point(t, control, end))];
+      yield [oldP, newP];
+    }
+  }
+  
+  // secondOrder({x: 100, y: 100}, {x: 400, y: 400}, {x: 100, y: 400});
+
+  // for (let [p1, p2] of secondOrderLine({x: 100, y: 100}, {x: 400, y: 400}, {x: 100, y: 400})) {
+  //   // lineTo(p1, p2);
+  //   setTimeout(() => {
+  //     lineTo(p1, p2)
+  //   }, 100);
+  // }
+  // 与控制点结合
+  function darwSecondOrderLine() {
+    // 清空画布
+    ctx.clearRect(0, 0, 600, 600);
+    // 先画控制点
+    ctx.fillRect(start2.x, start2.y, 10, 10);
+    ctx.fillRect(control2.x, control2.y, 10, 10);
+    ctx.fillRect(end2.x, end2.y, 10, 10);
+    // 再画线
+    const [start, control, end] = [{x: start2.x + 5, y: start2.y + 5}, {x: control2.x + 5, y: control2.y + 5}, {x: end2.x + 5, y: end2.y + 5}]
+    for (let [p1, p2] of secondOrderLine(start, end, control)) {
+      // lineTo(p1, p2);
+      lineTo(p1, p2)
+    }
+  }
+  // const start2 = new ControlPoint(canvas, darwSecondOrderLine, {x: 100, y: 100});
+  // const control2 = new ControlPoint(canvas, darwSecondOrderLine, {x: 100, y: 400});
+  // const end2 = new ControlPoint(canvas, darwSecondOrderLine, {x: 400, y: 400});
+  // secondOrder(start2, end2, control2)
+
+  // 三阶次
+  function thirdOrder(start = {x: 0, y: 0}, end = {x: 300, y: 300}, control1={x: 0, y: 150}, control2={x: 150, y: 0}, times=1000) {
+    function point(t, start, end) {
+      return {
+        x: ( end.x - start.x ) / times * t + start.x,
+        y: ( end.y - start.y ) / times * t + start.y
+      }
+    }
+
+
+    let [oldP, newP] = [start, start];
+    for (let t = 1; t <= times; t++) {
+      // lineTo(start, control1);
+      // lineTo(control1, control2);
+      // lineTo(control2, end);
+      p01 = point(t, start, control1);
+      p12 = point(t, control1, control2);
+      p23 = point(t, control2, end);
+      // line012 = lineTo(p01, p12);
+      // line123 = lineTo(p12, p23);
+      p012 = point(t, p01, p12);
+      p123 = point(t, p12, p23);
+      p = point(t, p012, p123);
+      
+      [oldP, newP] = [newP || start, p];
+      lineTo(oldP, newP);
+    }
+  }
+
+  // thirdOrder()
+
+  // 简化一下
+  function* thirdOrderLine(start={x: 0, y: 0}, end={x:300, y:300}, control1={x: 0, y: 150}, control2={x: 150, y: 0}, times=1000) {
+    function point(t, start, end) {
+      return {
+        x: ( end.x - start.x ) / times * t + start.x,
+        y: ( end.y - start.y ) / times * t + start.y
+      }
+    }
+    let [oldP, newP] = [start, start];
+    for (let t = 1; t <= times; t++) {
+      [oldP, newP] = [newP || start, point(t, point(t, point(t, start, control1), point(t, control1, control2)), point(t, point(t, control1, control2), point(t, control2, end)))]
+      yield [oldP, newP];
+    }
+  }
+
+  function darwThirdOrderLine() {
+    // 清空画布
+    ctx.clearRect(0, 0, 600, 600);
+    // 绘制控制点
+    ctx.fillRect(start3.x, start3.y, 10, 10);
+    ctx.fillRect(end3.x, end3.y, 10, 10);
+    ctx.fillRect(control31.x, control31.y, 10, 10);
+    ctx.fillRect(control32.x, control32.y, 10, 10);
+    // 绘制曲线
+    const [start, end, control1, control2] = [
+      {x: start3.x + 5, y: start3.y + 5},
+      {x: end3.x + 5, y: end3.y + 5},
+      {x: control31.x + 5, y: control31.y + 5},
+      {x: control32.x + 5, y: control32.y + 5},
+    ]
+    for (let [oldP, newP] of thirdOrderLine(start, end, control1, control2)) {
+      lineTo(oldP, newP);
+    }
+  }
+  // 加入控制点
+  // const start3 = new ControlPoint(canvas, darwThirdOrderLine, {x: 200, y: 200});
+  // const end3 = new ControlPoint(canvas, darwThirdOrderLine, {x: 500, y: 500});
+  // const control31 = new ControlPoint(canvas, darwThirdOrderLine, {x: 300, y: 300});
+  // const control32 = new ControlPoint(canvas, darwThirdOrderLine, {x: 200, y: 500});
+  // thirdOrder(start3, end3, control31, control32)
+
+  // 任意阶次
+  // 通过二、三阶可以看出，任意阶次不过是不断重复point函数的操作生成中间点的坐标而已
+  // 提炼出中间点函数
+  function point(t, start, end, times=1000) {
+    return {
+        x: ( end.x - start.x ) / times * t + start.x,
+        y: ( end.y - start.y ) / times * t + start.y
+      }
+  }
+  
+  function anyOrder(start, end, control=[], times=1000) {
+    // 任意阶次的控制点数 = 阶次数 - 1
+    // 任意阶次的中间点数 = 等差和(控制点数 + 起点 + 终点)
+    // 任意阶次的层数 = 阶次数 = 控制点数 + 1
+    if (control.length > 0) {
+      let [oldP, newP] = [start, start];
+      for (let t = 1; t <= times; t++) {
+        let middlePoints = [start, ...control, end]; // middlePoints 表示每一层的中间点
+        for (let layer = 0; layer < control.length + 1; layer++) {  // for 循环每层，一层一层计算中间点，最终返回最后一个中间点的坐标
+          const middlePointsList = [];
+          for (let i = 1; i < middlePoints.length; i++) {   // 遍历 middlePoints
+            // 每两个点生成一个新的中间点
+            middlePointsList.push(point(t, middlePoints[i - 1], middlePoints[i]))
+          }
+          middlePoints = middlePointsList;
+        }
+        [oldP, newP] = [newP || startP, middlePoints[0]];
+        lineTo(oldP, newP);
+      }
+    } else {
+      lineTo(start, end);
+    }
+  }
+
+  // 4阶
+  anyOrder({x: 0, y: 0}, {x: 500, y: 500}, [{x: 100, y: 300}, {x: 0, y: 300}, {x: 400, y: 0}]);
+  // 与控制点结合
+  const start4 = new ControlPoint(canvas, drawAnyOrder, {x: 0, y: 0});
+  const end4 = new ControlPoint(canvas, drawAnyOrder, {x: 500, y: 500});
+  const control41 = new ControlPoint(canvas, drawAnyOrder, {x: 100, y: 300});
+  const control42 = new ControlPoint(canvas, drawAnyOrder, {x: 0, y: 300});
+  const control43 = new ControlPoint(canvas, drawAnyOrder, {x: 400, y: 0});
+
+  function drawAnyOrder() {
+    ctx.clearRect(0, 0, 600, 600);
+    for (let p of [start4, end4, ...[control41, control42, control43]]) {
+      ctx.fillRect(p.x, p.y, 10, 10);
+    }
+    anyOrder(start4, end4, [control41, control42, control43]);
+  }
+  
+  // 抽象
+  function* curve(start, end, controls=[], times=1000) {
+    let [oldP, newP] = [start, start];
+    for (let t = 1; t <= times; t++) {
+      if (controls?.length > 0) {
+        let middlePoints = [start, ...controls, end];
+        for (let layer = 0; layer < controls.length + 1; layer++) {
+          const middlePointsList = [];
+          for (let i = 1; i < middlePoints.length; i++) {
+            middlePointsList.push(point(t, middlePoints[i - 1], middlePoints[i]));
+          }
+          middlePoints = middlePointsList;
+        }
+        newP = middlePoints[0];
+      } else {
+        [oldP, newP] = point(t, start, end);
+      }
+      yield [oldP, newP];
+    }
+  }
+  // 与控制点结合
+  const controls = [];
+  function redraw() {
+    ctx.clearRect(0, 0, 600, 600);
+    for (let point of controls) {
+      ctx.fillRect(point.x, point.y, 10, 10);
+    }
+    const control = controls.map(item => ({x: item.x + 5, y: item.y + 5}));
+    const [start, ctrl, end] = [control[0], control.slice(1, control.length - 1), control[control.length - 1]];
+    for (let [oldP, newP] of curve(start, end, ctrl)) {
+      lineTo(oldP, newP);
+    }
+  }
+  function clickAddControl(evt) {
+
+    controls.push(new ControlPoint(canvas, redraw, {x: evt.offsetX, y: evt.offsetY}));
+  }
+  canvas.addEventListener('click', clickAddControl)
+
+</script>
+
+</html>
