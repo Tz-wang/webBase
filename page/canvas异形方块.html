@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas异形方块</title>
+  <style>
+    body {
+      background: black;
+      height: 600px;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+<script>
+  const canvas = document.getElementById('canvas')
+  canvas.height = 600;
+  canvas.width = window.innerWidth;
+  const ctx = canvas.getContext('2d')
+
+  class Cube {
+    constructor(centerX=100, centerY=100, sideLen=100, range=10, timeNum=100, angle = 90) {
+      this.center = [centerX, centerY];
+      this.sideLen = sideLen;
+      this.range = range;
+      this.timeNum = timeNum;
+      this.angle = angle;
+    }
+    
+    initVertex() {
+      for (let i = 0; i < 4; i++) {
+        this[i][0] = this.center[0] + (this.sideLen / 2)
+        this[i][1] = this.center[1] + (this.sideLen / 2)
+      }
+    }
+
+    center = [100, 100];  // 中心点坐标
+    sideLen = 100;        // 正方形边长
+    0 = [100, 100]; // 左上
+    1 = [100, 100]; // 右上
+    2 = [100, 100]; // 右下
+    3 = [100, 100]; // 左下
+
+    timeNum = 100; // 总迭代次数，用于控制所有点到目标点之间总迭代次数, 从0开始计数
+    _iterNum = 0; // 当前迭代次数，目前已经迭代了的次数
+    get iterNum() {
+      return this._iterNum
+    }
+    set iterNum(val) {
+      this._iterNum = val % this.timeNum;
+    }
+
+    arcPoint = [0, 3] // 有圆点的地方为左上和右下
+    arcRadius = 3 // 圆点半径
+
+    range = 10    // 顶点运动的范围，以顶点为中心，正负range的空间为范围
+    angle = 90;    // 方块的旋转角度
+    get radian() {    // 方块的旋转弧度
+      return this.angle / 180 * Math.PI;
+    }
+    rotate(x, y) {    // 旋转方法
+      const center = {x: this.center[0], y: this.center[1]}
+      const source = {x: x - center.x, y: y - center.y}
+      const sin = Math.sin(this.radian)
+      const cos = Math.cos(this.radian)
+      const sinx = sin * source.x
+      const siny = sin * source.y
+      const cosx = cos * source.x
+      const cosy = cos * source.y
+
+      const target = {
+        x: cosx - siny, 
+        y: sinx + cosy
+      }
+      return [target.x + center.x, target.y + center.y];
+    }
+
+    _target = []
+    get target() {
+      const _random = () => Math.random() * this.range * 2 - this.range;
+
+      const makeTarget = () => {
+        let topLeft = this.rotate(this.center[0] - (this.sideLen / 2 - this.range) - _random(), this.center[1] - (this.sideLen / 2 - this.range) - _random());
+        let topRight = this.rotate(this.center[0] + (this.sideLen / 2 - this.range) - _random(), this.center[1] - (this.sideLen / 2 - this.range) - _random())
+        let bottomRight = this.rotate(this.center[0] + (this.sideLen / 2 - this.range) - _random(), this.center[1] + (this.sideLen / 2 - this.range) - _random())
+        let bottomLeft = this.rotate(this.center[0] - (this.sideLen / 2 - this.range) - _random(), this.center[1] + (this.sideLen / 2 - this.range) - _random())
+        return [topLeft, topRight, bottomRight, bottomLeft]
+      };
+
+      if (!this.iterNum % this.timeNum) {
+        this._target = makeTarget();
+      }
+
+      return this._target;
+    }
+
+    movePoint() {
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 2; j++) {          
+          this[i][j] += ((this.target[i][j] - this[i][j]) / (this.timeNum - this.iterNum))
+        }
+      }
+      this.iterNum++;
+    }
+  }
+
+  const cube1 = new Cube(100, 100, 100, 10, 500)
+  const cube2 = new Cube(100, 100, 50, 5, 50)
+  const cube3 = new Cube(100, 100, 25, 50, 1000)
+
+  function move(cube) {
+    cube.movePoint();
+  }
+
+  function draw(cube) {
+    ctx.fillStyle = '#2abeff';
+    ctx.strokeStyle = '#2abeff';
+    
+    for (let i = 0; i < 4; i++) {
+      ctx.beginPath();
+      ctx.arc(cube[i][0], cube[i][1], cube.arcRadius, 0, 2 * Math.PI);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.lineTo(cube[(i + 1) % 4][0], cube[(i + 1) % 4][1])
+      ctx.lineTo(cube[i][0], cube[i][1])
+      ctx.stroke()
+    }
+  }
+
+  function animation() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    move(cube1);
+    move(cube2);
+    move(cube3);
+    draw(cube1)
+    draw(cube2)
+    draw(cube3)
+    window.requestAnimationFrame(animation);
+  }
+
+  animation();
+
+</script>
+
+</html>

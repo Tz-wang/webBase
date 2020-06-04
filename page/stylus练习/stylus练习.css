@@ -1,0 +1,13 @@
+/* mixin 测试 */
+.horizontal {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.horizontal div {
+  height: 30px;
+  width: 30px;
+  background: #00f;
+  margin: 20px;
+}

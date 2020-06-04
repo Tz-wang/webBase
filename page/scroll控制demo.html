@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scroll控制demo</title>
+  <script>
+    const content = (join = '\n') => {
+      const content = [];
+      for (let i = 1; i <= 100; i++) {
+        content.push(`第${i}行，${Math.round(Math.random() * 1000000)}`);
+      }
+      return content.join(join);
+    };
+  </script>
+</head>
+
+<body>
+  <main>
+    <article>
+      <header>
+        <h1>scroll介绍</h1>
+      </header>
+      <section>
+        <p>scroll方法仅在元素触发<b>overflow</b>后才生效</p>
+        <p>一个element对象通常拥有以下与scroll相关的属性和方法：</p>
+        <strong>属性：</strong>
+        <p>          element.clientHeight 表示元素可视部分的高度
+          element.clientWidth 表示元素可视部分的宽度
+
+          element.scrollHeight 表示元素内的总高度
+          element.scrollWidth 表示元素内的总宽度
+
+          element.scrollLeft 表示元素左侧滚动的距离
+          element.scrollTop 表示元素上部滚动的距离</p>
+        <strong>方法：</strong>
+        <p>          element.scrollTo(x: numer, y: number) 控制元素滚动</p>
+        <strong>事件监听：</strong>
+        <p>          element.addEventListener("scroll", function () {})
+          element.addEventListener("mousewheel", function () {})</p>
+        <p></p>
+      </section>
+    </article>
+    <article>
+      <header>
+        <h1>监听滚动</h1>
+      </header>
+      <section>
+        <header>
+          <h2>监听scroll事件</h2>
+        </header>
+        <p></p>
+        <div style="display: flex;">
+          <span>
+            <span>可视部分高度：</span><span id="clientHeight"></span>
+            <span>实际内容高度：</span><span id="scrollHeight"></span>
+            <span>当前滚动量为：</span><span id="scrollTop"></span>
+          </span>
+        </div>
+        <div id="contain" class="contain">
+          <p id="content">
+            <script>
+              const element = document.getElementById('content');
+              element.textContent = content();
+              const contain = document.getElementById('contain');
+              const clientHeight = document.getElementById('clientHeight')
+              const scrollHeight = document.getElementById('scrollHeight')
+              setTimeout(() => {
+                clientHeight.textContent = contain.clientHeight;
+                scrollHeight.textContent = contain.scrollHeight;
+              }, 0)
+              const scrollTop = document.getElementById('scrollTop')
+              contain.addEventListener('scroll', function (evt) {
+                scrollTop.textContent = contain.scrollTop;
+              });
+            </script>
+          </p>
+        </div>
+      </section>
+      <section>
+        <header>
+          <h2>监听mousewheel事件</h2>
+        </header>
+        <p>mousewheel事件的回调中包含鼠标滚轮的滚动状态: <b>evt.deltaY</b>;
+使用鼠标滚轮事件监听可以操作<b>overflow：hidden</b>的DOM对象；
+使用mousewheel事件监听通常需要使用<b>evt.preventDefault()</b>函数拦截事件冒泡，防止影响到页面的滚动
+        </p>
+        <div style="display: flex;">
+          <span>
+            <span>可视部分高度：</span><span id="clientHeight1"></span>
+            <span>实际内容高度：</span><span id="scrollHeight1"></span>
+            <span>当前滚动量为：</span><span id="scrollTop1"></span>
+          </span>
+        </div>
+        <div>
+          <div id="contain1" class="contain" style="overflow: hidden;">
+            <p id="content1">
+              <script>
+                const element1 = document.getElementById('content1');
+                element1.textContent = content();
+                const contain1 = document.getElementById('contain1');
+                const clientHeight1 = document.getElementById('clientHeight1')
+                const scrollHeight1 = document.getElementById('scrollHeight1')
+                setTimeout(() => {
+                  clientHeight1.textContent = contain.clientHeight;
+                  scrollHeight1.textContent = contain.scrollHeight;
+                }, 0)
+                const scrollTop1 = document.getElementById('scrollTop1')
+                contain1.addEventListener('mousewheel', function (evt) {
+                  contain1.scrollTo(0, contain1.scrollTop + evt.deltaY);
+                  setTimeout(() => scrollTop1.textContent = contain1.scrollTop, 0);
+                  console.log(evt);
+                  evt.preventDefault();
+                });
+              </script>
+            </p>
+          </div>
+      </section>
+    </article>
+    <article>
+      <header>
+        <h1>应用</h1>
+      </header>
+      <section>
+        <h2>应用1：回到顶部</h2>
+        <p>浏览器本体也有scrollTo函数，绑定在window对象上，
+使用<b>window.scrollTo</b>函数可以控制浏览器的滚动，所以也就可以设置回到顶部的功能</p>
+        <button id="gotoTop"> 回到顶部
+          <script>
+            document.getElementById('gotoTop').addEventListener("click", () => window.scrollTo(0, 0));
+          </script>
+        </button>
+      </section>
+      <section id="animationDOM">
+        <h2>应用2：动画（样式）控制</h2>
+        <p>浏览器本体除了包含<b>scrollTo</b>函数以提供控制滚动的能力外，
+同时也提供<b>scroll事件监听</b>和<b>scrollY属性</b>以及<b>innerHeight属性</b>；
+<b>scrollY属性</b>表示浏览器的滚动量；<b>innerHeight</b>表示浏览器视窗高。
+每个DOM对象还提供<b>offsetTop</b>和<b>offsetLeft</b>用于标识DOM在父元素（body）中的位置。
+利用这些属性，我们可以设置当浏览器滚动到当前DOM位置的时候，加载DOM出现动画。
+也可以控制样式的变化。</p>
+        <script>
+          const animationDOM = document.getElementById('animationDOM');
+          window.addEventListener('scroll', evt => {
+            if (window.scrollY + window.innerHeight > animationDOM.offsetTop) {
+              animationDOM.classList.add('animation');
+            }
+          })
+        </script>
+      </section>
+      <section>
+        <h2>应用3：鼠标滚轮控制横向滚动</h2>
+        <p>在没有触控板的用户使用横向滚动条时，只能通过鼠标左键拖动拖拽条来滚动。
+这样不够人性化，可以在横向滚动条出现时，使用鼠标滚轮事件监听，实现用滚轮控制滚动。</p>
+        <p><b>注意：虽然是横向滚动，但是仍需要使用鼠标滚轮事件的deltaY值，而不是deltaX</b></p>
+        <p id="horizontalP" style="white-space: nowrap;max-width: 745px; overflow: auto;"></p>
+        <script>
+          const horizontalP = document.getElementById('horizontalP');
+          horizontalP.textContent = content('\t');
+          horizontalP.addEventListener('mousewheel', evt => {
+            horizontalP.scrollTo(horizontalP.scrollLeft + evt.deltaY, 0);
+            evt.preventDefault();
+          })
+        </script>
+      </section>
+      <section>
+        <h2>应用4：鼠标拖拽滚动</h2>
+        <p></p>
+        <p id="horizontalP2" style="white-space: nowrap;max-width: 745px; overflow: auto; user-select: none;"></p>
+        <script>
+          const horizontalP2 = document.getElementById('horizontalP2');
+          horizontalP2.textContent = content('\t');
+          let mouseX = 0;
+          const mouseMove = evt => {
+            horizontalP2.scrollTo(horizontalP2.scrollLeft + mouseX - evt.screenX, 0)
+            mouseX = evt.screenX;
+          };
+          const mouseUp = evt => {
+            window.removeEventListener('mousemove', mouseMove);
+            window.removeEventListener('mouseup', mouseUp);
+          };
+          horizontalP2.addEventListener('mousedown', evt => {
+            mouseX = evt.screenX;
+            window.addEventListener('mousemove', mouseMove);
+            window.addEventListener('mouseup', mouseUp);
+          });
+        </script>
+      </section>
+    </article>
+  </main>
+</body>
+<style>
+  body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  h1 {
+    border-bottom: 2px solid black;
+  }
+
+  p {
+    white-space: pre-wrap;
+    padding-top: 0px;
+    margin-top: 0;
+  }
+
+  .contain {
+    height: 500px;
+    border: 1px solid #999;
+    overflow: auto;
+  }
+  @keyframes animation {
+    0% {
+      opacity: 0;
+      transform: translateX(-500px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .animation {
+    animation: animation 1s;
+  }
+</style>
+
+</html>

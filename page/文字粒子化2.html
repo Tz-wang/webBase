@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字粒子化2</title>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+<script>
+  const canvas = document.getElementById('canvas');
+  const windowW = window.innerWidth;
+  const windowH = window.innerHeight;
+  canvas.width = windowW;
+  canvas.height = windowH;
+  const fontsize = 300;
+  const gap = 5;
+  const radius = 1;
+  const ctx = canvas.getContext('2d');
+  const positions = [];
+
+  class Point {
+    _x  // now position x
+    _y  // now position y
+    t_x // target position x
+    t_y // target position y
+    radius // circle radius
+    
+    iterNumber // iteration number
+
+    get x() {
+      if (this.iterNumber < 1) {
+        return this._x += (this.t_x - this._x);
+      }
+      return this._x += (this.t_x - this._x) / this.iterNumber--;
+    }
+    set x(val) {
+      this.t_x = val;
+      this.initItemNumber();
+    }
+
+    get y() {
+      if (this.iterNumber < 1) {
+        return this._y += (this.t_y - this._y);
+      }
+      return this._y += (this.t_y - this._y) / this.iterNumber--;
+    }
+    set y(val) {
+      this.t_y = val;
+      this.initItemNumber();
+    }
+
+    initItemNumber() {
+      this.iterNumber = 60;
+    }
+    constructor(x, y) {
+      this.initItemNumber();
+      this._x = Math.random() * 100 + x - 50;
+      this._y = Math.random() * 100 + y - 50;
+      // this._x = x;
+      // this._y = y;
+      this.x = x;
+      this.y = y;
+      this.radius = radius;
+    }
+  }
+  function createTextImage(text) {
+    ctx.clearRect(0, 0, windowW, windowH);
+    ctx.font = fontsize + 'px "Tahoma"';
+    ctx.fillStyle = "red";
+    ctx.textAlign = "center";
+    ctx.textBaseLine = "middle";
+    ctx.fillText(text, windowW / 2, windowH / 2);
+  }
+
+  function createRadius() {
+    ctx.clearRect(0, 0, windowW, windowH);
+    for (let position of positions) {
+      ctx.beginPath()
+      ctx.arc(position.x, position.y, position.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgb(0, 0, 0)`;
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+
+  function createPositions() {
+    let imageData = ctx.getImageData(0, 0, windowW, windowH);
+    let data = imageData.data;
+    let positionIndex = 0;
+    for (let i = 0; i < windowW; i += gap) {
+      for (let j = 0; j < windowH; j += gap) {
+        let index = (j * windowW + i) * 4;
+        if (data[index] > 128) {
+          if (positionIndex >= positions.length) {
+            positions.push(new Point(i, j));
+          } else {
+            positions[positionIndex].x = i;
+            positions[positionIndex].y = j;
+          }
+          positionIndex++;
+        }
+      }
+    }
+    positions.length = positionIndex;
+  }
+
+  function createPositions2() {
+    let imageData = ctx.getImageData(0, 0, windowW, windowH);
+    let data = imageData.data;
+    positions.length = 0;
+    for (let i = 0; i < windowW; i += gap) {
+      for (let j = 0; j < windowH; j += gap) {
+        let index = (j * windowW + i) * 4;
+        if (data[index] > 128) {
+          positions.push(new Point(i, j));
+        }
+      }
+    }
+  }
+
+  function formatTime(date) {
+    const hours = date.getHours().toString().padStart(2, "0");
+    const min = date.getMinutes().toString().padStart(2, "0");
+    const sec = date.getSeconds().toString().padStart(2, "0");
+    return `${hours}:${min}:${sec}`;
+  }
+
+  function update() {
+    createTextImage(formatTime(new Date()));
+    createPositions()
+    // createPositions2()
+  }
+
+  function draw() {
+    createRadius()
+    window.requestAnimationFrame(draw);
+  }
+
+  setInterval(update, 1000);
+  draw();
+
+
+</script>
+</html>

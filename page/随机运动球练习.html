@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机运动球练习</title>
+    <style>
+        .playground {
+            margin: 200px auto;
+            border: 2px solid gray;
+            height: 500px;
+            width: 700px;
+            position: relative;
+        }
+        .ball {
+            height: 30px;
+            width: 30px;
+            background-color: lightblue;
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="playground" id="playground">
+        <!-- <div class="ball" id="ball"></div> -->
+    </div>
+</body>
+<script>
+    const playground = document.getElementById('playground')
+    const maxX = 700 - 30;
+    const maxY = 500 - 30;
+    const ballList = [];
+
+    class Ball {
+        maxX = maxX;
+        maxY = maxY;
+        height = 30
+        width = 30
+        angle = Math.random() * 90
+        _x = Math.floor(Math.random() * this.maxX)
+        _y = Math.floor(Math.random() * this.maxY)
+        get x() {
+            return this._x;
+        }
+        set x(val) {
+            this._x = val;
+        }
+        get y() {
+            return this._y;
+        }
+        set y(val) {
+            this._y = val;
+        }
+        momentumX = 1 * Math.sin(this.angle);
+        momentumY = 1 * Math.cos(this.angle);
+        quality = 1
+        
+        constructor() {
+            const {x: left, y: top} = this
+            this.element = document.createElement('div', {style: {top, left}});
+            this.element.classList.add('ball')
+            playground.appendChild(this.element);
+            ballList.push(this.element);
+        }
+        setPosition(x, y) {
+            const positionSet = {x, y}
+            if (x < maxX && x > 0) {
+                positionSet.x = x;
+            } else {
+                const atLetter = (Math.abs(x) % (2 * maxX)) < maxX;
+                positionSet.x = atLetter ? (Math.abs(x) % maxX) : (maxX - (Math.abs(x) % maxX));
+            }
+            if (y < maxY && y > 0) {
+                positionSet.y = y;
+            } else {
+                const atLetter = (Math.abs(y) % (2 * maxY)) < maxY;
+                positionSet.y = atLetter ? (Math.abs(y) % maxY) : (maxY - (Math.abs(y) % maxY));
+            }
+            this.element.style.top = `${positionSet.y}px`;
+            this.element.style.left = `${positionSet.x}px`;
+        }
+        moveStart() {
+            this.interval = setInterval(() => {
+                this.setPosition(this.x += this.momentumX, this.y += this.momentumY);
+            }, 10);
+        }
+        impactList() {
+            return ballList.filter(item => {
+                if (item === this) {
+                    return false;
+                }
+                const self = {x: this.x - this.width / 2, y: this.x - this.height / 2};
+                const other = {x: item.x - item.width / 2, y: item.x - item.height / 2};
+                return Math.sqrt(Math.pow(self.x - other.x, 2) + Math.pow(self.y - other.y, 2)) < this.width;
+            })
+        }
+        isImpact() {
+            console.log(this.impactList());
+        }
+    }
+
+    const ball = new Ball();
+    ball.moveStart();
+    ball.isImpact();
+    
+</script>
+</html>

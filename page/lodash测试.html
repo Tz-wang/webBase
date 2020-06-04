@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loadsh测试</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <script src="../static/js/lodash.js"></script>
+</head>
+
+<body>
+    <main onload="loaded()">
+        <article>
+            <h1>Loadsh测试</h1>
+            <section>
+                <h2>loadsh中的assign是否可以实现深度拷贝</h2>
+                <p>
+                    a = {
+                    a: {
+                    a: 'hello',
+                    b: 'whorld'
+                    },
+                    b: 'hi loadsh'
+                    };
+                    b = {
+                    a: {
+                    a: '',
+                    b: '',
+                    },
+                    b: '',
+                    }
+                    _.assign(b, a);
+                </p>
+            </section>
+
+        </article>
+    </main>
+</body>
+<script>
+    const loaded = function () {
+        
+    const a = {
+        a: {
+            a: 'hello',
+            b: 'whorld'
+        },
+        b: 'hi loadsh'
+    };
+    const b = {
+        a: {
+            a: '',
+            b: '',
+        },
+        b: '',
+    }
+
+    console.log(assign(b, a));
+    
+    }
+</script>
+
+</html>

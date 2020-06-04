@@ -183,3 +183,12 @@ b {
 .redBox {
   background-color: #ff4545;
 }
+.horizontalBox {
+  display: flex;
+  justify-content: space-around;
+}
+.verticalBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

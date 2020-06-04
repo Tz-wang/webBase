@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画练习</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        .switch {
+            height: 50px;
+            margin: 30px auto;
+            padding: 0;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: white;
+            box-shadow: 2px 2px 5px 0 gray;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .switch .switchItem {
+            height: 50px;
+            width: 120px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            line-height: 50px;
+            border-radius: 0;
+            cursor: pointer;
+            z-index: 1;
+            background-color: transparent;
+            transition: color .3s;
+        }
+
+        .switch .isActive {
+            /* background-color: cadetblue; */
+            color: white;
+        }
+
+        #leftButton,
+        #leftButton2 {
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+
+        #rightButton,
+        #rightButton2 {
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        #animationItem,
+        #animationItem2 {
+            position: absolute;
+            top: 0px;
+            /* left: 0px; */
+            z-index: 0;
+            height: 50px;
+            width: 120px;
+            margin: 0;
+            padding: 0;
+            background-color: cadetblue;
+            border-radius: 25px;
+            transition: left .3s ease;
+        }
+
+        #animationItem2 {
+            display: flex;
+            padding: 0;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        #animationItem2 .animationItemLeft,
+        #animationItem2 .animationItemRight {
+            width: 50px;
+            height: 50px;
+            background-color: coral;
+            margin: 0;
+            padding: 0;
+            border-radius: 25px;
+        }
+
+        @keyframes animationItemMove {
+            0% {
+                width: 120px;
+            }
+
+            50% {
+                width: 180px;
+            }
+
+            100% {
+                width: 120px;
+            }
+        }
+
+        .switch .animationItemMoveLeft {
+            left: 0;
+            animation: animationItemMove 3s ease;
+        }
+
+        .switch .animationItemMoveRight {
+            left: 120px;
+            animation: animationItemMove 3s ease reverse;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>类switch切换</h1>
+        </header>
+        <article>
+            <section>
+                <p>使用div控制</p>
+                <div class="switch">
+                    <div id="leftButton" class="switchItem isActive" onclick="setActive('leftButton')">leftButton</div>
+                    <div id="rightButton" class="switchItem" onclick="setActive('rightButton')">rightButton</div>
+                    <div id="animationItem" class="animationItemMoveLeft"></div>
+                </div>
+            </section>
+            <section>
+                <p>优化动画效果</p>
+                <div class="switch">
+                    <div id="leftButton2" class="switchItem isActive" onclick="setActive2('leftButton2')">leftButton
+                    </div>
+                    <div id="rightButton2" class="switchItem" onclick="setActive2('rightButton2')">rightButton</div>
+                    <div id="animationItem2" class="animationItemMoveLeft">
+                        <div class="animationItemLeft"></div>
+                        <div class="animationItemRight"></div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+<script>
+    const leftButton = document.getElementById('leftButton');
+    const rightButton = document.getElementById('rightButton');
+    const animationItem = document.getElementById('animationItem');
+    const buttonList = {
+        leftButton,
+        rightButton
+    };
+    const setActive = function (buttonId) {
+        switch (buttonId) {
+            case 'leftButton':
+                animationItem.classList.remove('animationItemMoveRight');
+                animationItem.classList.add('animationItemMoveLeft');
+                break;
+            case 'rightButton':
+                animationItem.classList.remove('animationItemMoveLeft');
+                animationItem.classList.add('animationItemMoveRight');
+                break;
+            default:
+                break;
+        }
+        const buttonIdList = Object.keys(buttonList);
+        buttonList[buttonIdList[1 - buttonIdList.indexOf(buttonId)]].classList.remove('isActive');
+        buttonList[buttonId].classList.add('isActive');
+    }
+
+    const leftButton2 = document.getElementById('leftButton2');
+    const rightButton2 = document.getElementById('rightButton2');
+    const animationItem2 = document.getElementById('animationItem2');
+    const buttonList2 = {
+        leftButton2,
+        rightButton2
+    };
+    const setActive2 = function (buttonId) {
+        switch (buttonId) {
+            case 'leftButton2':
+                animationItem2.classList.remove('animationItemMoveRight');
+                animationItem2.classList.add('animationItemMoveLeft');
+                break;
+            case 'rightButton2':
+                animationItem2.classList.remove('animationItemMoveLeft');
+                animationItem2.classList.add('animationItemMoveRight');
+                break;
+            default:
+                break;
+        }
+        const buttonIdList = Object.keys(buttonList2);
+        buttonList2[buttonIdList[1 - buttonIdList.indexOf(buttonId)]].classList.remove('isActive');
+        buttonList2[buttonId].classList.add('isActive');
+    }
+</script>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旋转方块</title>
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+<script>
+  class Polygon {
+    points = [ // 顶点集合
+      {
+        x: 50,
+        y: 50,
+        arcRadius: 3,
+      },
+      {
+        x: 150,
+        y: 50,
+        arcRadius: 3,
+      },
+      {
+        x: 150,
+        y: 150,
+        arcRadius: 3,
+      },
+      {
+        x: 50,
+        y: 150,
+        arcRadius: 3,
+      },
+    ]
+    center = { // 中心点坐标，也是旋转轴坐标
+      x: 100,
+      y: 100
+    }
+
+    radian = 0 // 当前的旋转角度
+    _targetRadian = .5 * Math.PI // 目标旋转的角度
+    get nowIterations() {
+      return this._nowIterations;
+    }
+    set nowIterations(val) {
+      this._nowIterations = val % (this.iterations);  // 0 ~ 499
+    }
+
+    iterations = 500 // 定义一个目标角度后，当前图形迭代多少次到达目标角度
+    _nowIterations = 0 // 当前已经执行过的迭代次数
+    get targetRadian() { // 目标旋转角度（动态）
+      const random = () => Math.random() * 2 * Math.PI
+      if (this.nowIterations === 0) {  // 499 >= 499
+        this._targetRadian = random()
+        // this.points = this.target;
+      }
+      return this._targetRadian;
+    }
+
+
+    rotate() { // 旋转
+      console.log(this.targetRadian, this.radian, this.iterations, this.nowIterations);
+      
+      console.log((this.targetRadian - this.radian) / (this.iterations - this.nowIterations));
+      
+      this.radian += (this.targetRadian - this.radian) / (this.iterations - this.nowIterations) // 500 - 499
+      
+      this.nowIterations++
+    }
+
+    get target() {
+      return this.points.map(point => {
+        return {
+          x: Math.cos(this.radian) * (point.x - this.center.x) - Math.sin(this.radian) * (point.y - this.center
+            .y) + this.center.x,
+          y: Math.sin(this.radian) * (point.x - this.center.x) + Math.cos(this.radian) * (point.y - this.center
+            .y) + this.center.y,
+          arcRadius: point.arcRadius
+        }
+      })
+    }
+  }
+
+  const polygon = new Polygon();
+  const canvas = document.getElementById('canvas')
+  canvas.width = window.innerWidth;
+  canvas.height = 600;
+
+  const ctx = canvas.getContext('2d');
+
+  function move(polygon) {
+    polygon.rotate();
+  }
+
+  function draw(polygon) {
+    ctx.fillStyle = '#2abeff';
+    ctx.strokeStyle = '#2abeff';
+
+    for (let i = 0; i < polygon.target.length; i++) {
+      ctx.beginPath();
+      ctx.arc(polygon.target[i].x, polygon.target[i].y, polygon.target[i].arcRadius, 0, 2 * Math.PI);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.lineTo(polygon.target[(i + 1) % polygon.target.length].x, polygon.target[(i + 1) % polygon.target.length].y)
+      ctx.lineTo(polygon.target[i].x, polygon.target[i].y)
+      ctx.stroke()
+    }
+  }
+
+  function animation() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    move(polygon)
+    draw(polygon)
+    window.requestAnimationFrame(animation)
+  }
+
+  animation()
+</script>
+
+</html>

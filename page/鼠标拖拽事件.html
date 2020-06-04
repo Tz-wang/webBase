@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>鼠标拖拽事件</title>
+  <style>
+    main {
+      display: flex;
+
+    }
+    #contain1, #contain2 {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      border: 1px solid #666;
+      background-color: #999;
+    }
+    .over {
+      border: 1px solid #009999;
+    }
+    .item {
+      background-color: #fff;
+      padding: 10px;
+      margin: 6px;
+      border: 1px solid #666;
+
+    }
+
+  </style>
+</head>
+<body onload="main()">
+  <header>
+    <div>
+      <div>
+        <label for="">effectAllowed</label>
+        <input type="radio" name="effectAllowed" id="effectAllowed-copy" checked value="copy">copy
+        <input type="radio" name="effectAllowed" id="effectAllowed-move" value="move">move
+        <input type="radio" name="effectAllowed" id="effectAllowed-link" value="link">link
+        <input type="radio" name="effectAllowed" id="effectAllowed-none" value="none">none
+      </div>
+    </div>
+  </header>
+  <main>
+    <div id="contain1"></div>
+    <div id="contain2"></div>
+  </main>
+</body>
+<script>
+  function main() {
+    const contain1 = document.getElementById("contain1")
+    const contain2 = document.getElementById("contain2")
+    effectAllowed = 'copy';
+    image = new Image(100, 100)
+    image.src = 'https://alpha-bucket1.oss-cn-hangzhou.aliyuncs.com/%E9%97%A8%E6%88%B7%E9%A1%B9%E7%9B%AE/%E7%85%A7%E7%89%87/%E5%85%AC%E5%8F%B8%E6%88%90%E7%AB%8B.png';
+    init();
+
+
+
+
+    function initContain(contain) {
+      contain.ondragover = e => e.preventDefault();
+      contain.ondragenter = () => contain.classList.add('over');
+      contain.ondragleave = () => contain.classList.remove('over');
+      for (let i = 0; i < 10; i++) {
+        contain.appendChild(createItem('item' + i))
+      }
+    }
+    function init() {
+      initContain(contain1);
+      initContain(contain2);
+      effectAllowedListen();
+    }
+    function effectAllowedListen() {
+      const effectAllowedList = document.querySelectorAll('input[name="effectAllowed"]');
+      effectAllowedList.forEach( item => item.addEventListener('change', () => effectAllowed = item.value))
+    }
+
+    function itemDragStart(e) {
+      e.dataTransfer.effectAllowed = effectAllowed;
+      e.dataTransfer.setDragImage(image, 0, 0);
+    }
+
+    function createItem(textContent = "item") {
+      const child = document.createElement('div')
+      child.textContent = textContent;
+
+      child.classList.add('item');
+      child.style.backgroundColor = `rgb(${Math.round(Math.random() * 128) + 128}, ${Math.round(Math.random() * 128) + 128}, ${Math.round(Math.random() * 128) + 128})`
+      
+      child.setAttribute('draggable', true);
+      child.ondragstart = itemDragStart;
+      return child;
+    }
+
+  }
+</script>
+</html>

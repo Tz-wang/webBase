@@ -90,37 +90,20 @@
         BC: 0,
     }
 
-    Object.defineProperties(line, {
-        set(val) {
-            console.log(val);
-            
-        }
-    })
-
-    const setSet = function(id, setFunc) {
-        Object.defineProperty(line, id, {
-            set: setFunc
-        })
-    }
-    // setSet('AB', function (val) {
-    //     console.log(val);
-    //     this._AB = val;
-    // })
-    // setSet('AC', val => console.log('AC', val))
-    // setSet('BC', val => console.log('BC', val))
-
     let isMove = false;
 
+    // 开始拖动组件
     const moveStart = function (evt) {
         const elId = evt.srcElement.id;
         evt.dataTransfer.setDragImage(document.createElement('img'), 0, 0)
+        // 保存鼠标在元素内的位置
         positionBackup[elId] = {
             x: evt.offsetX,
             y: evt.offsetY
         }
     }
     
-
+    // 辅助函数
     const getElementPosition = function (ele) {
         const x = parseInt(ele.style.left);
         const y = parseInt(ele.style.top);
@@ -130,12 +113,14 @@
         };
     }
 
+    // 辅助函数
     const setElementPosition = function (ele, position) {
         ele.style.position = 'fixed'
         ele.style.top = `${position.y}px`
         ele.style.left = `${position.x}px`
     }
 
+    // 画线函数
     const drawLine = function (ele1, ele2, line) {
         const {
             x: x1,

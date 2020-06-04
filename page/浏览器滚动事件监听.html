@@ -118,8 +118,8 @@
           const scrollDiv = document.getElementById('scrollDiv');
           document.getElementById('scrollHeight').textContent = scrollDiv.scrollHeight;
           document.getElementById('clientHeight').textContent = scrollDiv.clientHeight;
+          const watchScroll = document.getElementById('watchScroll');
           scrollDiv.addEventListener('scroll', function (evt) {
-            const watchScroll = document.getElementById('watchScroll');
             watchScroll.textContent = this.scrollTop;
             if (this.scrollTop <= 400) {
               this.style.backgroundColor = '#e2eff1'

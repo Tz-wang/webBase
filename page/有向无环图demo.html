@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>有向无环图demo</title>
+  <style>
+    .node {
+      width: 300px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-self: center;
+      border: 1px solid #333;
+      border-radius: 4px;
+    }
+
+    .node-title {
+      font-size: 14px;
+      color: black;
+    }
+
+    .edge {
+      border: 1px solid #999;
+    }
+  </style>
+  <script>
+    class Geometry {
+      constructor({
+        x = 0,
+        y = 0,
+        w = 200,
+        h = 20
+      } = {}) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+      }
+    }
+
+    class Graph {
+      nodeMap = new Set();
+      constructor(parentId) {
+        this.dom = renderDom('div', {className: 'graph'});
+        document.getElementById(parentId).appendChild(this.dom);
+      }
+      _renderNode(text, geometry) {
+        const node = renderDom('div', {className: 'node', text});
+        node.style.position = 'absolute';
+        const resetGeometry = () => {
+          node.style.top = node.geometry.y;
+          node.style.left = node.geometry.x;
+          node.style.width = node.geometry.w;
+          node.style.height = node.geometry.h;
+        }
+        
+        node.geometry = new Proxy(geometry, {
+          set(obj, prop, value) {
+            setTimeout(resetGeometry, 100);
+            obj[prop] = value;
+            return true;
+          }
+        })
+        return node;
+      }
+      newNode(text, geometry) {
+        const node = this._renderNode(text, geometry);
+        const moveStart = (evt) => {
+          const {offsetX, offsetY} = evt;
+          const moving = (evt) => {
+            const {clientX, clientY} = evt;
+            node.geometry.x = clientX - offsetX;
+            node.geometry.y = clientY - offsetY;
+          }
+          const moveEnd = evt => {
+            window.removeEventListener('mousemove', moving);
+            window.removeEventListener('mouseup', moveEnd);
+          }
+          window.addEventListener('mousemove', moving);
+          window.addEventListener('mouseup', moveEnd);
+        }
+        node.addEventListener('mousedown', moveStart);
+        this.nodeMap.add(node);
+        this.dom.appendChild(node);
+      }
+      
+    }
+    
+    function Dom(tag, setting, geometry) {
+      const _dom = renderDom(tag, setting);
+      _dom.style.position = "absolute";
+      _dom.style.top = geometry.y + 'px';
+      _dom.style.left = geometry.x + 'px';
+      _dom.style.width = geometry.w + 'px';
+      _dom.style.height = geometry.h + 'px';
+
+      document.body.appendChild(_dom);
+
+      const resetGeometry = (prop, value) => {
+        switch (prop) {
+          case 'x':
+            _dom.style.left = value + 'px';
+            break;
+          case 'y':
+            _dom.style.top = value + 'px';
+            break;
+          case 'w':
+            _dom.style.width = value + 'px';
+            break;
+          case 'h':
+            _dom.style.height = value + 'px';
+            break;
+          default:
+            break;
+        }
+      }
+      const resetSetting = (prop, value) => {
+        const appendCHildren = (children) => children.forEach(child => _dom.appendChild(child));
+        switch (prop) {
+          case 'text':
+          case 'textContent': _dom.textContent = value; break;
+          case 'class':
+          case 'className':_dom.classList.add(value); break;
+          case 'children': appendCHildren(value); break;
+          default: _dom.setAttribute(prop, value); break;
+        }
+      }
+
+      const ret = new Proxy({
+        x: geometry.x,
+        y: geometry.y,
+        w: geometry.w,
+        h: geometry.h
+      }, {
+        set(obj, prop, value) {
+          resetGeometry(prop, value)
+          resetSetting(prop, value);
+          obj[prop] = value;
+          return true;
+        }
+      })
+
+      const moveStart = (event) => {
+        const {offsetX, offsetY} = event;
+        const moving = (event) => {
+          const {clientX, clientY} = event;
+          ret.x = clientX - offsetX;
+          ret.y = clientY - offsetY;
+        }
+
+        const moveEnd = (event) => {
+          window.removeEventListener('mousemove', moving);
+          window.removeEventListener('mouseup', moveEnd);
+        }
+        window.addEventListener('mousemove', moving);
+        window.addEventListener('mouseup', moveEnd);
+      }
+
+      if (setting.graggble) {
+        _dom.addEventListener('mousedown', moveStart);
+      }
+
+      return ret;
+    }
+
+    class Vertex {
+      constructor(geometry, value, children = null) {
+        this.dom = new Dom('div', {className: 'node', graggble: true}, geometry);
+        this.dom.textContent = value.title;
+
+      }
+    }
+
+    class Edge {
+      constructor(sourceVertex, targetVertex, style = null) {
+        self = this;
+        this.geometry = new Geometry();
+        this.sourceVertex = sourceVertex.dom = new Proxy(sourceVertex.dom, {
+          set(obj, prop, value) {
+            obj[prop] = value;
+            self.resetGeometry();
+            return true;
+          }
+        });
+        this.targetVertex = targetVertex.dom = new Proxy(targetVertex.dom, {
+          set(obj, prop, value) {
+            obj[prop] = value;
+            self.resetGeometry();
+            return true;
+          }
+        })
+        this.resetGeometry();
+        this.dom = new Dom('canvas', {className: 'edge'}, this.geometry);
+      }
+      resetGeometry() {
+        this.geometry.x = Math.min(this.sourceVertex.x, this.targetVertex.x);
+        this.geometry.y = Math.min(this.sourceVertex.y, this.targetVertex.y);
+        this.geometry.w = Math.abs(this.sourceVertex.x - this.targetVertex.x);
+        this.geometry.h = Math.abs(this.sourceVertex.y - this.targetVertex.y);
+      }
+    }
+
+    function appendChildren(dom, childrenList) {
+      for (let childDOM of childrenList) {
+        dom.appendChild(childDOM);
+      }
+    }
+
+    function renderDom(tagName, attributes) {
+      const dom = document.createElement(tagName);
+      if (attributes && typeof attributes === 'object') {
+        for (let attributeName of Object.keys(attributes)) {
+          const attributeValue = attributes[attributeName];
+          if (!attributeValue) {
+            continue;
+          }
+          switch (attributeName) {
+            case 'class':
+            case 'className':
+              dom.classList.add(attributeValue);
+              break;
+            case 'text':
+            case 'textContent':
+              dom.textContent = attributeValue;
+              break;
+            case 'children':
+              appendChildren(dom, attributeValue);
+              break;
+            default:
+              dom.setAttribute(attributeName, attributeValue);
+          }
+        }
+      }
+      return dom;
+    }
+
+    function renderDiv(attributes) {
+      return renderDom('div', attributes);
+    }
+  </script>
+</head>
+
+<body>
+  <div id="mousePosition"></div>
+  <div id="graph"></div>
+</body>
+<script>
+  // const v1 = new Vertex(new Geometry({
+  //   x: 100,
+  //   y: 100
+  // }), {
+  //   title: 'hello'
+  // });
+  // const v2 = new Vertex(new Geometry({
+  //   x: 200,
+  //   y: 200
+  // }), {
+  //   title: 'world'
+  // });
+  // const edge = new Edge(v1, v2)
+  // const dom = new Dom('div', {
+  //   className: 'node',
+  //   text: 'hello world',
+  //   graggble: true,
+  // }, {x: 300, y: 300, w: 100, h: 50});
+  const graph = new Graph('graph');
+  graph.newNode('hello', {x: 100, y: 100, w: 100, h: 100})
+  window.addEventListener('mousemove', evt => document.getElementById('mousePosition').textContent = JSON.stringify({
+    x: evt.clientX,
+    y: evt.clientY
+  }))
+</script>
+
+</html>

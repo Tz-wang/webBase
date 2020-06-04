@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex布局</title>
+  <style>
+    .contain {
+      display: flex;
+      outline: 1px solid #999;
+      height: 500px;
+    }
+
+    .item {
+      height: 30px;
+      width: 50px;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+      background-color: brown;
+      padding: 50px;
+      margin: 10px;
+    }
+
+    .Slider {
+      position: relative;
+
+    }
+
+    .SliderBtn {
+      position: absolute;
+    }
+
+    .control {
+      margin-bottom: 20px;
+    }
+
+    .control>span {
+      margin-right: 10px;
+    }
+
+    .controlContain {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .control {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div class="Slider">
+    <div class="SliderBtn"></div>
+  </div>
+  <div class="controlContain">
+    <div class="control">
+      <span>flex-direction</span><select name="flex-direction" id="flex-direction">
+        <option value="row">row</option>
+        <option value="row-reverse">row-reverse</option>
+        <option value="column">column</option>
+        <option value="column-reverse">column-reverse</option>
+      </select>
+    </div>
+    <div class="control">
+      <span>flex-wrap</span><select name="flex-wrap" id="flex-wrap">
+        <option value="nowrap">nowrap</option>
+        <option value="wrap">wrap</option>
+        <option value="wrap-reverse">wrap-reverse</option>
+      </select>
+    </div>
+    <div class="control">
+      <span>justify-content</span><select name="justify-content" id="justify-content">
+        <option value="flex-start">flex-start</option>
+        <option value="flex-end">flex-end</option>
+        <option value="center">center</option>
+        <option value="space-between">space-between</option>
+        <option value="space-around">space-around</option>
+      </select>
+    </div>
+    <div class="control">
+      <span>align-items</span><select name="align-items" id="align-items">
+        <option value="flex-start">flex-start</option>
+        <option value="flex-end">flex-end</option>
+        <option value="center">center</option>
+        <option value="baseline">baseline</option>
+        <option value="stretch">stretch</option>
+      </select>
+    </div>
+    <div class="control">
+      <span>align-content</span><select name="align-content" id="align-content">
+        <option value="flex-start">flex-start</option>
+        <option value="flex-end">flex-end</option>
+        <option value="center">center</option>
+        <option value="space-between">space-between</option>
+        <option value="space-around">space-around</option>
+        <option value="stretch">stretch</option>
+      </select>
+    </div>
+    <div class="control">
+      <span>项目个数</span><input type="text" id="itemNum">
+    </div>
+  </div>
+  <div class="contain" id="contain">
+    <div id="1" class="item">1</div>
+    <div id="2" class="item">2</div>
+    <div id="3" class="item">3</div>
+    <div id="4" class="item">4</div>
+    <div id="5" class="item">5</div>
+  </div>
+  <div class="controlContain">
+    <div class="control">
+      <span>item 编号</span><select name="itemIdSelect" id="itemIdSelect">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <div class="control">
+      <span>item 编号</span><span id="itemId"></span>
+    </div>
+    <div class="control">
+      <span>order</span><select name="order" id="order">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <div class="control">
+      <span>flex-grow</span><input type="text" id="flex-grow" placeholder="flex-grow">
+    </div>
+    <div class="control">
+      <span>flex-shrink</span><input type="text" id="flex-shrink" placeholder="flex-shrink">
+    </div>
+    <div class="control">
+      <span>flex-basis</span><input type="text" id="flex-basis" placeholder="flex-basis">
+    </div>
+    <div class="control">
+      <span>align-self</span><select name="align-self" id="align-self">
+        <option value="auto">auto</option>
+        <option value="flex-start">flex-start</option>
+        <option value="flex-end">flex-end</option>
+        <option value="center">center</option>
+        <option value="baseline">baseline</option>
+        <option value="stretch">stretch</option>
+      </select>
+    </div>
+  </div>
+
+</body>
+<script>
+  function main() {
+    const contain = document.getElementById('contain')
+
+    function createItem(id) {
+      const random = () => Math.random() * 50 + 'px'
+      const newItem = document.createElement('div')
+      newItem.id = id;
+      newItem.classList = 'item'
+      newItem.textContent = id;
+      newItem.style.height = random();
+      newItem.style.lineHeight = random();
+      newItem.style.width = random();
+      
+      newItem.title = JSON.stringify({
+        'width': newItem.style.width,
+        'height': newItem.style.height,
+        'order': 0,
+        'flex-grow': 0,
+        'flex-shrink': 1,
+        'flex-basis': 'auto',
+        'align-self': 'auto',
+      }, null, 2);
+
+      newItem.addEventListener('click', () => {
+        document.getElementById('itemId').textContent = id;
+        document.getElementById('itemIdSelect').value = id;
+        for (let item of contain.children) {
+          item.style.backgroundColor = 'brown';
+        }
+        newItem.style.backgroundColor = "#2a80a5";
+        for (let styleName of ['order', 'flex-grow', 'flex-shrink', 'flex-basis', 'align-self']) {
+          document.getElementById(styleName).value = JSON.parse(newItem.title)[styleName];
+        }
+      });
+      return newItem;
+    }
+
+    function setStyle(element, ...styles) {
+      let titleStr = {};
+      for (let style of styles) {
+        for (let [key, value] of Object.entries(style)) {
+          titleStr[key] = value;
+          element.style[key] = value;
+        }
+      }
+      element.title = JSON.stringify({
+        ...{
+          ...JSON.parse(element.title ? element.title : '{}'),
+          ...titleStr
+        }
+      }, null, 2);
+    }
+
+    function cleanChildren(elementId) {
+      const element = document.getElementById(elementId)
+      for (let i = 0; i < element.children.length; i++) {
+        element.removeChild(element.children[i]);
+        i--;
+      }
+    }
+
+    function createOptions(selectId, start = 1) {
+      const select = document.getElementById(selectId)
+
+      cleanChildren(selectId);
+
+      for (let i = 0; i < contain.children.length; i++) {
+        const newOption = document.createElement('option');
+        newOption.value = i + start;
+        newOption.textContent = i + start;
+        select.appendChild(newOption);
+      }
+    }
+
+    function setItemFlexSetting(id, props, value) {
+      const item = document.getElementById(id);
+      item.style[props] = value;
+    }
+
+    function initContain(itemNum) {
+      cleanChildren('contain');
+
+      for (let i = 0; i < itemNum; i++) {
+        contain.appendChild(createItem(i + 1));
+      }
+
+      createOptions('itemIdSelect');
+      createOptions('order', 0);
+    }
+
+    function addEventListener(element, eventName, callback) {
+      let _element = element;
+      if (typeof element === 'string') {
+        _element = document.getElementById(element);
+      }
+      _element.addEventListener(eventName, callback);
+    }
+
+    initContain(5);
+
+    for (let styleName of ['flex-direction', 'flex-wrap', 'justify-content', 'align-items', 'align-content']) {
+      addEventListener(styleName, 'change', () => setStyle(contain, {
+        [styleName]: document.getElementById(styleName).value
+      }))
+    }
+
+    addEventListener('itemNum', 'change', () => initContain(itemNum.value));
+
+    addEventListener('itemIdSelect', 'change', () => {
+      for (let item of contain.children) {
+        item.style.backgroundColor = 'brown';
+      }
+      document.getElementById(itemIdSelect.value).style.backgroundColor = "#2a80a5"
+      document.getElementById('itemId').textContent = itemIdSelect.value
+    })
+
+    for (let styleName of ['order', 'flex-grow', 'flex-shrink', 'flex-basis', 'align-self']) {
+      addEventListener(styleName, 'change', () => setStyle(document.getElementById(itemIdSelect.value), {
+        [styleName]: document.getElementById(styleName).value
+      }))
+    }
+
+  }
+</script>
+
+</html>

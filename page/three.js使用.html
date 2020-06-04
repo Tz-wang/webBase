@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>three.js使用</title>
+  <script src="https://unpkg.com/three@0.115.0/build/three.js"></script>
+</head>
+
+<body onload="main()">
+
+</body>
+<script>
+  function init() {
+    const screenWidth = window.innerWidth
+    const screenHeight = window.innerHeight
+
+    const scene = new THREE.scene();
+
+    const camera = new THREE.PerspectiveCamera(45, screenWidth / screenHeight, .1, 800);
+    /** 参数说明：
+     * THREE.PerspectiveCamera(fov, aspect, near, far)
+     * for 表示视场（视角），即摄像机横向的视角宽度，推荐默认值为50度
+     * aspect 横纵比，使用浏览器视窗的横纵比（宽/高）
+     * near 从距离摄像机多近的距离开始渲染（也就是空白区，浏览器离物体多近时，这部分区域不再渲染），推荐值0.1
+     * far 摄像机能看到多远，当物体到摄像机的距离超过这个距离时，将不再渲染，推荐默认值1000
+    */
+   /** 除了上面这种摄像机之外，Three.js还提供其他3种摄像机：CubeCamera、OrthographicCamera、StereoCamera
+    * 其中OrthographicCamera是正交投影摄像机，他不具有透视效果，即物体的大小不受远近距离的影响
+   */
+
+
+    camera.position.x = 10
+    camera.position.y = 10
+    camera.position.z = 30
+    camera.lookAt(scene.position)
+
+    const renderer = new THREE.WebGLRenderer()
+
+    renderer.setClearColor(0xffffff)
+    renderer.setSize(screenWidth, screenHeight)
+
+    const cubeGeometry = new THREE.BoxGeometry(4, 4, 4)
+    /** BoxGeometry：长方体
+     * ConeGeometry：圆锥体
+     * CylinderGeometry：圆柱体
+     * TorusGeometry：圆环体
+     * SphereGeometry：球体
+     * TubeGeometry: 管道
+     * DodecahedronGeometry：十二边体
+     * TetrahedronGeometry：四面体
+     * OctahedronGeometry：八面体
+     * IcosahedronGeormetry：二十面体
+     * PolyedronGeometry：多面体
+     * LatheGeometry：让任意曲线绕y轴旋转生成图形
+     * ParametricGeometry：根据参数生成形状
+     * TorusKnotGeometry：换面扭结体
+     * ShapeGeometry：二维形状
+     * CircleGeometry：圆形
+     * RingGeometry：环形
+    */
+
+    const cubeMaterial = new THREE.MeshBasicMaterial({color: 0xffffff})
+
+    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
+    /** Mesh是一个网状物体生成器，负责将形与材质整合起来
+     * 除了Mesh之外，Three.js还提供Points、Line物体生成器，
+     * Points只生成顶点
+     * line只生成顶点连接线（按渲染路径）
+    */
+
+    cube.position.x = 0
+    cube.position.y = -2
+    cube.position.z = 0
+
+    scene.add(cube)
+    document.body.appendChild(renderer.domElement)
+    renderer.render(scene, camera)
+  }
+  function main() {
+    init();
+  }
+</script>
+
+</html>

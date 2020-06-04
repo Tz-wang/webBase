@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器storage练习</title>
+    <link rel="stylesheet" href="../../static/css/main.css">
+</head>
+<body>
+    <main>
+        <p>请打开两个浏览器测试</p>
+        <input type="text" id="inputBuff">
+        <button onclick="inputSeesionStorage()">点击写入sessionStorage</button>
+        <button onclick="inputLocalStorage()">点击写入localStorage</button>
+        <button onclick="getSessionStorage()">查看sessionStorage</button>
+        <button onclick="getLocalStorage()">查看localStorage</button>
+        <div>
+            sessionStorage
+            <p id="message"></p>
+        </div>
+        <div>localStorage<p id="localStorageMessage"></div>
+    </main>
+</body>
+<script>
+    const inputBuff = document.getElementById('inputBuff');
+    const message = document.getElementById('message');
+    const localStorageMessage = document.getElementById('localStorageMessage');
+    inputSeesionStorage = function () {
+        const inputContent = inputBuff.value;
+        sessionStorage.setItem('message', inputContent);
+    }
+    inputLocalStorage = function () {
+        const inputContent = inputBuff.value;
+        localStorage.setItem('message', inputContent);
+    }
+    getSessionStorage = function () {
+        message.textContent = sessionStorage.getItem('message');
+    }
+    getLocalStorage = function () {
+        localStorageMessage.textContent = localStorage.getItem('message')
+    }
+</script>
+</html>

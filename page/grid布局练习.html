@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <title>grid布局练习</title>
+  <style>
+    #content {
+      padding: 10px;
+      border: 1px solid #999;
+      position: relative;
+      margin: 20px;
+      display: grid;
+      border-radius: 6px;
+    }
+    #content::before {
+      content: "容器";
+      position: absolute;
+      height: 20px;
+      line-height: 20px;
+      top: -10px;
+      left: 10px;
+      background-color: white;
+    }
+    #area {
+      border: 1px solid #999;
+    }
+  </style>
+</head>
+<body id="body">
+  <div class="contentSet">
+    <label for="columnsNumber">行数:</label><input type="number" id="columnsNumber" onchange="setNumber('columnsNumber')">
+    <label for="rowsNumber">列数:</label><input type="number" id="rowsNumber">
+    <label for="columnsSize">行宽:</label><input type="text" id="columnsSize">
+    <label for="rowsSize">列宽:</label><input type="text" id="rowsSize">
+    <div>
+      <label for="">区域命名:</label>
+      <table id="area">
+        
+      </table>
+    </div>
+    <div style="display: flex; align-items: flex-start;">
+      <label for="contentSetting">手写属性:</label><textarea name="contentSetting" id="contentSetting" cols="30" rows="10"></textarea>
+    </div>
+  </div>
+  <div id="content"></div>
+  <div id="itemList">
+
+  </div>
+</body>
+<script>
+  const columnsNumber = document.getElementById('columnsNumber');
+  const rowsNumber = document.getElementById('rowsNumber');
+  console.log(columnsNumber, typeof columnsNumber);
+  console.log(columnsNumber.value, typeof columnsNumber.value);
+</script>
+</html>
