@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>使用canvas截图</title>
+
+  <style>
+    #screenshotParent {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #333333;
+      width: 300px;
+      max-height: 450px;
+      height: fit-content;
+      overflow: auto;
+    }
+  </style>
+  <script src="../js/html2canvas.min.js"></script>
+</head>
+<body style="padding: 0; margin: 0">
+<div id="content" style="height: 450px; width: 100vw; display: flex; align-items: center; justify-content: center">
+  hello world
+</div>
+<div id="screenshotParent">
+  <img id="screenshot" />
+</div>
+</body>
+<script>
+  const screenshot = document.getElementById("screenshot");
+  const content = document.getElementById("content");
+
+  screenshot.width = 300;
+  screenshot.height = content.scrollHeight * (screenshot.width / content.scrollWidth);
+
+  html2canvas(document.body)
+    .then(
+      (canvas) => {
+        screenshot.src = canvas.toDataURL();
+      }
+    )
+
+</script>
+</html>

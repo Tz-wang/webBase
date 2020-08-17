@@ -18,15 +18,19 @@
       ctx.moveTo(25, 25);
       ctx.lineTo(105, 25);
       ctx.lineTo(25, 105);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
       ctx.fill();
+      ctx.strokeStyle = 'rgb(0, 0, 0)';
+      ctx.stroke();
 
       // 描边三角形
-      ctx.beginPath();
-      ctx.moveTo(125, 125);
-      ctx.lineTo(125, 45);
-      ctx.lineTo(45, 125);
-      // ctx.closePath(); // <- 如果描边三角形不使用closePath闭合，则不会自动闭合形状
-      ctx.stroke();
+      // ctx.beginPath();
+      // ctx.moveTo(125, 125);
+      // ctx.lineTo(125, 45);
+      // ctx.lineTo(45, 125);
+      // // ctx.closePath(); // <- 如果描边三角形不使用closePath闭合，则不会自动闭合形状
+      // ctx.stroke();
     }
     draw();
   }

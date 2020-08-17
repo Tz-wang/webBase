@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <canvas id="canvas"></canvas>
+<canvas id="canvas"></canvas>
 </body>
 <script>
   const canvas = document.getElementById('canvas');
@@ -77,10 +77,12 @@
 <script src="../js/canvas控制点.js"></script>
 <script>
   allPosition = [position];
+
   function drawAll() {
     ctx.clearRect(0, 0, 600, 600);
     allPosition.forEach(item => ctx.fillRect(item.x, item.y, 10, 10));
   }
+
   allPosition.push(ControlPoint(canvas, drawAll, {x: 200, y: 400}))
   allPosition.push(ControlPoint(canvas, drawAll, {x: 200, y: 500}))
 </script>

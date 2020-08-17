@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas电路图</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+</body>
+<script>
+  const canvas = document.getElementById("canvas");
+  canvas.width = document.body.clientWidth;
+  canvas.height = document.body.clientHeight;
+
+  const ctx = canvas.getContext('2d');
+
+  const points = [];
+
+  for (let i = 0; i < canvas.height / 10; i++) {
+    for (let j = 0; j < canvas.width / 10; j++) {
+      points.push({y: (i + 1) * 10, x: (j + 1) * 10, color: 'rgba(0, 0, 0, .1)'})
+    }
+  }
+
+  const drawPoint = (point) => {
+    ctx.fillStyle = point.color;
+
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, 1, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const draw = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (const point of points) {
+      drawPoint(point);
+    }
+    window.requestAnimationFrame(draw);
+  }
+
+  const light = (length) => {
+    const lp = [];
+    let head = Math.floor(Math.random() * points.length);
+    const interval = setInterval(() => {
+      head++;
+      if (head + 1 >= points.length) {
+        clearInterval(interval);
+        return ;
+      }
+
+      if (lp.length < length) {
+        lp.push(points[head + 1]);
+
+        for (const [index, point] of lp.entries()) {
+          point.color = `rgba(0, 0, 0, ${(index + 1) / lp.length})`;
+        }
+
+      } else {
+        const point = lp.shift()
+        point.color = `rgba(0, 0, 0, .1)`;
+
+        lp.push(points[head + 1]);
+
+        for (const [index, point] of lp.entries()) {
+          point.color = `rgba(0, 0, 0, ${(index + 1) / length})`;
+        }
+      }
+    }, 20);
+
+    return interval;
+  }
+
+  draw();
+  light(10);
+
+</script>
+</html>
