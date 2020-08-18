@@ -10,6 +10,11 @@
       overflow: hidden;
       box-sizing: border-box;
     }
+    #canvas {
+      position: relative;
+      z-index: 2;
+      background-color: #000;
+    }
   </style>
 </head>
 <body>
@@ -21,66 +26,94 @@
   canvas.height = document.body.clientHeight;
 
   const ctx = canvas.getContext('2d');
+  ctx.globalAlpha = 0.5;
 
-  const points = [];
-
-  for (let i = 0; i < canvas.height / 10; i++) {
-    for (let j = 0; j < canvas.width / 10; j++) {
-      points.push({y: (i + 1) * 10, x: (j + 1) * 10, color: 'rgba(0, 0, 0, .1)'})
-    }
+  const lines = [];
+  for (let i = 0; i < 1; i++) {
+    lines.push({
+      x: 0,
+      y: Math.floor(Math.random() * canvas.height),
+      speed: Math.ceil(Math.random() * 10 + 4),
+      color: generateColor(),
+      draw() {
+        ctx.beginPath();
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 4;
+        ctx.moveTo(this.x, this.y);
+        if (Math.random() * 100 > 99) {
+          ctx.lineTo(this.x, this.y += (Math.random() * 2 - 1 > 0 ? 1 : -1) * Math.ceil(Math.random() * 50));
+        } else {
+          ctx.lineTo(this.x += this.speed, this.y);
+        }
+        ctx.stroke();
+        ctx.closePath();
+        if (this.x > canvas.width || this.y > canvas.height) {
+          this.x = 0;
+          this.y = Math.floor(Math.random() * canvas.height);
+          this.speed = Math.ceil(Math.random() * 10 + 4);
+          this.color = generateColor();
+        }
+      }
+    })
   }
 
-  const drawPoint = (point) => {
-    ctx.fillStyle = point.color;
+  for (let i = 0; i < 1; i++) {
+    lines.push({
+      x: Math.floor(Math.random() * canvas.width),
+      y: 0,
+      speed: Math.ceil(Math.random() * 10 + 4),
+      color: generateColor(),
+      draw() {
+        ctx.beginPath();
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 4;
+        ctx.moveTo(this.x, this.y);
+        if (Math.random() * 100 > 99) {
+          ctx.lineTo(this.x += (Math.random() * 2 - 1 > 0 ? 1 : -1) * Math.ceil(Math.random() * 50), this.y);
+        } else {
+          ctx.lineTo(this.x, this.y += this.speed);
+        }
+        ctx.stroke();
+        ctx.closePath();
 
-    ctx.beginPath();
-    ctx.arc(point.x, point.y, 1, 0, Math.PI * 2);
+        if (this.x > canvas.width || this.y > canvas.height) {
+          this.x = Math.floor(Math.random() * canvas.width);
+          this.y = 0;
+          this.speed = Math.ceil(Math.random() * 10 + 4);
+          this.color = generateColor();
+        }
+      }
+    })
+  }
+
+  ctx.fillStyle = "#333"
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  function clearCanvas() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fill();
   }
 
-  const draw = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  function draw() {
+    window.requestAnimationFrame(draw)
 
-    for (const point of points) {
-      drawPoint(point);
-    }
-    window.requestAnimationFrame(draw);
-  }
+    clearCanvas();
 
-  const light = (length) => {
-    const lp = [];
-    let head = Math.floor(Math.random() * points.length);
-    const interval = setInterval(() => {
-      head++;
-      if (head + 1 >= points.length) {
-        clearInterval(interval);
-        return ;
-      }
-
-      if (lp.length < length) {
-        lp.push(points[head + 1]);
-
-        for (const [index, point] of lp.entries()) {
-          point.color = `rgba(0, 0, 0, ${(index + 1) / lp.length})`;
-        }
-
-      } else {
-        const point = lp.shift()
-        point.color = `rgba(0, 0, 0, .1)`;
-
-        lp.push(points[head + 1]);
-
-        for (const [index, point] of lp.entries()) {
-          point.color = `rgba(0, 0, 0, ${(index + 1) / length})`;
-        }
-      }
-    }, 20);
-
-    return interval;
+    lines.forEach(line => line.draw());
   }
 
   draw();
-  light(10);
+
+
+  function generateColor() {
+    const s = "0123456789ABCDEF";
+    let c = "#";
+    for (let i = 0; i < 6; i++) {
+      c += s[Math.ceil(Math.random() * 15)]
+    }
+    return c
+  }
 
 </script>
 </html>
